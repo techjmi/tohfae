@@ -19,7 +19,7 @@ import { ScrollableDropdownExample, PositionsDropdownExample } from "../shared/u
 import { SimpleDrawerExample, DrawerPositionsExample } from "../shared/ui/drawer/EXAMPLES";
 
 // Modal Examples
-import { ProductDetailsModalExample, ProductQuickViewModalExample, SizesModalExample } from "../shared/ui/modal/EXAMPLES";
+import { ProductDetailsModalExample, ProductQuickViewModalExample, AccountActionsModalExample, AllModalExamples } from "../shared/ui/modal/EXAMPLES";
 
 export default function Home() {
   return (
@@ -74,11 +74,12 @@ export default function Home() {
         <section className="space-y-6">
           <div className="border-b pb-4">
             <h2 className="text-3xl font-bold text-gray-900">Modal Component</h2>
-            <p className="text-gray-600 mt-2">Modals with real product data and different sizes</p>
+            <p className="text-gray-600 mt-2">Modals with real product data and account actions</p>
           </div>
-          <ProductDetailsModalExample />
+          {/* <ProductDetailsModalExample />
           <ProductQuickViewModalExample />
-          <SizesModalExample />
+          <AccountActionsModalExample /> */}
+          <AllModalExamples/>
         </section>
 
       </div>

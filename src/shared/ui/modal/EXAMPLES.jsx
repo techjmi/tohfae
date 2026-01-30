@@ -528,6 +528,132 @@ export function ProductQuickViewModalExample() {
 }
 
 // ============================================
+// Example 10: Account Actions Modal (Logout, Delete, etc.)
+// ============================================
+export function AccountActionsModalExample() {
+    const [logoutOpen, setLogoutOpen] = useState(false);
+    const [deleteOpen, setDeleteOpen] = useState(false);
+    const [deactivateOpen, setDeactivateOpen] = useState(false);
+
+    const handleLogout = () => {
+        alert('Logged out successfully!');
+        setLogoutOpen(false);
+    };
+
+    const handleDelete = () => {
+        alert('Account deleted!');
+        setDeleteOpen(false);
+    };
+
+    const handleDeactivate = () => {
+        alert('Account deactivated!');
+        setDeactivateOpen(false);
+    };
+
+    return (
+        <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Account Actions Modal (Full Width Footer with CTA)</h3>
+            <p className="text-sm text-gray-600">
+                Common pattern: Cancel on left, Danger action on right, full width footer
+            </p>
+
+            <div className="flex gap-3">
+                <Button variant="outline" onClick={() => setLogoutOpen(true)}>
+                    Logout
+                </Button>
+                <Button variant="outline" color="warning" onClick={() => setDeactivateOpen(true)}>
+                    Deactivate Account
+                </Button>
+                <Button variant="outline" color="danger" onClick={() => setDeleteOpen(true)}>
+                    Delete Account
+                </Button>
+            </div>
+
+            {/* Logout Modal */}
+            <Modal isOpen={logoutOpen} onClose={() => setLogoutOpen(false)} size="sm">
+                <ModalHeader title="Logout" onClose={() => setLogoutOpen(false)} />
+                <ModalBody>
+                    <p>Are you sure you want to logout?</p>
+                    <p className="mt-2 text-sm text-gray-600">
+                        You'll need to login again to access your account.
+                    </p>
+                </ModalBody>
+                <ModalFooter align="between">
+                    <Button variant="outline" onClick={() => setLogoutOpen(false)}>
+                        Cancel
+                    </Button>
+                    <Button variant="solid" color="primary" onClick={handleLogout}>
+                        Logout
+                    </Button>
+                </ModalFooter>
+            </Modal>
+
+            {/* Delete Account Modal */}
+            <Modal isOpen={deleteOpen} onClose={() => setDeleteOpen(false)} size="sm">
+                <ModalHeader title="Delete Account" onClose={() => setDeleteOpen(false)} />
+                <ModalBody>
+                    <div className="space-y-3">
+                        <div className="flex items-start gap-3 p-3 bg-red-50 border border-red-200 rounded-lg">
+                            <Icon name="warning" size={20} className="text-red-600 shrink-0 mt-0.5" />
+                            <div>
+                                <p className="font-medium text-red-900">Warning: This action is permanent!</p>
+                                <p className="text-sm text-red-700 mt-1">
+                                    All your data will be permanently deleted and cannot be recovered.
+                                </p>
+                            </div>
+                        </div>
+                        <p className="text-gray-700">
+                            Are you absolutely sure you want to delete your account?
+                        </p>
+                    </div>
+                </ModalBody>
+                <ModalFooter align="between">
+                    <Button variant="outline" onClick={() => setDeleteOpen(false)}>
+                        Cancel
+                    </Button>
+                    <Button variant="solid" color="danger" onClick={handleDelete}>
+                        Delete Account
+                    </Button>
+                </ModalFooter>
+            </Modal>
+
+            {/* Deactivate Account Modal */}
+            <Modal isOpen={deactivateOpen} onClose={() => setDeactivateOpen(false)} size="md">
+                <ModalHeader
+                    title="Deactivate Account"
+                    subtitle="Temporarily disable your account"
+                    onClose={() => setDeactivateOpen(false)}
+                />
+                <ModalBody>
+                    <div className="space-y-3">
+                        <p className="text-gray-700">
+                            Deactivating your account will:
+                        </p>
+                        <ul className="list-disc list-inside space-y-2 text-gray-600 ml-2">
+                            <li>Hide your profile from other users</li>
+                            <li>Disable notifications</li>
+                            <li>Preserve your data for reactivation</li>
+                            <li>Allow you to reactivate anytime</li>
+                        </ul>
+                        <p className="text-sm text-gray-600 mt-4">
+                            You can reactivate your account by logging in again.
+                        </p>
+                    </div>
+                </ModalBody>
+                <ModalFooter align="between">
+                    <Button variant="outline" onClick={() => setDeactivateOpen(false)}>
+                        Cancel
+                    </Button>
+                    <Button variant="solid" color="warning" onClick={handleDeactivate}>
+                        Deactivate Account
+                    </Button>
+                </ModalFooter>
+            </Modal>
+        </div>
+    );
+}
+
+// ============================================
 // All Modal Examples Combined
 // ============================================
 export function AllModalExamples() {
@@ -560,6 +686,9 @@ export function AllModalExamples() {
             <hr className="my-8" />
 
             <ProductQuickViewModalExample />
+            <hr className="my-8" />
+
+            <AccountActionsModalExample />
         </div>
     );
 }
