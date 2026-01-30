@@ -1,34 +1,34 @@
-"use client"; // for modal to work on client side
+/**
+ * Modal Component
+ * A flexible modal/dialog component with backdrop, animations, and accessibility
+ *
+ * Features:
+ * - Multiple sizes (sm, md, lg, xl, full)
+ * - Multiple placements (center, top, bottom)
+ * - Backdrop variants (default, dark, light, blur)
+ * - ESC key to close
+ * - Click outside to close
+ * - Body scroll lock
+ * - Accessible with ARIA attributes
+ */
+
+"use client";
 import React, { useEffect } from "react";
-
-const sizeClasses = {
-  sm: "max-w-sm",
-  md: "max-w-lg",
-  lg: "max-w-2xl",
-};
-
-const placementClasses = {
-  center: {
-    wrapper: "items-center justify-center",
-    panel: "rounded-xl",
-  },
-  bottom: {
-    wrapper: "items-end justify-center",
-    panel: "rounded-t-xl w-full",
-  },
-};
+import { classNames } from "@/shared/utils/classNames";
+import { MODAL_SIZE, MODAL_PLACEMENT, MODAL_BACKDROP } from "./modalConstant";
 
 const Modal = ({
   children,
   isOpen,
   onClose,
   size = "md",
-  placement = "center", // center | bottom
+  placement = "center", // "center" | "top" | "bottom"
+  backdrop = "default", // "default" | "dark" | "light" | "blur"
   closeOnEsc = true,
   closeOnBackdrop = true,
   lockBodyScroll = true,
   className = "",
-  modalProps = {},
+  ...props
 }) => {
   // body scroll lock
   useEffect(() => {
@@ -58,17 +58,30 @@ const Modal = ({
 
   if (!isOpen) return null;
 
-  const currentPlacement = placementClasses[placement];
+  const currentPlacement = MODAL_PLACEMENT[placement] || MODAL_PLACEMENT.center;
+  const backdropClass = MODAL_BACKDROP[backdrop] || MODAL_BACKDROP.default;
+  const sizeClass = MODAL_SIZE[size] || MODAL_SIZE.md;
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex bg-black/40 ${currentPlacement.wrapper}`}
+      className={classNames(
+        "fixed inset-0 z-50 flex",
+        backdropClass,
+        currentPlacement.wrapper
+      )}
       onClick={closeOnBackdrop ? onClose : undefined}
+      role="dialog"
+      aria-modal="true"
     >
       <div
-        className={`bg-white ${sizeClasses[size]} ${currentPlacement.panel} ${className}`}
+        className={classNames(
+          "bg-white shadow-xl",
+          sizeClass,
+          currentPlacement.panel,
+          className
+        )}
         onClick={(e) => e.stopPropagation()}
-        {...modalProps}
+        {...props}
       >
         {children}
       </div>

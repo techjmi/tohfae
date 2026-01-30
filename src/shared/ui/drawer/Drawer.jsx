@@ -1,4 +1,26 @@
-"use client"; // for useEffect to work on the client side
+/**
+ * Drawer Component
+ * A flexible drawer/sidebar component with multiple positions and variants
+ *
+ * Features:
+ * - Multiple positions (left, right, top, bottom)
+ * - Multiple variants (temporary, persistent, permanent)
+ * - Multiple sizes (sm, md, lg, xl, full, custom %)
+ * - Backdrop overlay (temporary variant)
+ * - ESC key to close
+ * - Click outside to close
+ * - Body scroll lock
+ * - Smooth animations
+ *
+ * Usage:
+ * <Drawer isOpen={isOpen} onClose={handleClose} position="right">
+ *   <DrawerHeader onClose={handleClose}>Title</DrawerHeader>
+ *   <DrawerBody>Content</DrawerBody>
+ *   <DrawerFooter>Actions</DrawerFooter>
+ * </Drawer>
+ */
+
+"use client";
 import React, { useEffect } from "react";
 import {
   DRAWER_POSITION,
@@ -51,11 +73,28 @@ const Drawer = ({
   const positionClass = {
     left: "left-0 top-0 h-full",
     right: "right-0 top-0 h-full",
+    top: "top-0 left-0 w-full",
     bottom: "bottom-0 left-0 w-full",
   }[position];
 
-  const sizeClass =
-    position === "bottom" ? "h-1/2" : DRAWER_SIZE[size];
+  // Handle size based on position
+  const getSizeClass = () => {
+    if (position === "top" || position === "bottom") {
+      // For horizontal drawers, size is height
+      if (typeof size === "string" && size.includes("%")) {
+        return `h-[${size}]`;
+      }
+      return DRAWER_SIZE[size] || "h-1/2";
+    } else {
+      // For vertical drawers, size is width
+      if (typeof size === "string" && size.includes("%")) {
+        return `w-[${size}]`;
+      }
+      return DRAWER_SIZE[size] || DRAWER_SIZE.md;
+    }
+  };
+
+  const sizeClass = getSizeClass();
 
   const translateClass = isOpen
     ? DRAWER_ANIMATION[position]
@@ -74,13 +113,15 @@ const Drawer = ({
       {/* Drawer panel */}
       <div
         className={classNames(
-          "fixed z-50 bg-white transition-transform duration-300 ease-in-out",
+          "fixed z-50 bg-white shadow-xl transition-transform duration-300 ease-in-out flex flex-col",
           positionClass,
           sizeClass,
           translateClass,
           variant === "permanent" && "relative z-auto",
           className
         )}
+        role="dialog"
+        aria-modal={variant === "temporary"}
         {...drawerProps}
       >
         {children}

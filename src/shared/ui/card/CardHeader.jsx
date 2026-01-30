@@ -51,20 +51,22 @@ const CardHeader = ({
       </div>
 
       {/* Right: Actions / Close */}
-      {/* <div className="flex items-center gap-2 shrink-0">
-        {actions}
+      {(actions || onClose) && (
+        <div className="flex items-center gap-2 shrink-0">
+          {actions}
 
-        {onClose && (
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Close"
-            className="rounded-md p-1 text-muted-foreground hover:bg-muted hover:text-foreground transition"
-          >
-            <Icon name={icon} size={18} />
-          </button>
-        )}
-      </div> */}
+          {onClose && (
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Close"
+              className="rounded-md p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition"
+            >
+              <Icon name={icon} size={18} />
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 };
