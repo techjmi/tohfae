@@ -1,7 +1,13 @@
-//importing all the card component from the card folder
-import Card from './Card';
-import CardHeader from './CardHeader';
-import CardBody from './CardBody';
-import CardBottom from './CardBottom';
+/**
+ * Card Components Export
+ * Central export file for all card-related components
+ */
 
-export { Card, CardHeader, CardBody, CardBottom };
+// Components
+export { default as Card } from './Card';
+export { default as CardHeader } from './CardHeader';
+export { default as CardBody } from './CardBody';
+export { default as CardFooter, CardBottom } from './CardBottom';
+
+// Constants
+export * from './cardConstant';

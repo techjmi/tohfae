@@ -1,10 +1,43 @@
-//this is the drawer footer component which will be used to handle the drawer footer of the drawer component
-import React from 'react'
+/**
+ * DrawerFooter Component
+ * Footer section for drawer, typically for action buttons
+ *
+ * Usage:
+ * <DrawerFooter>
+ *   <Button onClick={handleSave}>Save</Button>
+ *   <Button onClick={handleCancel}>Cancel</Button>
+ * </DrawerFooter>
+ */
 
-const DrawerFooter = ({children, className = "" , drawerFooterProps = {}}) => {
+"use client";
+import React from 'react';
+import { classNames } from '@/shared/utils/classNames';
+
+const DrawerFooter = ({
+  children,
+  align = "right", // "left" | "center" | "right" | "between"
+  className = "",
+  ...props
+}) => {
+  const alignmentClass = {
+    left: "justify-start",
+    center: "justify-center",
+    right: "justify-end",
+    between: "justify-between",
+  }[align] || "justify-end";
+
   return (
-    <div className={className} {...drawerFooterProps}>{children}</div>
-  )
-}
+    <div
+      className={classNames(
+        "flex items-center gap-2 p-4 border-t border-gray-200",
+        alignmentClass,
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+};
 
-export default DrawerFooter
+export default DrawerFooter;
