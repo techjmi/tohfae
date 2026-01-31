@@ -13,13 +13,21 @@ import { AllButtonExamples } from "../shared/ui/button/EXAMPLES";
 import { ProductCardExample, MultipleProductCardsExample, HoverableCardsExample } from "../shared/ui/card/EXAMPLES";
 
 // Dropdown Examples
-import { ScrollableDropdownExample, PositionsDropdownExample } from "../shared/ui/dropdown/EXAMPLES";
+import { ScrollableDropdownExample, PositionExamples } from "../shared/ui/dropdown/EXAMPLES";
 
 // Drawer Examples
-import { SimpleDrawerExample, DrawerPositionsExample } from "../shared/ui/drawer/EXAMPLES";
+import { SimpleDrawerExample, DrawerSizesExample } from "../shared/ui/drawer/EXAMPLES";
 
 // Modal Examples
-import { ProductDetailsModalExample, ProductQuickViewModalExample, AccountActionsModalExample, AllModalExamples } from "../shared/ui/modal/EXAMPLES";
+import { AllModalExamples } from "../shared/ui/modal/EXAMPLES";
+
+// Banner Examples
+import {
+  SimpleBannerExample,
+  BannerWithHeaderExample,
+  ProductGridWithBannersExample,
+  AllBannerTypesExample
+} from "../shared/ui/banner/EXAMPLES";
 
 export default function Home() {
   return (
@@ -57,17 +65,17 @@ export default function Home() {
             <p className="text-gray-600 mt-2">Dropdown menus with different positions and features</p>
           </div>
           <ScrollableDropdownExample />
-          <PositionsDropdownExample />
+          <PositionExamples />
         </section>
 
         {/* Section: Drawers */}
         <section className="space-y-6">
           <div className="border-b pb-4">
             <h2 className="text-3xl font-bold text-gray-900">Drawer Component</h2>
-            <p className="text-gray-600 mt-2">Side panels from different positions</p>
+            <p className="text-gray-600 mt-2">Side panels from different positions and sizes</p>
           </div>
           <SimpleDrawerExample />
-          <DrawerPositionsExample />
+          <DrawerSizesExample />
         </section>
 
         {/* Section: Modals */}
@@ -80,6 +88,18 @@ export default function Home() {
           <ProductQuickViewModalExample />
           <AccountActionsModalExample /> */}
           <AllModalExamples/>
+        </section>
+
+        {/* Section: Banners */}
+        <section className="space-y-6">
+          <div className="border-b pb-4">
+            <h2 className="text-3xl font-bold text-gray-900">Banner Component</h2>
+            <p className="text-gray-600 mt-2">Banners using Card composition (CardHeader, CardBody, CardFooter)</p>
+          </div>
+          <SimpleBannerExample />
+          <BannerWithHeaderExample />
+          <AllBannerTypesExample />
+          <ProductGridWithBannersExample />
         </section>
 
       </div>

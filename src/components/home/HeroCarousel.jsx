@@ -3,17 +3,40 @@
 import Carousel from "../../shared/utils/carousel";
 import Button from "../../shared/ui/button";
 import {
-  HERO_CAROUSEL_SLIDES,
   CAROUSEL_CONFIG,
-  mergeCarouselSlides
+  getHeroCarouselSlides
 } from "../../shared/constant/carousel.constant";
 
-export default function HeroCarousel({ apiSlides = [] }) {
-  // Merge API slides with default slides if API slides are provided
-  const carouselSlides = mergeCarouselSlides(apiSlides);
+/**
+ * HeroCarousel Component
+ *
+ * Displays hero carousel using banner contract data
+ *
+ * Features:
+ * - Uses BANNER_TYPE.HERO banners from banner contract
+ * - Supports CTA routing with dynamic parameters
+ * - Responsive images (desktop/mobile)
+ * - Custom background and text colors from banner data
+ * - Animation support
+ * - API override support
+ *
+ * @param {Array} apiBanners - Optional banners from API (overrides contract data)
+ */
+export default function HeroCarousel({ apiBanners = null }) {
+  // Get hero carousel slides from banner contract
+  const carouselSlides = getHeroCarouselSlides(apiBanners);
+
+  // If no slides available, return null
+  if (!carouselSlides || carouselSlides.length === 0) {
+    return null;
+  }
 
   const slides = carouselSlides.map((slide, index) => (
-    <div key={index} className="relative h-full w-full">
+    <div
+      key={slide.id || index}
+      className="relative h-full w-full"
+      style={{ backgroundColor: slide.backgroundColor || 'transparent' }}
+    >
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
@@ -21,8 +44,10 @@ export default function HeroCarousel({ apiSlides = [] }) {
           alt={slide.title}
           className="w-full h-full object-cover"
         />
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
+        {/* Overlay - only if no custom background color */}
+        {!slide.backgroundColor && (
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
+        )}
       </div>
 
       {/* Content */}
@@ -30,40 +55,37 @@ export default function HeroCarousel({ apiSlides = [] }) {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
             {/* Title */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 animate-fade-in">
+            <h1
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 animate-fade-in"
+              style={{ color: slide.textColor || '#ffffff' }}
+            >
               {slide.title}
             </h1>
 
             {/* Subtitle */}
-            <p className="text-lg sm:text-xl text-gray-200 mb-8 animate-fade-in-delay">
+            <p
+              className="text-lg sm:text-xl mb-8 animate-fade-in-delay"
+              style={{ color: slide.textColor || '#e5e7eb' }}
+            >
               {slide.subtitle}
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 animate-fade-in-delay-2">
-              <Button
-                as="a"
-                href={slide.cta.primary.href}
-                variant="solid"
-                color="primary"
-                size="lg"
-                radius="md"
-                className="shadow-lg hover:shadow-xl transition-shadow"
-              >
-                {slide.cta.primary.text}
-              </Button>
-              <Button
-                as="a"
-                href={slide.cta.secondary.href}
-                variant="outline"
-                color="white"
-                size="lg"
-                radius="md"
-                className="border-white text-white hover:bg-white/10"
-              >
-                {slide.cta.secondary.text}
-              </Button>
-            </div>
+            {slide.cta.enabled && (
+              <div className="flex flex-wrap gap-4 animate-fade-in-delay-2">
+                <Button
+                  as="a"
+                  href={slide.cta.primary.href}
+                  variant={slide.cta.primary.variant || "solid"}
+                  color={slide.cta.primary.color || "primary"}
+                  size="lg"
+                  radius="md"
+                  className="shadow-lg hover:shadow-xl transition-shadow"
+                >
+                  {slide.cta.primary.text}
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </div>
