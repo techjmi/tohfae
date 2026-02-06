@@ -4,8 +4,15 @@ import { images } from "@/contract/testing.image";
 export const website_name = 'Tohfae';
 export const main_url = 'https://tohfae.com';
 export const local_url = 'http://localhost:3000';
+export const local_api_url = 'http://localhost:8000';
 export const logoUrl = images.image_1;
 export const alt_text = 'Tohfae';
+export const site_type = 'website';
+export const site_image = '/brand/home.png';
+export const site_author = 'Md Shamim Akhter';
+export const site_author_url = 'https://intervieworbit.site';
+export const site_publisher = 'Tohfae';
+
 
 //navigation url constant
 export const Navigation_Url = {
@@ -21,13 +28,14 @@ export const Navigation_Url = {
   NEWSLETTER: '/newsletter',
   HELP_CENTER: '/help-center',
   FAQ: '/faq',
+  PRODUCTS: '/products',
+  CART: '/cart',
 };
 //dynamic navigation url constant
 export const Dynamic_Navigation_Url = {
   PRODUCT_DETAILS: '/product/:slug',
   PRODUCT_LIST: '/products',
   PRODUCT_CATEGORY: '/products/:category',
-  CART: '/cart',
   CHECKOUT: '/checkout',
   ORDER: '/order',
   ORDER_DETAILS: '/order/:id',

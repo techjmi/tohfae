@@ -123,20 +123,20 @@ export function ProductGridWithBannersExample() {
                         <Card key={item.id} hoverable shadow="sm">
                             <CardBody padding={false}>
                                 <img
-                                    src={product.images[0]}
-                                    alt={product.name}
+                                    src={product.media?.images?.[0] || '/placeholder.jpg'}
+                                    alt={product.basic?.name || 'Product'}
                                     className="w-full h-48 object-cover"
                                 />
                                 <div className="p-4">
-                                    <h4 className="font-semibold text-gray-900">{product.name}</h4>
-                                    <p className="text-sm text-gray-600 mt-1">{product.description}</p>
+                                    <h4 className="font-semibold text-gray-900">{product.basic?.name}</h4>
+                                    <p className="text-sm text-gray-600 mt-1">{product.basic?.shortDescription}</p>
                                     <div className="mt-2 flex items-center justify-between">
                                         <span className="text-lg font-bold text-primary-600">
-                                            ₹{product.price.base}
+                                            ₹{product.pricing?.basePrice}
                                         </span>
-                                        {product.discount && (
+                                        {product.pricing?.discount && (
                                             <span className="text-sm text-gray-500 line-through">
-                                                ₹{product.price.original}
+                                                ₹{product.pricing?.originalPrice}
                                             </span>
                                         )}
                                     </div>

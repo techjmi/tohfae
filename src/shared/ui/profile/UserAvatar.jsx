@@ -51,7 +51,7 @@ const UserAvatar = ({
                     ${sizeClass} 
                     rounded-full 
                     overflow-hidden 
-                    bg-gradient-to-br from-blue-500 to-purple-600
+                    bg-linear-to-br from-blue-500 to-purple-600
                     flex items-center justify-center
                     text-white font-semibold
                     border-2 border-white shadow-md

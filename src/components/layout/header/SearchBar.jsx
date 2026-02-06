@@ -1,21 +1,30 @@
-/**
- * SearchBar Component
- * 
- * Product search functionality
- * 
- * Features:
- * - Search input field
- * - Auto-complete suggestions
- * - Search icon
- * - Clear button
- * - Keyboard navigation
- * 
- * Usage:
- * import SearchBar from '@/components/layout/header/SearchBar';
- * <SearchBar onSearch={handleSearch} />
- */
-
 "use client";
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Search } from '@/shared/ui/search/Search';
 
-// Write your search bar component code here
+export const SearchBar = ({ className = "" }) => {
+    const router = useRouter();
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearch = (value) => {
+        if (value.trim()) {
+            router.push(`/search?q=${encodeURIComponent(value)}`);
+        }
+    };
+
+    return (
+        <Search
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onSearch={handleSearch}
+            placeholder="Search products, categories..."
+            size="md"
+            radius="full"
+            className={className}
+        />
+    );
+}
+export default SearchBar;
+
 

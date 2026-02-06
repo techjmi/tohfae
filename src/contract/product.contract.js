@@ -50,14 +50,47 @@ export const CONFIGURATOR_TYPE = {
   GENERIC: "generic",
 };
 
+/* ======================== CUSTOMIZATION OPTION TYPES ======================== */
+export const CUSTOMIZATION_TYPE = {
+  SELECT: "select",
+  TEXT: "text",
+  TEXTAREA: "textarea",
+  IMAGE: "image",
+  COLOR: "color",
+  NUMBER: "number",
+};
+
+/* ======================== SHIPPING CLASSES ======================== */
+export const SHIPPING_CLASS = {
+  STANDARD: "standard",
+  EXPRESS: "express",
+  FRAGILE: "fragile",
+  HEAVY: "heavy",
+};
+
+/* ======================== PRODUCT TAGS ======================== */
+export const PRODUCT_TAGS = {
+  BESTSELLER: "bestseller",
+  TRENDING: "trending",
+  NEW_ARRIVAL: "new-arrival",
+  LIMITED_EDITION: "limited-edition",
+  SALE: "sale",
+  FEATURED: "featured",
+};
+
 export const PRODUCT_DATA = [
   /* -------------------------------- T-SHIRT -------------------------------- */
   {
     id: "prod_tshirt_001",
     slug: "custom-tshirt-black",
+    sku: "TSH-001",
     tenantId: "default",
 
     category: PRODUCT_CATEGORY.TSHIRT,
+    tags: [PRODUCT_TAGS.BESTSELLER, PRODUCT_TAGS.TRENDING, PRODUCT_TAGS.FEATURED],
+    collections: ["valentines-special", "birthday-gifts"],
+    occasions: ["birthday", "anniversary", "valentines"],
+    recipients: ["him", "her", "unisex"],
 
     basic: {
       name: "Custom Printed T-Shirt",
@@ -73,10 +106,19 @@ export const PRODUCT_DATA = [
         images[0].image_2,
       ],
       thumbnail: images[0].image_1,
+      videos: [],
+    },
+
+    seo: {
+      metaTitle: "Custom Printed T-Shirt | Personalized Gifts | Tohfae",
+      metaDescription: "Design your own t-shirt with custom text, images or logos. Premium cotton, soft and durable fabric. Perfect gift for any occasion.",
+      keywords: ["custom tshirt", "personalized tshirt", "gift tshirt", "printed tshirt"],
+      ogImage: images[0].image_1,
     },
 
     pricing: {
       currency: "INR",
+      basePrice: 900,
       mrp: 1000,
       sellingPrice: 900,
 
@@ -103,7 +145,7 @@ export const PRODUCT_DATA = [
       },
 
       cod: {
-        available: true, //can be true or false by deafult it is true
+        available: true,
         extraCharges: 10,
       },
 
@@ -129,9 +171,97 @@ export const PRODUCT_DATA = [
       },
     ],
 
+    rating: {
+      average: 4.5,
+      count: 234,
+      distribution: {
+        5: 150,
+        4: 60,
+        3: 15,
+        2: 5,
+        1: 4,
+      },
+    },
+
+    variants: [
+      {
+        id: "var_tshirt_001_s_black",
+        sku: "TSH-BLK-S-001",
+        attributes: {
+          size: "S",
+          color: "Black",
+        },
+        pricing: {
+          mrp: 1000,
+          sellingPrice: 900,
+          additionalCost: 0,
+        },
+        inventory: {
+          inStock: true,
+          quantity: 25,
+          reserved: 3,
+          available: 22,
+        },
+        media: {
+          images: [images[0].image_1],
+          thumbnail: images[0].image_1,
+        },
+      },
+      {
+        id: "var_tshirt_001_m_black",
+        sku: "TSH-BLK-M-001",
+        attributes: {
+          size: "M",
+          color: "Black",
+        },
+        pricing: {
+          mrp: 1000,
+          sellingPrice: 900,
+          additionalCost: 0,
+        },
+        inventory: {
+          inStock: true,
+          quantity: 30,
+          reserved: 5,
+          available: 25,
+        },
+        media: {
+          images: [images[0].image_1],
+          thumbnail: images[0].image_1,
+        },
+      },
+      {
+        id: "var_tshirt_001_l_black",
+        sku: "TSH-BLK-L-001",
+        attributes: {
+          size: "L",
+          color: "Black",
+        },
+        pricing: {
+          mrp: 1050,
+          sellingPrice: 945,
+          additionalCost: 50,
+        },
+        inventory: {
+          inStock: true,
+          quantity: 20,
+          reserved: 2,
+          available: 18,
+        },
+        media: {
+          images: [images[0].image_1],
+          thumbnail: images[0].image_1,
+        },
+      },
+    ],
+
     inventory: {
       inStock: true,
       quantity: 120,
+      reserved: 15,
+      available: 105,
+      lowStockThreshold: 10,
+      allowBackorder: false,
     },
 
     specifications: [
@@ -140,31 +270,79 @@ export const PRODUCT_DATA = [
       { key: "Sleeve", value: "Half Sleeve" },
     ],
 
-    configurator: {
+    customization: {
       enabled: true,
-      type: "tshirt",
+      type: CONFIGURATOR_TYPE.TSHIRT,
       options: [
         {
-          key: "color",
-          label: "Color",
-          values: ["black", "white", "blue"],
+          id: "opt_tshirt_001",
+          key: "printType",
+          label: "Print Type",
+          type: CUSTOMIZATION_TYPE.SELECT,
+          required: true,
+          values: [
+            { value: "text", label: "Text Only", priceModifier: 0 },
+            { value: "image", label: "Image Upload", priceModifier: 100 },
+            { value: "logo", label: "Logo Design", priceModifier: 150 },
+          ],
         },
         {
-          key: "print",
-          label: "Print",
-          values: ["text", "image", "logo"],
+          id: "opt_tshirt_002",
+          key: "customText",
+          label: "Your Text",
+          type: CUSTOMIZATION_TYPE.TEXT,
+          required: false,
+          maxLength: 50,
+          priceModifier: 50,
         },
         {
-          key: "size",
-          label: "Size",
-          values: ["S", "M", "L", "XL"],
+          id: "opt_tshirt_003",
+          key: "imageUpload",
+          label: "Upload Image",
+          type: CUSTOMIZATION_TYPE.IMAGE,
+          required: false,
+          maxSize: 5,
+          allowedFormats: ["jpg", "png", "jpeg"],
+          priceModifier: 0,
         },
       ],
+    },
+
+    shipping: {
+      weight: 200,
+      dimensions: {
+        length: 30,
+        width: 25,
+        height: 2,
+        unit: "cm",
+      },
+      shippingClass: SHIPPING_CLASS.STANDARD,
+      deliveryTime: {
+        min: 3,
+        max: 7,
+        unit: "days",
+      },
+    },
+
+    policies: {
+      returnable: true,
+      returnWindow: 7,
+      replaceable: true,
+      replaceWindow: 7,
+      cancellable: true,
+      cancelWindow: 24,
     },
 
     status: {
       isActive: true,
       isFeatured: true,
+      isPublished: true,
+    },
+
+    timestamps: {
+      createdAt: "2024-01-01T10:00:00Z",
+      updatedAt: "2024-01-15T14:30:00Z",
+      publishedAt: "2024-01-02T09:00:00Z",
     },
   },
 
@@ -172,9 +350,14 @@ export const PRODUCT_DATA = [
   {
     id: "prod_mug_001",
     slug: "custom-photo-mug",
+    sku: "MUG-001",
     tenantId: "default",
 
     category: PRODUCT_CATEGORY.MUG,
+    tags: [PRODUCT_TAGS.BESTSELLER, PRODUCT_TAGS.NEW_ARRIVAL],
+    collections: ["anniversary-gifts", "mothers-day"],
+    occasions: ["anniversary", "mothers-day", "birthday"],
+    recipients: ["her", "mom", "couples"],
 
     basic: {
       name: "Personalized Photo Mug",
@@ -190,10 +373,19 @@ export const PRODUCT_DATA = [
         images[0].image_3,
       ],
       thumbnail: images[0].image_2,
+      videos: [],
+    },
+
+    seo: {
+      metaTitle: "Personalized Photo Mug | Custom Printed Ceramic Mug | Tohfae",
+      metaDescription: "Create a personalized mug with your favorite photo or name. High-quality ceramic mug, perfect gift for any occasion.",
+      keywords: ["custom mug", "personalized mug", "photo mug", "gift mug"],
+      ogImage: images[0].image_2,
     },
 
     pricing: {
       currency: "INR",
+      basePrice: 399,
       mrp: 499,
       sellingPrice: 399,
 
@@ -236,38 +428,155 @@ export const PRODUCT_DATA = [
       },
     ],
 
+    rating: {
+      average: 4.7,
+      count: 189,
+      distribution: {
+        5: 120,
+        4: 50,
+        3: 12,
+        2: 4,
+        1: 3,
+      },
+    },
+
+    variants: [
+      {
+        id: "var_mug_001_325ml",
+        sku: "MUG-WHT-325-001",
+        attributes: {
+          capacity: "325ml",
+          color: "White",
+        },
+        pricing: {
+          mrp: 499,
+          sellingPrice: 399,
+          additionalCost: 0,
+        },
+        inventory: {
+          inStock: true,
+          quantity: 50,
+          reserved: 5,
+          available: 45,
+        },
+        media: {
+          images: [images[0].image_2],
+          thumbnail: images[0].image_2,
+        },
+      },
+      {
+        id: "var_mug_001_450ml",
+        sku: "MUG-WHT-450-001",
+        attributes: {
+          capacity: "450ml",
+          color: "White",
+        },
+        pricing: {
+          mrp: 599,
+          sellingPrice: 499,
+          additionalCost: 100,
+        },
+        inventory: {
+          inStock: true,
+          quantity: 30,
+          reserved: 3,
+          available: 27,
+        },
+        media: {
+          images: [images[0].image_2],
+          thumbnail: images[0].image_2,
+        },
+      },
+    ],
+
     inventory: {
       inStock: true,
       quantity: 80,
+      reserved: 8,
+      available: 72,
+      lowStockThreshold: 15,
+      allowBackorder: false,
     },
 
     specifications: [
       { key: "Material", value: "Ceramic" },
-      { key: "Capacity", value: "325 ml" },
+      { key: "Capacity", value: "325 ml / 450 ml" },
       { key: "Finish", value: "Glossy" },
     ],
 
-    configurator: {
+    customization: {
       enabled: true,
-      type: "mug",
+      type: CONFIGURATOR_TYPE.MUG,
       options: [
         {
-          key: "design",
+          id: "opt_mug_001",
+          key: "designType",
           label: "Design Type",
-          values: ["photo", "text", "couple"],
+          type: CUSTOMIZATION_TYPE.SELECT,
+          required: true,
+          values: [
+            { value: "photo", label: "Photo Print", priceModifier: 0 },
+            { value: "text", label: "Text Only", priceModifier: -50 },
+            { value: "couple", label: "Couple Photo", priceModifier: 50 },
+          ],
         },
         {
+          id: "opt_mug_002",
           key: "photoUpload",
           label: "Upload Photo",
-          type: "image",
+          type: CUSTOMIZATION_TYPE.IMAGE,
           required: true,
+          maxSize: 5,
+          allowedFormats: ["jpg", "png", "jpeg"],
+          priceModifier: 0,
+        },
+        {
+          id: "opt_mug_003",
+          key: "customMessage",
+          label: "Custom Message",
+          type: CUSTOMIZATION_TYPE.TEXT,
+          required: false,
+          maxLength: 30,
+          priceModifier: 30,
         },
       ],
+    },
+
+    shipping: {
+      weight: 350,
+      dimensions: {
+        length: 12,
+        width: 12,
+        height: 10,
+        unit: "cm",
+      },
+      shippingClass: SHIPPING_CLASS.FRAGILE,
+      deliveryTime: {
+        min: 4,
+        max: 8,
+        unit: "days",
+      },
+    },
+
+    policies: {
+      returnable: true,
+      returnWindow: 7,
+      replaceable: true,
+      replaceWindow: 7,
+      cancellable: true,
+      cancelWindow: 24,
     },
 
     status: {
       isActive: true,
       isFeatured: false,
+      isPublished: true,
+    },
+
+    timestamps: {
+      createdAt: "2024-01-05T10:00:00Z",
+      updatedAt: "2024-01-18T11:20:00Z",
+      publishedAt: "2024-01-06T09:00:00Z",
     },
   },
 
@@ -275,9 +584,14 @@ export const PRODUCT_DATA = [
   {
     id: "prod_frame_001",
     slug: "custom-photo-frame",
+    sku: "FRM-001",
     tenantId: "default",
 
     category: PRODUCT_CATEGORY.FRAME,
+    tags: [PRODUCT_TAGS.FEATURED, PRODUCT_TAGS.TRENDING],
+    collections: ["anniversary-gifts", "home-decor"],
+    occasions: ["anniversary", "wedding", "birthday"],
+    recipients: ["couples", "family", "her", "him"],
 
     basic: {
       name: "Personalized Photo Frame",
@@ -293,10 +607,19 @@ export const PRODUCT_DATA = [
         images[0].image_1,
       ],
       thumbnail: images[0].image_3,
+      videos: [],
+    },
+
+    seo: {
+      metaTitle: "Personalized Photo Frame | Custom Engraved Wooden Frame | Tohfae",
+      metaDescription: "Beautiful wooden photo frame with custom engraving. Perfect gift for anniversaries, weddings, and special occasions.",
+      keywords: ["custom frame", "personalized frame", "photo frame", "engraved frame"],
+      ogImage: images[0].image_3,
     },
 
     pricing: {
       currency: "INR",
+      basePrice: 649,
       mrp: 799,
       sellingPrice: 649,
 
@@ -331,44 +654,166 @@ export const PRODUCT_DATA = [
 
     offers: [],
 
+    rating: {
+      average: 4.8,
+      count: 156,
+      distribution: {
+        5: 110,
+        4: 35,
+        3: 8,
+        2: 2,
+        1: 1,
+      },
+    },
+
+    variants: [
+      {
+        id: "var_frame_001_6x8",
+        sku: "FRM-WD-6X8-001",
+        attributes: {
+          size: "6x8",
+          material: "Wood",
+        },
+        pricing: {
+          mrp: 699,
+          sellingPrice: 549,
+          additionalCost: 0,
+        },
+        inventory: {
+          inStock: true,
+          quantity: 20,
+          reserved: 2,
+          available: 18,
+        },
+        media: {
+          images: [images[0].image_3],
+          thumbnail: images[0].image_3,
+        },
+      },
+      {
+        id: "var_frame_001_8x10",
+        sku: "FRM-WD-8X10-001",
+        attributes: {
+          size: "8x10",
+          material: "Wood",
+        },
+        pricing: {
+          mrp: 799,
+          sellingPrice: 649,
+          additionalCost: 100,
+        },
+        inventory: {
+          inStock: true,
+          quantity: 15,
+          reserved: 1,
+          available: 14,
+        },
+        media: {
+          images: [images[0].image_3],
+          thumbnail: images[0].image_3,
+        },
+      },
+      {
+        id: "var_frame_001_10x12",
+        sku: "FRM-WD-10X12-001",
+        attributes: {
+          size: "10x12",
+          material: "Wood",
+        },
+        pricing: {
+          mrp: 999,
+          sellingPrice: 849,
+          additionalCost: 200,
+        },
+        inventory: {
+          inStock: true,
+          quantity: 15,
+          reserved: 0,
+          available: 15,
+        },
+        media: {
+          images: [images[0].image_3],
+          thumbnail: images[0].image_3,
+        },
+      },
+    ],
+
     inventory: {
       inStock: true,
       quantity: 50,
+      reserved: 3,
+      available: 47,
+      lowStockThreshold: 10,
+      allowBackorder: false,
     },
 
     specifications: [
       { key: "Material", value: "Wood" },
-      { key: "Size", value: "8x10 inches" },
+      { key: "Size", value: "6x8 / 8x10 / 10x12 inches" },
       { key: "Finish", value: "Matte" },
     ],
 
-    configurator: {
+    customization: {
       enabled: true,
       type: CONFIGURATOR_TYPE.FRAME,
       options: [
         {
-          key: "size",
-          label: "Frame Size",
-          values: ["6x8", "8x10", "10x12"],
-        },
-        {
+          id: "opt_frame_001",
           key: "photoUpload",
           label: "Upload Photo",
-          type: "image",
+          type: CUSTOMIZATION_TYPE.IMAGE,
           required: true,
+          maxSize: 5,
+          allowedFormats: ["jpg", "png", "jpeg"],
+          priceModifier: 0,
         },
         {
+          id: "opt_frame_002",
           key: "engraving",
           label: "Custom Message",
-          type: "text",
+          type: CUSTOMIZATION_TYPE.TEXT,
+          required: false,
           maxLength: 50,
+          priceModifier: 100,
         },
       ],
+    },
+
+    shipping: {
+      weight: 500,
+      dimensions: {
+        length: 25,
+        width: 20,
+        height: 3,
+        unit: "cm",
+      },
+      shippingClass: SHIPPING_CLASS.FRAGILE,
+      deliveryTime: {
+        min: 5,
+        max: 10,
+        unit: "days",
+      },
+    },
+
+    policies: {
+      returnable: true,
+      returnWindow: 7,
+      replaceable: true,
+      replaceWindow: 7,
+      cancellable: true,
+      cancelWindow: 24,
     },
 
     status: {
       isActive: true,
       isFeatured: true,
+      isPublished: true,
+    },
+
+    timestamps: {
+      createdAt: "2024-01-03T10:00:00Z",
+      updatedAt: "2024-01-20T09:15:00Z",
+      publishedAt: "2024-01-04T09:00:00Z",
     },
   },
 
@@ -376,9 +821,14 @@ export const PRODUCT_DATA = [
   {
     id: "prod_cushion_001",
     slug: "custom-printed-cushion",
+    sku: "CSH-001",
     tenantId: "default",
 
     category: PRODUCT_CATEGORY.CUSHION,
+    tags: [PRODUCT_TAGS.NEW_ARRIVAL, PRODUCT_TAGS.SALE],
+    collections: ["home-decor", "birthday-gifts"],
+    occasions: ["birthday", "housewarming", "anniversary"],
+    recipients: ["her", "him", "family"],
 
     basic: {
       name: "Custom Printed Cushion",
@@ -394,10 +844,19 @@ export const PRODUCT_DATA = [
         images[0].image_3,
       ],
       thumbnail: images[0].image_1,
+      videos: [],
+    },
+
+    seo: {
+      metaTitle: "Custom Printed Cushion | Personalized Photo Cushion | Tohfae",
+      metaDescription: "Soft and comfortable cushion with your custom design or photo. Perfect for home decor and gifting.",
+      keywords: ["custom cushion", "personalized cushion", "photo cushion", "gift cushion"],
+      ogImage: images[0].image_1,
     },
 
     pricing: {
       currency: "INR",
+      basePrice: 499,
       mrp: 599,
       sellingPrice: 499,
 
@@ -431,38 +890,155 @@ export const PRODUCT_DATA = [
 
     offers: [],
 
+    rating: {
+      average: 4.3,
+      count: 98,
+      distribution: {
+        5: 55,
+        4: 30,
+        3: 10,
+        2: 2,
+        1: 1,
+      },
+    },
+
+    variants: [
+      {
+        id: "var_cushion_001_12x12",
+        sku: "CSH-12X12-001",
+        attributes: {
+          size: "12x12",
+          material: "Polyester",
+        },
+        pricing: {
+          mrp: 499,
+          sellingPrice: 399,
+          additionalCost: 0,
+        },
+        inventory: {
+          inStock: true,
+          quantity: 40,
+          reserved: 4,
+          available: 36,
+        },
+        media: {
+          images: [images[0].image_1],
+          thumbnail: images[0].image_1,
+        },
+      },
+      {
+        id: "var_cushion_001_16x16",
+        sku: "CSH-16X16-001",
+        attributes: {
+          size: "16x16",
+          material: "Polyester",
+        },
+        pricing: {
+          mrp: 599,
+          sellingPrice: 499,
+          additionalCost: 100,
+        },
+        inventory: {
+          inStock: true,
+          quantity: 60,
+          reserved: 6,
+          available: 54,
+        },
+        media: {
+          images: [images[0].image_1],
+          thumbnail: images[0].image_1,
+        },
+      },
+    ],
+
     inventory: {
       inStock: true,
       quantity: 100,
+      reserved: 10,
+      available: 90,
+      lowStockThreshold: 20,
+      allowBackorder: false,
     },
 
     specifications: [
       { key: "Material", value: "Polyester" },
-      { key: "Size", value: "16x16 inches" },
+      { key: "Size", value: "12x12 / 16x16 inches" },
       { key: "Filling", value: "Fiber" },
     ],
 
-    configurator: {
+    customization: {
       enabled: true,
       type: CONFIGURATOR_TYPE.CUSHION,
       options: [
         {
-          key: "design",
+          id: "opt_cushion_001",
+          key: "designType",
           label: "Design Type",
-          values: ["photo", "text", "pattern"],
+          type: CUSTOMIZATION_TYPE.SELECT,
+          required: true,
+          values: [
+            { value: "photo", label: "Photo Print", priceModifier: 0 },
+            { value: "text", label: "Text Only", priceModifier: -50 },
+            { value: "pattern", label: "Pattern Design", priceModifier: 30 },
+          ],
         },
         {
+          id: "opt_cushion_002",
           key: "photoUpload",
           label: "Upload Photo",
-          type: "image",
+          type: CUSTOMIZATION_TYPE.IMAGE,
           required: false,
+          maxSize: 5,
+          allowedFormats: ["jpg", "png", "jpeg"],
+          priceModifier: 0,
+        },
+        {
+          id: "opt_cushion_003",
+          key: "customText",
+          label: "Custom Text",
+          type: CUSTOMIZATION_TYPE.TEXT,
+          required: false,
+          maxLength: 40,
+          priceModifier: 40,
         },
       ],
+    },
+
+    shipping: {
+      weight: 300,
+      dimensions: {
+        length: 40,
+        width: 40,
+        height: 10,
+        unit: "cm",
+      },
+      shippingClass: SHIPPING_CLASS.STANDARD,
+      deliveryTime: {
+        min: 4,
+        max: 8,
+        unit: "days",
+      },
+    },
+
+    policies: {
+      returnable: true,
+      returnWindow: 7,
+      replaceable: true,
+      replaceWindow: 7,
+      cancellable: true,
+      cancelWindow: 24,
     },
 
     status: {
       isActive: true,
       isFeatured: false,
+      isPublished: true,
+    },
+
+    timestamps: {
+      createdAt: "2024-01-10T10:00:00Z",
+      updatedAt: "2024-01-22T13:45:00Z",
+      publishedAt: "2024-01-11T09:00:00Z",
     },
   },
 ];

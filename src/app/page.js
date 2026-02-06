@@ -29,6 +29,20 @@ import {
   AllBannerTypesExample
 } from "../shared/ui/banner/EXAMPLES";
 
+// Input Examples
+import {
+  SimpleInputExample,
+  InputWithHelperTextExample,
+  InputWithErrorExample,
+  InputWithIconsExample,
+  AllVariantsExample,
+  AllSizesExample,
+  AllStatesExample,
+  PasswordInputExample,
+  SearchInputExample,
+  FormExample,
+} from "../shared/ui/from/EXAMPLES";
+
 export default function Home() {
   return (
     <div className="flex flex-col">
@@ -100,6 +114,24 @@ export default function Home() {
           <BannerWithHeaderExample />
           <AllBannerTypesExample />
           <ProductGridWithBannersExample />
+        </section>
+
+        {/* Section: Input Fields */}
+        <section className="space-y-6">
+          <div className="border-b pb-4">
+            <h2 className="text-3xl font-bold text-gray-900">Input Component</h2>
+            <p className="text-gray-600 mt-2">Form inputs with variants, sizes, states, and icons (DRY principles, default focus: false)</p>
+          </div>
+          <SimpleInputExample />
+          <InputWithHelperTextExample />
+          <InputWithErrorExample />
+          <InputWithIconsExample />
+          <AllVariantsExample />
+          <AllSizesExample />
+          <AllStatesExample />
+          <PasswordInputExample />
+          <SearchInputExample />
+          <FormExample />
         </section>
 
       </div>
