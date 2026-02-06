@@ -7,7 +7,6 @@ import {
     Dropdown,
     DropdownContent,
     DropdownItem,
-    DropdownDivider,
     DropdownHeader,
 } from '@/shared/ui/dropdown';
 import { USER_MENU_DATA, DUMMY_USER } from './header.data';
@@ -27,7 +26,10 @@ const Navbar = () => {
                 /* When NOT logged in - show "Hello, sign in" with dropdown */
                 <div ref={ref} className="relative">
                     <Button
-                        onClick={() => toggleOpen(!isOpen)}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            toggleOpen(!isOpen);
+                        }}
                         variant="ghost"
                         className="text-sm hover:border hover:border-gray-300 dark:hover:border-gray-600"
                     >
@@ -42,16 +44,16 @@ const Navbar = () => {
                     {/* Dropdown for non-logged in users */}
                     {isOpen && (
                         <Dropdown position="bottomRight" variant="default" size="lg">
-                            <DropdownContent scrollable={true}>
+                            <DropdownContent scrollable={true} className="w-[480px]">
                                 {/* Sign In Button */}
-                                <div className="px-4 py-4 text-center">
+                                <div className="px-8 py-6 text-center border-b border-gray-200 dark:border-gray-700">
                                     <Link
                                         href="/signin"
-                                        className="block w-full px-4 py-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-medium rounded-lg transition-colors"
+                                        className="block w-full px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold rounded-lg transition-colors text-base"
                                     >
                                         Sign in
                                     </Link>
-                                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">
+                                    <p className="text-sm text-gray-700 dark:text-gray-300 mt-3">
                                         New customer?{' '}
                                         <Link href="/signup" className="text-blue-600 hover:text-blue-700 hover:underline">
                                             Start here.
@@ -59,28 +61,42 @@ const Navbar = () => {
                                     </p>
                                 </div>
 
-                                <DropdownDivider />
-
-                                {/* Two Column Layout */}
-                                <div className="grid grid-cols-2 gap-4 px-4 py-2">
+                                {/* Two Column Layout with Divider */}
+                                <div className="grid grid-cols-2 divide-x divide-gray-200 dark:divide-gray-700">
                                     {/* Your Lists */}
-                                    <div>
-                                        <DropdownHeader>Your Lists</DropdownHeader>
-                                        {USER_MENU_DATA.yourLists.slice(0, 5).map((item, index) => (
-                                            <DropdownItem key={index} href={item.href}>
-                                                {item.label}
-                                            </DropdownItem>
-                                        ))}
+                                    <div className="px-6 py-5">
+                                        <DropdownHeader className="text-base font-bold text-gray-900 dark:text-white mb-3">
+                                            Your Lists
+                                        </DropdownHeader>
+                                        <div className="space-y-2">
+                                            {USER_MENU_DATA.yourLists.slice(0, 5).map((item, index) => (
+                                                <DropdownItem
+                                                    key={index}
+                                                    href={item.href}
+                                                    className="text-sm text-gray-700 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 hover:underline py-0.5 px-0 block"
+                                                >
+                                                    {item.label}
+                                                </DropdownItem>
+                                            ))}
+                                        </div>
                                     </div>
 
                                     {/* Your Account */}
-                                    <div>
-                                        <DropdownHeader>Your Account</DropdownHeader>
-                                        {USER_MENU_DATA.yourAccount.slice(0, 10).map((item, index) => (
-                                            <DropdownItem key={index} href={item.href}>
-                                                {item.label}
-                                            </DropdownItem>
-                                        ))}
+                                    <div className="px-6 py-5">
+                                        <DropdownHeader className="text-base font-bold text-gray-900 dark:text-white mb-3">
+                                            Your Account
+                                        </DropdownHeader>
+                                        <div className="space-y-2">
+                                            {USER_MENU_DATA.yourAccount.slice(0, 12).map((item, index) => (
+                                                <DropdownItem
+                                                    key={index}
+                                                    href={item.href}
+                                                    className="text-sm text-gray-700 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 hover:underline py-0.5 px-0 block"
+                                                >
+                                                    {item.label}
+                                                </DropdownItem>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
                             </DropdownContent>

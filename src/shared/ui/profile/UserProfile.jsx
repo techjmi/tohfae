@@ -54,6 +54,7 @@ const UserProfile = ({
     showDropdown = false,
     dropdownPosition = "bottom",
     dropdownVariant = "default",
+    dropdownSize = "md",
     dropdownMenu = DEFAULT_PROFILE_MENU,
     children, // Dropdown content
     className = "",
@@ -99,8 +100,9 @@ const UserProfile = ({
     const dropdownRef = useClickOutside(() => toggleOpen(false));
 
     // Handle avatar click
-    const handleAvatarClick = () => {
+    const handleAvatarClick = (e) => {
         if (showDropdown) {
+            e.stopPropagation();
             toggleOpen(!isOpen);
         }
     };
@@ -122,7 +124,7 @@ const UserProfile = ({
 
                     {/* Open the dropdown */}
                     {isOpen && (
-                        <Dropdown position={dropdownPosition} variant={dropdownVariant} className={dropdownClassName}>
+                        <Dropdown position={dropdownPosition} variant={dropdownVariant} size={dropdownSize} className={dropdownClassName}>
                           <DropdownContent>{children || defaultDropdownContent}</DropdownContent>
                         </Dropdown>
                     )}
