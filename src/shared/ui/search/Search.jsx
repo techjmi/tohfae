@@ -6,7 +6,7 @@
 "use client";
 import { useState, useEffect } from 'react';
 import { useDebounce } from '@/shared/hooks/useDebounce';
-import { Input } from '@/shared/ui/from/Input';
+import Input from '@/shared/ui/from/Input';
 import { Icon } from '@/shared/icons';
 import Button from '@/shared/ui/button/Button';
 import { INPUT_TYPE, INPUT_SIZE, INPUT_RADIUS, INPUT_VARIANT } from '@/shared/ui/from/form.constant';
