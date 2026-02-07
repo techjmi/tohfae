@@ -68,15 +68,22 @@ const ProductListHeader = ({
         <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
           Categories:
         </span>
-        {FILTER_CHIPS.map((chip) => (
-          <Chip
-            key={chip.value}
-            label={chip.label}
-            value={chip.value}
-            onClick={() => onFilterClick && onFilterClick('category', chip.value)}
-            className="cursor-pointer hover:bg-primary-100 dark:hover:bg-primary-900"
-          />
-        ))}
+        {FILTER_CHIPS.map((chip) => {
+          const isSelected = filters[chip.value] === true;
+          return (
+            <Chip
+              key={chip.value}
+              label={chip.label}
+              value={chip.value}
+              onClick={() => onFilterClick && onFilterClick('category', chip.value)}
+              className={`cursor-pointer transition-colors ${
+                isSelected
+                  ? 'bg-primary-500 text-white hover:bg-primary-600'
+                  : 'hover:bg-primary-100 dark:hover:bg-primary-900'
+              }`}
+            />
+          );
+        })}
       </div>
 
       {/* Sort Controls */}
@@ -125,19 +132,23 @@ const ProductListHeader = ({
             Active Filters:
           </span>
 
-          {activeFilters.map(([filterKey, value]) => (
-            <Chip
-              key={filterKey}
-              label={getFilterLabel(value) || getFilterLabel(filterKey) || value}
-              value={value}
-              onClose={(e) => {
-                e.stopPropagation();
-                if (onRemoveFilter) {
-                  onRemoveFilter(filterKey);
-                }
-              }}
-            />
-          ))}
+          {activeFilters.map(([filterKey]) => {
+            // Get the label - filterKey is the category value (e.g., 'tshirt', 'mug')
+            const label = getFilterLabel(filterKey) || filterKey;
+            return (
+              <Chip
+                key={filterKey}
+                label={label}
+                value={filterKey}
+                onClose={(e) => {
+                  e.stopPropagation();
+                  if (onRemoveFilter) {
+                    onRemoveFilter(filterKey);
+                  }
+                }}
+              />
+            );
+          })}
 
           {showClearButton && (
             <Button

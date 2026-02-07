@@ -53,12 +53,15 @@ const ProductsClient = () => {
     applySort('', 'asc'); // Reset to default/no sort
   };
 
-  const handleFilterClick = (key, value) => {
-    // Toggle filter - if same value clicked, remove it; otherwise apply it
-    if (filters[key] === value) {
-      removeFilter(key);
+  const handleFilterClick = (filterType, value) => {
+    // For category filters, use the value itself as the key (e.g., 'tshirt', 'mug')
+    // This allows multiple categories to be selected at once
+    if (filters[value]) {
+      // If already selected, remove it
+      removeFilter(value);
     } else {
-      applyFilter(key, value);
+      // If not selected, add it
+      applyFilter(value, true);
     }
   };
 
