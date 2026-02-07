@@ -1,5 +1,6 @@
 //this is the product constant file for this web project only for product related constant
 import { Navigation_Url, website_name, main_url, logoUrl, site_image } from '@/shared/constant/global-constant';
+import { PRODUCT_DATA } from '@/contract/product.contract';
 
 export const PRODUCT_CONSTANT = {
     DEFAULT_PAGE_SIZE: 12,
@@ -119,3 +120,7 @@ export const getFilterLabel = (value) => {
     const chip = FILTER_CHIPS.find(chip => chip.value === value);
     return chip?.label || value;
 };
+
+// Re-export product mock data from contract (for better organization)
+// This keeps all product-related constants in one place
+export const PRODUCTS = PRODUCT_DATA;

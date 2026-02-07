@@ -23,12 +23,12 @@
 "use client";
 
 import React from 'react';
-import { 
-  Dropdown, 
-  DropdownContent, 
-  DropdownItem 
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownItem
 } from '@/shared/ui/dropdown';
-import { Button } from '@/shared/ui/button';
+import Button from '@/shared/ui/button';
 import { Icon } from '@/shared/icons';
 import { useToggle } from '@/shared/hooks/useToggle';
 import { useClickOutside } from '@/shared/hooks/useClickOutside';

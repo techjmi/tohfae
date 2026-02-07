@@ -12,8 +12,8 @@
 import { usePathname } from 'next/navigation';
 import { useFilters } from '@/shared/hooks/state/useFilters';
 import { useSort } from '@/shared/hooks/state/useSort';
-import ProductListHeader from '../features/products/components/ProductListHeader';
-import { PRODUCTS } from '@/contract/product.contract';
+import ProductListHeader from '../features/products/components/ProductsListHearder';
+import { PRODUCTS } from '@/app/features/products/products.constant';
 
 const ProductsClient = () => {
   const pathname = usePathname();

@@ -32,7 +32,7 @@ import React from 'react';
 import { Breadcrumbs } from '@/shared/ui/breadcrumbed';
 import { Chip } from '@/shared/ui/chip';
 import { SortDropdown } from '@/shared/ui/sort';
-import { Button } from '@/shared/ui/button';
+import Button from '@/shared/ui/button';
 import { SORT_OPTIONS, getFilterLabel } from '@/app/features/products/products.constant';
 
 const ProductListHeader = ({
