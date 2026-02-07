@@ -253,8 +253,8 @@ export const BANNER_DATA = [
     },
 
     scheduling: {
-      startDate: "2024-01-01T00:00:00Z",
-      endDate: "2024-12-31T23:59:59Z",
+      startDate: "2026-01-01T00:00:00Z",
+      endDate: "2026-12-31T23:59:59Z",
       daysOfWeek: [0, 1, 2, 3, 4, 5, 6],
       timeRange: {
         start: "00:00",
@@ -265,15 +265,15 @@ export const BANNER_DATA = [
     analytics: {
       trackImpressions: true,
       trackClicks: true,
-      campaignId: "hero_create_gift_2024",
+      campaignId: "hero_create_gift_2026",
       utmSource: "website",
       utmMedium: "hero_banner",
       utmCampaign: "create_gift",
     },
 
     metadata: {
-      createdAt: "2024-01-01T10:00:00Z",
-      updatedAt: "2024-01-01T10:00:00Z",
+      createdAt: "2026-01-01T10:00:00Z",
+      updatedAt: "2026-01-01T10:00:00Z",
       createdBy: "admin_001",
       version: 1,
       notes: "Main hero banner for gift creation",
@@ -334,8 +334,8 @@ export const BANNER_DATA = [
     },
 
     scheduling: {
-      startDate: "2024-01-01T00:00:00Z",
-      endDate: "2024-12-31T23:59:59Z",
+      startDate: "2026-01-01T00:00:00Z",
+      endDate: "2026-12-31T23:59:59Z",
       daysOfWeek: [0, 1, 2, 3, 4, 5, 6],
       timeRange: {
         start: "00:00",
@@ -346,15 +346,15 @@ export const BANNER_DATA = [
     analytics: {
       trackImpressions: true,
       trackClicks: true,
-      campaignId: "hero_inspire_2024",
+      campaignId: "hero_inspire_2026",
       utmSource: "website",
       utmMedium: "hero_banner",
       utmCampaign: "inspire",
     },
 
     metadata: {
-      createdAt: "2024-01-01T10:00:00Z",
-      updatedAt: "2024-01-01T10:00:00Z",
+      createdAt: "2026-01-01T10:00:00Z",
+      updatedAt: "2026-01-01T10:00:00Z",
       createdBy: "admin_001",
       version: 1,
       notes: "Second hero banner showcasing product variety",
@@ -418,8 +418,8 @@ export const BANNER_DATA = [
     },
 
     scheduling: {
-      startDate: "2024-01-01T00:00:00Z",
-      endDate: "2024-12-31T23:59:59Z",
+      startDate: "2026-01-01T00:00:00Z",
+      endDate: "2026-12-31T23:59:59Z",
       daysOfWeek: [0, 1, 2, 3, 4, 5, 6],
       timeRange: {
         start: "00:00",
@@ -430,15 +430,15 @@ export const BANNER_DATA = [
     analytics: {
       trackImpressions: true,
       trackClicks: true,
-      campaignId: "hero_express_2024",
+      campaignId: "hero_express_2026",
       utmSource: "website",
       utmMedium: "hero_banner",
       utmCampaign: "express_yourself",
     },
 
     metadata: {
-      createdAt: "2024-01-01T10:00:00Z",
-      updatedAt: "2024-01-01T10:00:00Z",
+      createdAt: "2026-01-01T10:00:00Z",
+      updatedAt: "2026-01-01T10:00:00Z",
       createdBy: "admin_001",
       version: 1,
       notes: "Third hero banner emphasizing customization",

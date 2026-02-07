@@ -29,6 +29,7 @@ import {
   FiLoader,
   FiHome,
   FiSettings,
+  FiChevronRight,
 } from "react-icons/fi";
 
 // Navigation / Controls
@@ -77,6 +78,7 @@ export const ICONS = {
   loader: FiLoader,
   home: FiHome,
   settings: FiSettings,
+  chevronRight: FiChevronRight,
 };
 
 export function Icon({ name, size = 18, color, className, ...props }) {

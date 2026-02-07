@@ -24,7 +24,10 @@ export function SimpleDropdownExample() {
 
     return (
         <div ref={ref} className="relative">
-            <button onClick={() => toggleOpen(!isOpen)}>
+            <button onClick={(e) => {
+                e.stopPropagation();
+                toggleOpen(!isOpen);
+            }}>
                 Open Menu
             </button>
 
@@ -55,7 +58,10 @@ export function ProfileMenuExample({ user }) {
     const ref = useClickOutside(() => toggleOpen(false));
     return (
         <div ref={ref} className="relative">
-            <button onClick={() => toggleOpen(!isOpen)}>
+            <button onClick={(e) => {
+                e.stopPropagation();
+                toggleOpen(!isOpen);
+            }}>
                 <img src={user.avatar} alt="Profile" className="w-10 h-10 rounded-full" />
             </button>
 
@@ -63,7 +69,7 @@ export function ProfileMenuExample({ user }) {
                 <Dropdown position="bottomRight" variant="default" size="md">
                     <DropdownContent scrollable={true}>
                         <DropdownHeader>Account</DropdownHeader>
-                        
+
                         <DropdownItem href="/profile">
                             My Profile
                         </DropdownItem>
@@ -73,20 +79,20 @@ export function ProfileMenuExample({ user }) {
                         <DropdownItem href="/wishlist">
                             Wishlist
                         </DropdownItem>
-                        
+
                         <DropdownDivider />
-                        
+
                         <DropdownHeader>Settings</DropdownHeader>
-                        
+
                         <DropdownItem href="/settings">
                             Account Settings
                         </DropdownItem>
                         <DropdownItem href="/preferences">
                             Preferences
                         </DropdownItem>
-                        
+
                         <DropdownDivider />
-                        
+
                         <DropdownItem onClick={() => console.log('Logout')} danger>
                             Logout
                         </DropdownItem>
@@ -106,7 +112,10 @@ export function PositionExamples() {
 
     return (
         <div ref={ref} className="relative">
-            <button onClick={() => toggleOpen(!isOpen)}>
+            <button onClick={(e) => {
+                e.stopPropagation();
+                toggleOpen(!isOpen);
+            }}>
                 Position: {position}
             </button>
 
@@ -133,7 +142,10 @@ export function VariantExamples() {
 
     return (
         <div ref={ref} className="relative">
-            <button onClick={() => toggleOpen(!isOpen)}>
+            <button onClick={(e) => {
+                e.stopPropagation();
+                toggleOpen(!isOpen);
+            }}>
                 Variants
             </button>
 
@@ -162,7 +174,10 @@ export function ScrollableDropdownExample() {
 
     return (
         <div ref={ref} className="relative">
-            <button onClick={() => toggleOpen(!isOpen)}>
+            <button onClick={(e) => {
+                e.stopPropagation();
+                toggleOpen(!isOpen);
+            }}>
                 Long List
             </button>
 
