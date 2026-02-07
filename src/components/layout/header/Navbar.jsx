@@ -1,7 +1,7 @@
 "use client";
+import { useState } from 'react';
 import Link from 'next/link';
 import Button from '@/shared/ui/button/Button';
-import { useToggle } from '@/shared/hooks/useToggle';
 import { useClickOutside } from '@/shared/hooks/useClickOutside';
 import {
     Dropdown,
@@ -14,8 +14,8 @@ import UserProfileMenu from './UserProfileMenu';
 
 const Navbar = () => {
     const { isLoggedIn } = DUMMY_USER;
-    const [isOpen, toggleOpen] = useToggle();
-    const ref = useClickOutside(() => toggleOpen(false));
+    const [isOpen, setIsOpen] = useState(false);
+    const ref = useClickOutside(() => setIsOpen(false));
 
     return (
         <nav className="hidden md:flex items-center gap-4">
@@ -28,7 +28,7 @@ const Navbar = () => {
                     <Button
                         onClick={(e) => {
                             e.stopPropagation();
-                            toggleOpen(!isOpen);
+                            setIsOpen(!isOpen);
                         }}
                         variant="ghost"
                         className="text-sm hover:border hover:border-gray-300 dark:hover:border-gray-600"

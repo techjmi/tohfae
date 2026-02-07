@@ -1,11 +1,10 @@
 /**
  * Dropdown Examples
- * 
+ *
  * Complete examples showing all dropdown features and use cases
  */
 "use client";
-import React from 'react';
-import { useToggle } from '@/shared/hooks/useToggle';
+import React, { useState } from 'react';
 import { useClickOutside } from '@/shared/hooks/useClickOutside';
 import {
     Dropdown,
@@ -19,14 +18,14 @@ import {
 // Example 1: Simple Dropdown
 // ============================================
 export function SimpleDropdownExample() {
-    const [isOpen, toggleOpen] = useToggle();
-    const ref = useClickOutside(() => toggleOpen(false));
+    const [isOpen, setIsOpen] = useState(false);
+    const ref = useClickOutside(() => setIsOpen(false));
 
     return (
         <div ref={ref} className="relative">
             <button onClick={(e) => {
                 e.stopPropagation();
-                toggleOpen(!isOpen);
+                setIsOpen(!isOpen);
             }}>
                 Open Menu
             </button>
@@ -54,13 +53,13 @@ export function SimpleDropdownExample() {
 // Example 2: Profile Menu with Sections
 // ============================================
 export function ProfileMenuExample({ user }) {
-    const [isOpen, toggleOpen] = useToggle();
-    const ref = useClickOutside(() => toggleOpen(false));
+    const [isOpen, setIsOpen] = useState(false);
+    const ref = useClickOutside(() => setIsOpen(false));
     return (
         <div ref={ref} className="relative">
             <button onClick={(e) => {
                 e.stopPropagation();
-                toggleOpen(!isOpen);
+                setIsOpen(!isOpen);
             }}>
                 <img src={user.avatar} alt="Profile" className="w-10 h-10 rounded-full" />
             </button>
@@ -107,14 +106,14 @@ export function ProfileMenuExample({ user }) {
 // ============================================
 export function PositionExamples() {
     const [position, setPosition] = React.useState('bottomRight');
-    const [isOpen, toggleOpen] = useToggle();
-    const ref = useClickOutside(() => toggleOpen(false));
+    const [isOpen, setIsOpen] = useState(false);
+    const ref = useClickOutside(() => setIsOpen(false));
 
     return (
         <div ref={ref} className="relative">
             <button onClick={(e) => {
                 e.stopPropagation();
-                toggleOpen(!isOpen);
+                setIsOpen(!isOpen);
             }}>
                 Position: {position}
             </button>
@@ -137,14 +136,14 @@ export function PositionExamples() {
 // Example 4: Different Variants
 // ============================================
 export function VariantExamples() {
-    const [isOpen, toggleOpen] = useToggle();
-    const ref = useClickOutside(() => toggleOpen(false));
+    const [isOpen, setIsOpen] = useState(false);
+    const ref = useClickOutside(() => setIsOpen(false));
 
     return (
         <div ref={ref} className="relative">
             <button onClick={(e) => {
                 e.stopPropagation();
-                toggleOpen(!isOpen);
+                setIsOpen(!isOpen);
             }}>
                 Variants
             </button>
@@ -167,8 +166,8 @@ export function VariantExamples() {
 // Example 5: Scrollable Long List
 // ============================================
 export function ScrollableDropdownExample() {
-    const [isOpen, toggleOpen] = useToggle();
-    const ref = useClickOutside(() => toggleOpen(false));
+    const [isOpen, setIsOpen] = useState(false);
+    const ref = useClickOutside(() => setIsOpen(false));
 
     const items = Array.from({ length: 20 }, (_, i) => `Item ${i + 1}`);
 
@@ -176,7 +175,7 @@ export function ScrollableDropdownExample() {
         <div ref={ref} className="relative">
             <button onClick={(e) => {
                 e.stopPropagation();
-                toggleOpen(!isOpen);
+                setIsOpen(!isOpen);
             }}>
                 Long List
             </button>

@@ -24,7 +24,7 @@
 
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
     PROFILE_TYPE,
     PROFILE_ORIENTATION,
@@ -32,7 +32,6 @@ import {
     DEFAULT_PROFILE_MENU
 } from './profile.constant';
 import UserAvatar from './UserAvatar';
-import { useToggle } from '@/shared/hooks/useToggle';
 import { useClickOutside } from '@/shared/hooks/useClickOutside';
 import {
     Dropdown,
@@ -96,14 +95,14 @@ const UserProfile = ({
     );
 
     // State for dropdown
-    const [isOpen, toggleOpen] = useToggle();
-    const dropdownRef = useClickOutside(() => toggleOpen(false));
+    const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useClickOutside(() => setIsOpen(false));
 
     // Handle avatar click
     const handleAvatarClick = (e) => {
         if (showDropdown) {
             e.stopPropagation();
-            toggleOpen(!isOpen);
+            setIsOpen(!isOpen);
         }
     };
 

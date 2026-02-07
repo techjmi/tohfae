@@ -22,7 +22,7 @@
  */
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Dropdown,
   DropdownContent,
@@ -30,7 +30,6 @@ import {
 } from '@/shared/ui/dropdown';
 import Button from '@/shared/ui/button';
 import { Icon } from '@/shared/icons';
-import { useToggle } from '@/shared/hooks/useToggle';
 import { useClickOutside } from '@/shared/hooks/useClickOutside';
 
 const SortDropdown = ({
@@ -42,8 +41,8 @@ const SortDropdown = ({
   className = "",
   ...props
 }) => {
-  const [isOpen, toggleOpen] = useToggle();
-  const ref = useClickOutside(() => toggleOpen(false));
+  const [isOpen, setIsOpen] = useState(false);
+  const ref = useClickOutside(() => setIsOpen(false));
   
   // Get current selection label
   const getCurrentLabel = () => {
@@ -53,26 +52,33 @@ const SortDropdown = ({
     return current?.label || label;
   };
   
+  // Handle button click - stop propagation to prevent other dropdowns from opening
+  const handleButtonClick = (e) => {
+    e.stopPropagation();
+    setIsOpen(!isOpen);
+  };
+
   // Handle option selection
-  const handleSelect = (value, direction) => {
+  const handleSelect = (e, value, direction) => {
+    e.stopPropagation();
     if (onSelect) {
       onSelect(value, direction);
     }
-    toggleOpen(false);
+    setIsOpen(false);
   };
-  
+
   return (
     <div ref={ref} className={`relative ${className}`}>
       <Button
         variant="outline"
         size="sm"
-        onClick={() => toggleOpen(!isOpen)}
+        onClick={handleButtonClick}
         className="min-w-40 justify-between"
       >
         <span className="truncate">{getCurrentLabel()}</span>
-        <Icon 
-          name="arrowRight" 
-          size={16} 
+        <Icon
+          name="arrowRight"
+          size={16}
           className={`ml-2 transition-transform flex-shrink-0 ${isOpen ? 'rotate-90' : ''}`}
         />
       </Button>
@@ -83,7 +89,7 @@ const SortDropdown = ({
             {options.map((option) => (
               <DropdownItem
                 key={`${option.value}-${option.direction}`}
-                onClick={() => handleSelect(option.value, option.direction)}
+                onClick={(e) => handleSelect(e, option.value, option.direction)}
                 selected={currentValue === option.value && currentDirection === option.direction}
               >
                 {option.label}

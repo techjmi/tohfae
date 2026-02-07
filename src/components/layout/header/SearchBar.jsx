@@ -7,9 +7,18 @@ export const SearchBar = ({ className = "" }) => {
     const router = useRouter();
     const [searchTerm, setSearchTerm] = useState('');
 
+    // Navigate to search page - only called on Enter key press
     const handleSearch = (value) => {
         if (value.trim()) {
             router.push(`/search?q=${encodeURIComponent(value)}`);
+        }
+    };
+
+    // Handle Enter key press
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSearch(searchTerm);
         }
     };
 
@@ -17,7 +26,9 @@ export const SearchBar = ({ className = "" }) => {
         <Search
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            onSearch={handleSearch}
+            onKeyDown={handleKeyDown}
+            // Remove onSearch to prevent auto-navigation on debounce
+            // onSearch={handleSearch}  // ❌ This was causing auto-redirect
             placeholder="Search products, categories..."
             size="md"
             radius="full"
