@@ -21,6 +21,7 @@
 import { SEO_CONSTANT, JSON_LD_CONSTANT } from '@/app/features/products/products.constant';
 import { buildSeo } from '@/lib/seo/seo';
 import JsonLd from '@/shared/ui/jsonld';
+import ProductsClient from './ProductsClient';
 
 /**
  * Generate metadata for SEO
@@ -41,6 +42,11 @@ export const generateMetadata = async () => {
 /**
  * Products Page Component
  * Server component for better SEO and performance
+ *
+ * Architecture:
+ * - This is a Server Component (no "use client")
+ * - Handles SEO metadata and JSON-LD
+ * - Delegates client-side logic to ProductsClient
  */
 const ProductsPage = () => {
     return (
@@ -50,23 +56,13 @@ const ProductsPage = () => {
 
             {/* Main Content */}
             <main className="min-h-screen">
+                {/* Hidden heading for accessibility and SEO */}
                 <h1 className="sr-only">
                     Shop Personalized Gifts - Custom T-Shirts, Mugs, Frames, and More
                 </h1>
 
-                {/* TODO: Add ProductBanner component */}
-                {/* TODO: Add ProductFilters component */}
-                {/* TODO: Add ProductGrid component */}
-                {/* TODO: Add ProductPagination component */}
-
-                <div className="container mx-auto px-4 py-8">
-                    <h2 className="text-3xl font-bold text-gray-900">
-                        Browse Our Products
-                    </h2>
-                    <p className="mt-2 text-gray-600">
-                        Discover personalized gifts for every occasion
-                    </p>
-                </div>
+                {/* Client-side wrapper with state management */}
+                <ProductsClient />
             </main>
         </>
     );

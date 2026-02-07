@@ -61,7 +61,23 @@ export const JSON_LD_CONSTANT = {
         }
     }
 }
-//dropdown constant for products page
+//dropdown constant for products page - organized by category
+export const SORT_OPTIONS = {
+    PRICE: [
+        { label: 'Price: Low to High', value: 'pricing.sellingPrice', direction: 'asc' },
+        { label: 'Price: High to Low', value: 'pricing.sellingPrice', direction: 'desc' },
+    ],
+    RATING: [
+        { label: 'Rating: High to Low', value: 'ratings.average', direction: 'desc' },
+        { label: 'Rating: Low to High', value: 'ratings.average', direction: 'asc' },
+    ],
+    ARRIVAL: [
+        { label: 'Newest First', value: 'createdAt', direction: 'desc' },
+        { label: 'Oldest First', value: 'createdAt', direction: 'asc' },
+    ],
+};
+
+// Legacy format (kept for backward compatibility)
 export const SORT_BY_OPTIONS = [
     { label: 'Price: Low to High', value: 'price_low_to_high' },
     { label: 'Price: High to Low', value: 'price_high_to_low' },
@@ -97,3 +113,9 @@ export const PRICE_RANGE = {
     max: 1000,
     step: 10,
 }
+
+// Helper function to get filter label from value
+export const getFilterLabel = (value) => {
+    const chip = FILTER_CHIPS.find(chip => chip.value === value);
+    return chip?.label || value;
+};
