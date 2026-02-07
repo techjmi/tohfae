@@ -44,19 +44,28 @@ const ProductsClient = () => {
   // ============================================
   // EVENT HANDLERS (Business logic)
   // ============================================
-  
+
   const handleSortChange = (value, direction) => {
     applySort(value, direction);
   };
-  
-  const handleFilterChange = (key, value) => {
-    applyFilter(key, value);
+
+  const handleClearSort = () => {
+    applySort('', 'asc'); // Reset to default/no sort
   };
-  
+
+  const handleFilterClick = (key, value) => {
+    // Toggle filter - if same value clicked, remove it; otherwise apply it
+    if (filters[key] === value) {
+      removeFilter(key);
+    } else {
+      applyFilter(key, value);
+    }
+  };
+
   // ============================================
   // RENDER (Presentational components)
   // ============================================
-  
+
   return (
     <div className="min-h-screen">
       <div className="container mx-auto px-4 py-6">
@@ -66,9 +75,11 @@ const ProductsClient = () => {
           filters={filters}
           onRemoveFilter={removeFilter}
           onClearAllFilters={resetFilters}
+          onClearSort={handleClearSort}
           sortBy={sortBy}
           sortDirection={sortDirection}
           onSortChange={handleSortChange}
+          onFilterClick={handleFilterClick}
         />
         
         {/* TODO: Product Grid */}

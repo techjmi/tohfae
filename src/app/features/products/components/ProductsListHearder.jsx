@@ -33,16 +33,18 @@ import { Breadcrumbs } from '@/shared/ui/breadcrumbed';
 import { Chip } from '@/shared/ui/chip';
 import { SortDropdown } from '@/shared/ui/sort';
 import Button from '@/shared/ui/button';
-import { SORT_OPTIONS, getFilterLabel } from '@/app/features/products/products.constant';
+import { SORT_OPTIONS, FILTER_CHIPS, getFilterLabel } from '@/app/features/products/products.constant';
 
 const ProductListHeader = ({
   pathname,
   filters = {},
   onRemoveFilter,
   onClearAllFilters,
+  onClearSort,
   sortBy = '',
   sortDirection = 'asc',
   onSortChange,
+  onFilterClick,
   className = "",
 }) => {
   // Get active filters as array
@@ -50,10 +52,32 @@ const ProductListHeader = ({
     ([key, value]) => value !== undefined && value !== null && value !== ''
   );
 
+  // Check if sort is applied (not default)
+  const isSortApplied = sortBy && sortBy !== '';
+
+  // Check if we should show clear button (either filters or sort applied)
+  const showClearButton = activeFilters.length > 0 || isSortApplied;
+
   return (
     <div className={`w-full space-y-4 ${className}`}>
       {/* Breadcrumb Navigation */}
       <Breadcrumbs pathname={pathname} />
+
+      {/* Category Filter Chips (Clickable) */}
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          Categories:
+        </span>
+        {FILTER_CHIPS.map((chip) => (
+          <Chip
+            key={chip.value}
+            label={chip.label}
+            value={chip.value}
+            onClick={() => onFilterClick && onFilterClick('category', chip.value)}
+            className="cursor-pointer hover:bg-primary-100 dark:hover:bg-primary-900"
+          />
+        ))}
+      </div>
 
       {/* Sort Controls */}
       <div className="flex flex-wrap items-center gap-3">
@@ -80,34 +104,49 @@ const ProductListHeader = ({
           currentDirection={sortDirection}
           onSelect={onSortChange}
         />
+
+        {/* Clear Sort Button */}
+        {isSortApplied && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onClearSort}
+            className="text-blue-600 hover:text-blue-700 dark:text-blue-400"
+          >
+            Clear Sort
+          </Button>
+        )}
       </div>
 
       {/* Active Filter Chips */}
       {activeFilters.length > 0 && (
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-            Filters:
+            Active Filters:
           </span>
 
-          {activeFilters.map(([key, value]) => (
+          {activeFilters.map(([filterKey, value]) => (
             <Chip
-              key={key}
-              label={getFilterLabel(value) || getFilterLabel(key) || value}
+              key={filterKey}
+              label={getFilterLabel(value) || getFilterLabel(filterKey) || value}
               value={value}
               onClose={(e) => {
                 e.stopPropagation();
                 if (onRemoveFilter) {
-                  onRemoveFilter(key);
+                  onRemoveFilter(filterKey);
                 }
               }}
             />
           ))}
 
-          {activeFilters.length > 1 && (
+          {showClearButton && (
             <Button
               variant="ghost"
               size="sm"
-              onClick={onClearAllFilters}
+              onClick={() => {
+                if (onClearAllFilters) onClearAllFilters();
+                if (onClearSort) onClearSort();
+              }}
               className="text-red-600 hover:text-red-700 dark:text-red-400"
             >
               Clear All
