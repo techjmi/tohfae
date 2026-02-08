@@ -1041,6 +1041,442 @@ export const PRODUCT_DATA = [
       publishedAt: "2024-01-11T09:00:00Z",
     },
   },
+
+  /* -------------------------------- CUSHION -------------------------------- */
+  {
+    id: "prod_cushion_001",
+    slug: "custom-photo-cushion",
+    sku: "CUSH-001",
+    tenantId: "default",
+
+    category: PRODUCT_CATEGORY.CUSHION,
+    tags: [PRODUCT_TAGS.BESTSELLER, PRODUCT_TAGS.TRENDING],
+    collections: ["home-decor", "anniversary-gifts"],
+    occasions: ["anniversary", "housewarming", "birthday"],
+    recipients: ["couples", "her", "him"],
+
+    basic: {
+      name: "Personalized Photo Cushion",
+      shortDescription: "Custom printed cushion with photo",
+      description:
+        "Add your favorite photo and create a cozy personalized cushion. Soft fabric with vibrant print quality.",
+      brand: "Tohfae",
+    },
+
+    media: {
+      images: [
+        images[0].image_1,
+        images[0].image_2,
+      ],
+      thumbnail: images[0].image_1,
+      videos: [],
+    },
+
+    seo: {
+      metaTitle: "Personalized Photo Cushion | Custom Printed Cushion | Tohfae",
+      metaDescription: "Create a personalized cushion with your favorite photo. Soft fabric, vibrant print quality. Perfect gift for home decor.",
+      keywords: ["custom cushion", "personalized cushion", "photo cushion", "gift cushion"],
+      ogImage: images[0].image_1,
+    },
+
+    pricing: {
+      currency: "INR",
+      basePrice: 599,
+      mrp: 799,
+      sellingPrice: 599,
+
+      discount: {
+        type: "percentage",
+        value: 25,
+        label: "25% OFF",
+        percentage: 25,
+      },
+
+      paymentOptions: {
+        cash: { enabled: true, price: 599 },
+        emi: {
+          enabled: true,
+          plans: [
+            { months: 3, monthlyAmount: 200, interestRate: 0 },
+          ],
+        },
+      },
+
+      delivery: {
+        charges: 60,
+        freeAbove: 999,
+      },
+
+      cod: {
+        available: true,
+        extraCharges: 15,
+      },
+
+      availablePaymentMethods: [
+        PAYMENT_METHOD.COD,
+        PAYMENT_METHOD.ONLINE,
+        PAYMENT_METHOD.UPI,
+        PAYMENT_METHOD.WALLET,
+      ],
+    },
+
+    offers: [
+      {
+        id: "deal_20",
+        type: "percentage",
+        value: 20,
+        label: "20% OFF",
+        tag: "Limited Offer",
+        applicable: true,
+      },
+    ],
+
+    rating: {
+      average: 4.7,
+      count: 189,
+      distribution: {
+        5: 120,
+        4: 50,
+        3: 12,
+        2: 4,
+        1: 3,
+      },
+    },
+
+    variants: [
+      {
+        id: "var_cushion_001_12x12",
+        sku: "CUSH-12X12-001",
+        attributes: {
+          size: "12x12 inch",
+          color: "White",
+        },
+        pricing: {
+          mrp: 799,
+          sellingPrice: 599,
+          additionalCost: 0,
+        },
+        inventory: {
+          inStock: true,
+          quantity: 50,
+          reserved: 5,
+          available: 45,
+        },
+        media: {
+          images: [images[0].image_1],
+          thumbnail: images[0].image_1,
+        },
+      },
+      {
+        id: "var_cushion_001_16x16",
+        sku: "CUSH-16X16-001",
+        attributes: {
+          size: "16x16 inch",
+          color: "White",
+        },
+        pricing: {
+          mrp: 899,
+          sellingPrice: 699,
+          additionalCost: 100,
+        },
+        inventory: {
+          inStock: true,
+          quantity: 40,
+          reserved: 3,
+          available: 37,
+        },
+        media: {
+          images: [images[0].image_1],
+          thumbnail: images[0].image_1,
+        },
+      },
+    ],
+
+    inventory: {
+      inStock: true,
+      quantity: 90,
+      reserved: 8,
+      available: 82,
+      lowStockThreshold: 15,
+      allowBackorder: false,
+    },
+
+    specifications: [
+      { key: "Material", value: "Polyester" },
+      { key: "Fill", value: "Fiber Fill" },
+      { key: "Print Type", value: "Sublimation" },
+      { key: "Washable", value: "Yes (Cover Only)" },
+    ],
+
+    customization: {
+      enabled: true,
+      type: CONFIGURATOR_TYPE.CUSHION,
+      options: [
+        {
+          id: "opt_cushion_001",
+          key: "imageUpload",
+          label: "Upload Photo",
+          type: CUSTOMIZATION_TYPE.IMAGE,
+          required: true,
+          maxSize: 10,
+          allowedFormats: ["jpg", "png", "jpeg"],
+          priceModifier: 0,
+        },
+        {
+          id: "opt_cushion_002",
+          key: "customText",
+          label: "Add Text (Optional)",
+          type: CUSTOMIZATION_TYPE.TEXT,
+          required: false,
+          maxLength: 30,
+          priceModifier: 50,
+        },
+      ],
+    },
+
+    shipping: {
+      weight: 400,
+      dimensions: {
+        length: 40,
+        width: 40,
+        height: 12,
+        unit: "cm",
+      },
+      shippingClass: SHIPPING_CLASS.STANDARD,
+      deliveryTime: {
+        min: 4,
+        max: 8,
+        unit: "days",
+      },
+    },
+
+    policies: {
+      returnable: true,
+      returnWindow: 7,
+      replaceable: true,
+      replaceWindow: 7,
+      cancellable: true,
+      cancelWindow: 24,
+    },
+
+    status: {
+      isActive: true,
+      isFeatured: true,
+      isPublished: true,
+    },
+
+    timestamps: {
+      createdAt: "2026-01-15T10:00:00Z",
+      updatedAt: "2026-02-05T14:30:00Z",
+      publishedAt: "2026-01-16T09:00:00Z",
+    },
+  },
+
+  /* -------------------------------- KEYCHAIN -------------------------------- */
+  {
+    id: "prod_keychain_001",
+    slug: "custom-photo-keychain",
+    sku: "KEY-001",
+    tenantId: "default",
+
+    category: PRODUCT_CATEGORY.KEYCHAIN,
+    tags: [PRODUCT_TAGS.NEW_ARRIVAL, PRODUCT_TAGS.FEATURED],
+    collections: ["small-gifts", "birthday-gifts"],
+    occasions: ["birthday", "friendship-day", "valentines"],
+    recipients: ["him", "her", "friends"],
+
+    basic: {
+      name: "Personalized Photo Keychain",
+      shortDescription: "Custom photo printed metal keychain",
+      description:
+        "Carry your memories everywhere with a personalized photo keychain. Durable metal finish with high-quality print.",
+      brand: "Tohfae",
+    },
+
+    media: {
+      images: [
+        images[0].image_3,
+        images[0].image_1,
+      ],
+      thumbnail: images[0].image_3,
+      videos: [],
+    },
+
+    seo: {
+      metaTitle: "Personalized Photo Keychain | Custom Metal Keychain | Tohfae",
+      metaDescription: "Create a personalized keychain with your favorite photo. Durable metal finish, perfect small gift for any occasion.",
+      keywords: ["custom keychain", "personalized keychain", "photo keychain", "gift keychain"],
+      ogImage: images[0].image_3,
+    },
+
+    pricing: {
+      currency: "INR",
+      basePrice: 199,
+      mrp: 299,
+      sellingPrice: 199,
+
+      discount: {
+        type: "percentage",
+        value: 33,
+        label: "33% OFF",
+        percentage: 33,
+      },
+
+      paymentOptions: {
+        cash: { enabled: true, price: 199 },
+        emi: { enabled: false },
+      },
+
+      delivery: {
+        charges: 40,
+        freeAbove: 999,
+      },
+
+      cod: {
+        available: true,
+        extraCharges: 10,
+      },
+
+      availablePaymentMethods: [
+        PAYMENT_METHOD.COD,
+        PAYMENT_METHOD.ONLINE,
+        PAYMENT_METHOD.UPI,
+      ],
+    },
+
+    offers: [],
+
+    rating: {
+      average: 4.3,
+      count: 156,
+      distribution: {
+        5: 90,
+        4: 45,
+        3: 15,
+        2: 4,
+        1: 2,
+      },
+    },
+
+    variants: [
+      {
+        id: "var_keychain_001_round",
+        sku: "KEY-RND-001",
+        attributes: {
+          shape: "Round",
+          material: "Metal",
+        },
+        pricing: {
+          mrp: 299,
+          sellingPrice: 199,
+          additionalCost: 0,
+        },
+        inventory: {
+          inStock: true,
+          quantity: 100,
+          reserved: 10,
+          available: 90,
+        },
+        media: {
+          images: [images[0].image_3],
+          thumbnail: images[0].image_3,
+        },
+      },
+      {
+        id: "var_keychain_001_heart",
+        sku: "KEY-HRT-001",
+        attributes: {
+          shape: "Heart",
+          material: "Metal",
+        },
+        pricing: {
+          mrp: 349,
+          sellingPrice: 249,
+          additionalCost: 50,
+        },
+        inventory: {
+          inStock: true,
+          quantity: 80,
+          reserved: 8,
+          available: 72,
+        },
+        media: {
+          images: [images[0].image_3],
+          thumbnail: images[0].image_3,
+        },
+      },
+    ],
+
+    inventory: {
+      inStock: true,
+      quantity: 180,
+      reserved: 18,
+      available: 162,
+      lowStockThreshold: 20,
+      allowBackorder: false,
+    },
+
+    specifications: [
+      { key: "Material", value: "Metal" },
+      { key: "Print Type", value: "UV Print" },
+      { key: "Size", value: "4x4 cm" },
+      { key: "Chain Length", value: "5 cm" },
+    ],
+
+    customization: {
+      enabled: true,
+      type: CONFIGURATOR_TYPE.GENERIC,
+      options: [
+        {
+          id: "opt_keychain_001",
+          key: "imageUpload",
+          label: "Upload Photo",
+          type: CUSTOMIZATION_TYPE.IMAGE,
+          required: true,
+          maxSize: 5,
+          allowedFormats: ["jpg", "png", "jpeg"],
+          priceModifier: 0,
+        },
+      ],
+    },
+
+    shipping: {
+      weight: 50,
+      dimensions: {
+        length: 10,
+        width: 10,
+        height: 2,
+        unit: "cm",
+      },
+      shippingClass: SHIPPING_CLASS.STANDARD,
+      deliveryTime: {
+        min: 3,
+        max: 6,
+        unit: "days",
+      },
+    },
+
+    policies: {
+      returnable: false,
+      returnWindow: 0,
+      replaceable: true,
+      replaceWindow: 3,
+      cancellable: true,
+      cancelWindow: 12,
+    },
+
+    status: {
+      isActive: true,
+      isFeatured: false,
+      isPublished: true,
+    },
+
+    timestamps: {
+      createdAt: "2026-01-20T10:00:00Z",
+      updatedAt: "2026-02-06T11:20:00Z",
+      publishedAt: "2026-01-21T09:00:00Z",
+    },
+  },
 ];
 
 /* ======================== HELPER FUNCTIONS ======================== */

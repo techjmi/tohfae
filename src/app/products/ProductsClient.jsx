@@ -1,27 +1,20 @@
 /**
  * ProductsClient Component
- * 
+ *
  * Client-side wrapper for products page
  * Manages all state (filters, sort, pagination) and passes to child components
- * 
- * Architecture:
- * Page (Server) → ProductsClient (Client) → Header/Grid/Filters (Presentational)
  */
 "use client";
-
 import { usePathname } from 'next/navigation';
 import { useFilters } from '@/shared/hooks/state/useFilters';
 import { useSort } from '@/shared/hooks/state/useSort';
 import ProductListHeader from '../features/products/components/ProductsListHearder';
-import { PRODUCTS } from '@/app/features/products/products.constant';
+import ProductCard from '../features/products/components/ProductCard';
+import EmptyState from '@/shared/ui/empty-state';
+import Button from '@/shared/ui/button';
 
-const ProductsClient = () => {
+const ProductsClient = ({ products: initialProducts }) => {
   const pathname = usePathname();
-  
-  // ============================================
-  // STATE MANAGEMENT (All in one place)
-  // ============================================
-  
   // Filter state
   const {
     filters,
@@ -29,21 +22,29 @@ const ProductsClient = () => {
     removeFilter,
     resetFilters,
   } = useFilters({});
-  
+
   // Sort state with products data
   const {
-    sortedData: products,
+    sortedData: sortedProducts,
     sortBy,
     sortDirection,
     applySort,
-  } = useSort(PRODUCTS, {
+  } = useSort(initialProducts, {
     initialSortBy: 'pricing.sellingPrice',
     initialSortDirection: 'asc',
   });
-  
-  // ============================================
-  // EVENT HANDLERS (Business logic)
-  // ============================================
+
+  // Filter products based on selected categories
+  const filteredProducts = (sortedProducts || []).filter((product) => {
+    // Get all selected category filters
+    const selectedCategories = Object.keys(filters).filter(key => filters[key] === true);
+
+    // If no filters selected, show all products
+    if (selectedCategories.length === 0) return true;
+
+    // Check if product category matches any selected filter
+    return selectedCategories.includes(product?.category);
+  });
 
   const handleSortChange = (value, direction) => {
     applySort(value, direction);
@@ -53,9 +54,8 @@ const ProductsClient = () => {
     applySort('', 'asc'); // Reset to default/no sort
   };
 
-  const handleFilterClick = (filterType, value) => {
+  const handleFilterClick = (_filterType, value) => {
     // For category filters, use the value itself as the key (e.g., 'tshirt', 'mug')
-    // This allows multiple categories to be selected at once
     if (filters[value]) {
       // If already selected, remove it
       removeFilter(value);
@@ -65,12 +65,8 @@ const ProductsClient = () => {
     }
   };
 
-  // ============================================
-  // RENDER (Presentational components)
-  // ============================================
-
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4 py-6">
         {/* Header with Breadcrumb, Sort, Filter Chips */}
         <ProductListHeader
@@ -84,17 +80,42 @@ const ProductsClient = () => {
           onSortChange={handleSortChange}
           onFilterClick={handleFilterClick}
         />
-        
-        {/* TODO: Product Grid */}
+
+        {/* Product Grid */}
         <div className="mt-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {products.map((product) => (
-              <div key={product.id} className="border p-4 rounded">
-                <h3>{product.name}</h3>
-                <p>${product.pricing.sellingPrice}</p>
-              </div>
-            ))}
+          {/* Results Count */}
+          <div className="mb-4">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              Showing <span className="font-semibold">{filteredProducts.length}</span> products
+            </p>
           </div>
+
+          {/* Product Cards Grid */}
+          {filteredProducts?.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {filteredProducts.map((product) => (
+                <ProductCard key={product?.id || Math.random()} product={product} />
+              ))}
+            </div>
+          ) : (
+            /* Empty State */
+            <EmptyState
+              title="No products found"
+              description="Try adjusting your filters or search criteria"
+              action={
+                <Button
+                  color="primary"
+                  variant="filled"
+                  onClick={() => {
+                    resetFilters();
+                    handleClearSort();
+                  }}
+                >
+                  Clear all filters
+                </Button>
+              }
+            />
+          )}
         </div>
       </div>
     </div>
