@@ -44,7 +44,7 @@ const CartIcon = ({
                 name="cart"
                 size={size}
                 className={classNames(
-                    "text-gray-700 dark:text-gray-300",
+                    "text-gray-700",
                     iconClassName
                 )}
             />

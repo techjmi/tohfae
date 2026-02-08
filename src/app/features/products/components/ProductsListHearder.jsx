@@ -65,7 +65,7 @@ const ProductListHeader = ({
 
       {/* Category Filter Chips (Clickable) */}
       <div className="flex flex-wrap items-center gap-2">
-        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+        <span className="text-sm font-medium text-gray-700">
           Categories:
         </span>
         {FILTER_CHIPS.map((chip) => {
@@ -79,7 +79,7 @@ const ProductListHeader = ({
               className={`cursor-pointer transition-colors ${
                 isSelected
                   ? 'bg-primary-500 text-white hover:bg-primary-600'
-                  : 'hover:bg-primary-100 dark:hover:bg-primary-900'
+                  : 'hover:bg-primary-100'
               }`}
             />
           );
@@ -118,7 +118,7 @@ const ProductListHeader = ({
             variant="ghost"
             size="sm"
             onClick={onClearSort}
-            className="text-blue-600 hover:text-blue-700 dark:text-blue-400"
+            className="text-blue-600 hover:text-blue-700"
           >
             Clear Sort
           </Button>
@@ -128,7 +128,7 @@ const ProductListHeader = ({
       {/* Active Filter Chips */}
       {activeFilters.length > 0 && (
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <span className="text-sm font-medium text-gray-700">
             Active Filters:
           </span>
 
@@ -158,7 +158,7 @@ const ProductListHeader = ({
                 if (onClearAllFilters) onClearAllFilters();
                 if (onClearSort) onClearSort();
               }}
-              className="text-red-600 hover:text-red-700 dark:text-red-400"
+              className="text-red-600 hover:text-red-700"
             >
               Clear All
             </Button>

@@ -66,7 +66,7 @@ const ProductsClient = ({ products: initialProducts }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-6">
         {/* Header with Breadcrumb, Sort, Filter Chips */}
         <ProductListHeader
@@ -85,7 +85,7 @@ const ProductsClient = ({ products: initialProducts }) => {
         <div className="mt-8">
           {/* Results Count */}
           <div className="mb-4">
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-gray-600">
               Showing <span className="font-semibold">{filteredProducts.length}</span> products
             </p>
           </div>

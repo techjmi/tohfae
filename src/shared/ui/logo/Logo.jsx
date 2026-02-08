@@ -68,13 +68,13 @@ const Logo = ({
         <div className="flex flex-col">
             <span className={classNames(
                 sizeClasses.text,
-                "font-bold text-gray-900 dark:text-white",
+                "font-bold text-gray-900",
                 textClassName
             )}>
                 {LOGO.text}
             </span>
             {showTagline && (
-                <span className="text-xs text-gray-500 dark:text-gray-400">
+                <span className="text-xs text-gray-500">
                     {LOGO.tagline}
                 </span>
             )}

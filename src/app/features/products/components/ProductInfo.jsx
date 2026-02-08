@@ -39,13 +39,13 @@ const ProductInfo = ({
     <div className={`space-y-2 ${className}`}>
       {/* Category */}
       {category && (
-        <p className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+        <p className="text-xs text-gray-500  uppercase tracking-wide">
           {category}
         </p>
       )}
 
       {/* Product Name */}
-      <h3 className="font-semibold text-sm text-gray-900 dark:text-white line-clamp-2 min-h-10 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+      <h3 className="font-semibold text-sm text-gray-900  line-clamp-2 min-h-10 group-hover:text-primary-600 transition-colors">
         {name || 'Product Name'}
       </h3>
 
@@ -54,12 +54,12 @@ const ProductInfo = ({
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1">
             <Icon name="heart" size={14} className="text-yellow-500 fill-yellow-500" />
-            <span className="text-sm font-medium text-gray-900 dark:text-white">
+            <span className="text-sm font-medium text-gray-900">
               {rating?.toFixed(1) || '0.0'}
             </span>
           </div>
           {ratingCount > 0 && (
-            <span className="text-xs text-gray-500 dark:text-gray-400">
+            <span className="text-xs text-gray-500">
               ({ratingCount})
             </span>
           )}
@@ -68,7 +68,7 @@ const ProductInfo = ({
 
       {/* Short Description */}
       {shortDescription && (
-        <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2">
+        <p className="text-xs text-gray-600  line-clamp-2">
           {shortDescription}
         </p>
       )}

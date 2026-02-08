@@ -52,19 +52,19 @@ const ProductPrice = ({
   return (
     <div className={`flex items-baseline gap-2 flex-wrap ${className}`}>
       {/* Selling Price */}
-      <span className="text-xl font-bold text-gray-900 dark:text-white">
+      <span className="text-xl font-bold text-gray-900">
         {formatPrice(sellingPrice)}
       </span>
 
       {/* MRP (strikethrough if discount) */}
       {hasDiscount && mrp && (
         <>
-          <span className="text-sm text-gray-500 dark:text-gray-400 line-through">
+          <span className="text-sm text-gray-500  line-through">
             {formatPrice(mrp)}
           </span>
 
           {/* Discount Label */}
-          <span className="text-xs font-semibold text-green-600 dark:text-green-400">
+          <span className="text-xs font-semibold text-green-600">
             {discountLabel || `Save ${discountPercentage}%`}
           </span>
         </>
@@ -74,4 +74,3 @@ const ProductPrice = ({
 };
 
 export default ProductPrice;
-

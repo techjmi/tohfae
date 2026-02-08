@@ -16,7 +16,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
             size="md"
         >
             <DrawerHeader onClose={onClose}>
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+                <h2 className="text-xl font-semibold text-gray-900">
                     {isLoggedIn ? `Hello, ${name}` : 'Menu'}
                 </h2>
             </DrawerHeader>
@@ -28,7 +28,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                             key={index}
                             href={item.href}
                             onClick={onClose}
-                            className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                            className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
                         >
                             <Icon name={item.icon} size={20} />
                             <span className="text-sm font-medium">{item.label}</span>
@@ -41,7 +41,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                         <Link
                             href="/signin"
                             onClick={onClose}
-                            className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                            className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
                         >
                             <Icon name="user" size={20} />
                             <span className="text-sm font-medium">Sign In</span>
@@ -54,7 +54,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
                                 console.log('Sign out');
                                 onClose();
                             }}
-                            className="flex items-center gap-3 px-4 py-3 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors w-full text-left"
+                            className="flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 rounded-lg transition-colors w-full text-left"
                         >
                             <Icon name="close" size={20} />
                             <span className="text-sm font-medium">Sign Out</span>

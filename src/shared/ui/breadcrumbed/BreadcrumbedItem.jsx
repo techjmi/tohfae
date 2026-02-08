@@ -44,10 +44,10 @@ const BreadcrumbItem = ({
   const baseStyles = "inline-flex items-center gap-1.5 transition-colors";
 
   // Link styles (clickable items)
-  const linkStyles = "text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400";
+  const linkStyles = "text-gray-600 hover:text-primary-600";
 
   // Active/last item styles (current page)
-  const activeStyles = "text-gray-900 dark:text-white font-medium";
+  const activeStyles = "text-gray-900 font-medium";
 
   return (
     <li className={`inline-flex items-center ${className}`}>

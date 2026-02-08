@@ -46,14 +46,14 @@ const MobileUserMenu = ({ isOpen, onOpen, onClose }) => {
                     size="md"
                 >
                     <DrawerHeader onClose={onClose}>
-                        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+                        <h2 className="text-xl font-semibold text-gray-900">
                             Account
                         </h2>
                     </DrawerHeader>
 
                     <DrawerBody>
                         {/* User Info Header */}
-                        <div className="px-4 py-3 bg-gray-50 dark:bg-gray-800 rounded-lg mb-4">
+                        <div className="px-4 py-3 bg-gray-50 rounded-lg mb-4">
                             <div className="flex items-center gap-3">
                                 <UserAvatar
                                     user={user}
@@ -61,10 +61,10 @@ const MobileUserMenu = ({ isOpen, onOpen, onClose }) => {
                                     showStatus={false}
                                 />
                                 <div>
-                                    <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                                    <p className="text-sm font-semibold text-gray-900">
                                         {name}
                                     </p>
-                                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                                    <p className="text-xs text-gray-500">
                                         {email}
                                     </p>
                                 </div>
@@ -74,7 +74,7 @@ const MobileUserMenu = ({ isOpen, onOpen, onClose }) => {
                         <nav className="flex flex-col gap-1">
                             {/* Your Lists Section */}
                             <div className="px-4 py-2">
-                                <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
+                                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                                     Your Lists
                                 </h3>
                             </div>
@@ -83,7 +83,7 @@ const MobileUserMenu = ({ isOpen, onOpen, onClose }) => {
                                     key={index}
                                     href={item.href}
                                     onClick={onClose}
-                                    className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                                    className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
                                 >
                                     <span className="text-sm font-medium">{item.label}</span>
                                 </Link>
@@ -93,7 +93,7 @@ const MobileUserMenu = ({ isOpen, onOpen, onClose }) => {
 
                             {/* Your Account Section */}
                             <div className="px-4 py-2">
-                                <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
+                                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                                     Your Account
                                 </h3>
                             </div>
@@ -102,7 +102,7 @@ const MobileUserMenu = ({ isOpen, onOpen, onClose }) => {
                                     key={index}
                                     href={item.href}
                                     onClick={onClose}
-                                    className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                                    className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
                                 >
                                     <span className="text-sm font-medium">{item.label}</span>
                                 </Link>
@@ -114,7 +114,7 @@ const MobileUserMenu = ({ isOpen, onOpen, onClose }) => {
                             <Link
                                 href="/switch-accounts"
                                 onClick={onClose}
-                                className="flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                                className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
                             >
                                 <Icon name="user" size={20} />
                                 <span className="text-sm font-medium">Switch Accounts</span>
@@ -125,7 +125,7 @@ const MobileUserMenu = ({ isOpen, onOpen, onClose }) => {
                                     console.log('Sign out');
                                     onClose();
                                 }}
-                                className="flex items-center gap-3 px-4 py-3 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors w-full text-left"
+                                className="flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 rounded-lg transition-colors w-full text-left"
                             >
                                 <Icon name="close" size={20} />
                                 <span className="text-sm font-medium">Sign Out</span>

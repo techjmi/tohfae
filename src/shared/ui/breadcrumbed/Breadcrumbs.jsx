@@ -36,7 +36,7 @@ import BreadcrumbItem from './BreadcrumbedItem';
 // Separator component with icon
 const Separator = () => {
   return (
-    <span className="mx-2 text-gray-400 dark:text-gray-600 select-none" aria-hidden="true">
+    <span className="mx-2 text-gray-400 select-none" aria-hidden="true">
       <Icon name="chevronRight" size={16} />
     </span>
   );

@@ -48,7 +48,7 @@ const ProductImage = ({
   const hasDiscount = discountPercentage > 0;
 
   return (
-    <div className="relative aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800">
+    <div className="relative aspect-square overflow-hidden bg-gray-100">
       {/* Product Image */}
       <Image
         src={imageError ? '/placeholder-product.jpg' : (src || '/placeholder-product.jpg')}
@@ -82,14 +82,14 @@ const ProductImage = ({
             size="sm"
             variant="ghost"
             onClick={onWishlistClick}
-            className="ml-auto p-2! rounded-full! bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-md hover:bg-white dark:hover:bg-gray-800 min-w-0! h-auto!"
+            className="ml-auto p-2! rounded-full! bg-white/90 2backdrop-blur-sm shadow-md hover:bg-white min-w-0! h-auto!"
             aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
           >
             <Icon
               name="heart"
               size={18}
               className={`transition-colors ${
-                isWishlisted ? 'fill-red-500 text-red-500' : 'text-gray-600 dark:text-gray-400'
+                isWishlisted ? 'fill-red-500 text-red-500' : 'text-gray-600'
               }`}
             />
           </Button>
