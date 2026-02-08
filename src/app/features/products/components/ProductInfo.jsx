@@ -53,7 +53,7 @@ const ProductInfo = ({
       {rating > 0 && (
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1">
-            <Icon name="heart" size={14} className="text-yellow-500 fill-yellow-500" />
+            <Icon name="star" size={14} className="text-yellow-500 fill-yellow-500" />
             <span className="text-sm font-medium text-gray-900">
               {rating?.toFixed(1) || '0.0'}
             </span>

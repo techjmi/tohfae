@@ -34,7 +34,7 @@ export const CAROUSEL_CONFIG = {
   dots: true,
   autoplay: true,
   autoplayDelay: 5000,
-  height: "600px",
+  height: "400px",
 };
 
 /**

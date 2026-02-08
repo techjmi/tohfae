@@ -30,6 +30,7 @@ import {
   FiHome,
   FiSettings,
   FiChevronRight,
+  
 } from "react-icons/fi";
 
 // Navigation / Controls
@@ -40,6 +41,9 @@ import {
   MdMenu,
   MdKeyboardArrowLeft,
   MdOutlineKeyboardArrowRight,
+  MdStarHalf,
+  MdOutlineStar,
+  MdStarBorder
 } from "react-icons/md";
 
 export const ICONS = {
@@ -79,6 +83,10 @@ export const ICONS = {
   home: FiHome,
   settings: FiSettings,
   chevronRight: FiChevronRight,
+  // Rating
+  starHalf: MdStarHalf,
+  star: MdOutlineStar,
+  starBorder: MdStarBorder,
 };
 
 export function Icon({ name, size = 18, color, className, ...props }) {
