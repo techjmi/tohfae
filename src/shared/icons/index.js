@@ -16,6 +16,21 @@ import {
   FiHeart,
   FiShoppingCart,
   FiUser,
+  FiSearch,
+  FiEye,
+  FiEyeOff,
+  FiLock,
+  FiPhone,
+  FiCalendar,
+  FiClock,
+  FiCheck,
+  FiAlertCircle,
+  FiInfo,
+  FiLoader,
+  FiHome,
+  FiSettings,
+  FiChevronRight,
+  
 } from "react-icons/fi";
 
 // Navigation / Controls
@@ -26,6 +41,9 @@ import {
   MdMenu,
   MdKeyboardArrowLeft,
   MdOutlineKeyboardArrowRight,
+  MdStarHalf,
+  MdOutlineStar,
+  MdStarBorder
 } from "react-icons/md";
 
 export const ICONS = {
@@ -50,6 +68,25 @@ export const ICONS = {
   menu: MdMenu,
   arrowLeft: MdKeyboardArrowLeft,
   arrowRight: MdOutlineKeyboardArrowRight,
+  // Form / Input Icons
+  search: FiSearch,
+  eye: FiEye,
+  eyeOff: FiEyeOff,
+  lock: FiLock,
+  phone: FiPhone,
+  calendar: FiCalendar,
+  clock: FiClock,
+  check: FiCheck,
+  alertCircle: FiAlertCircle,
+  info: FiInfo,
+  loader: FiLoader,
+  home: FiHome,
+  settings: FiSettings,
+  chevronRight: FiChevronRight,
+  // Rating
+  starHalf: MdStarHalf,
+  star: MdOutlineStar,
+  starBorder: MdStarBorder,
 };
 
 export function Icon({ name, size = 18, color, className, ...props }) {

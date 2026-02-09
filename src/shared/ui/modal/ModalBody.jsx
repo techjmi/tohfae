@@ -1,10 +1,36 @@
-//this is the modal body component which will be used to handle the modal body of the modal component
-import React from 'react'
+/**
+ * ModalBody Component
+ * Main content area of the modal
+ *
+ * Usage:
+ * <ModalBody>
+ *   <p>Modal content here...</p>
+ * </ModalBody>
+ */
 
-const ModalBody = ({children, className = "" , modalBodyProps = {}}) => {
+"use client";
+import React from 'react';
+import { classNames } from '@/shared/utils/classNames';
+
+const ModalBody = ({
+  children,
+  padding = true,
+  scrollable = true,
+  className = "",
+  ...props
+}) => {
   return (
-    <div className={className} {...modalBodyProps}>{children}</div>
-  )
-}
+    <div
+      className={classNames(
+        padding && "px-6 py-4",
+        scrollable && "overflow-y-auto max-h-[60vh]",
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+};
 
-export default ModalBody
+export default ModalBody;

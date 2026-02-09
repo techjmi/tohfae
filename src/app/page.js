@@ -1,74 +1,140 @@
-import Carousel from "../shared/utils/carousel";
-import { Card, CardHeader, CardBody, CardBottom } from "../shared/ui/card";
-import Button from "../shared/ui/button";
-import { Icon } from "../shared/icons";
-import { Drawer, DrawerHeader, DrawerBody, DrawerFooter } from "../shared/ui/drawer";
+/**
+ * Home Page - Component Examples Showcase
+ * Testing all UI components with examples
+ */
+
+import HeroCarousel from "../components/home/HeroCarousel";
+import "../components/home/hero-carousel.css";
+
+// Button Examples
+import { AllButtonExamples } from "../shared/ui/button/EXAMPLES";
+
+// Card Examples
+import { ProductCardExample, MultipleProductCardsExample, HoverableCardsExample } from "../shared/ui/card/EXAMPLES";
+
+// Dropdown Examples
+import { ScrollableDropdownExample, PositionExamples } from "../shared/ui/dropdown/EXAMPLES";
+
+// Drawer Examples
+import { SimpleDrawerExample, DrawerSizesExample } from "../shared/ui/drawer/EXAMPLES";
+
+// Modal Examples
+import { AllModalExamples } from "../shared/ui/modal/EXAMPLES";
+
+// Banner Examples
+import {
+  SimpleBannerExample,
+  BannerWithHeaderExample,
+  ProductGridWithBannersExample,
+  AllBannerTypesExample
+} from "../shared/ui/banner/EXAMPLES";
+
+// Input Examples
+import {
+  SimpleInputExample,
+  InputWithHelperTextExample,
+  InputWithErrorExample,
+  InputWithIconsExample,
+  AllVariantsExample,
+  AllSizesExample,
+  AllStatesExample,
+  PasswordInputExample,
+  SearchInputExample,
+  FormExample,
+} from "../shared/ui/from/EXAMPLES";
 
 export default function Home() {
-  const cross = <Icon name="close" size={18} />;
   return (
-    <div className="flex flex-col items-center">
-     {/* <Carousel /> */}
-     <Carousel
-  items={[
-    <div className="h-full bg-gray-200 flex items-center justify-center">Slide 1</div>,
-    <div className="h-full bg-gray-300 flex items-center justify-center">Slide 2</div>,
-    <div className="h-full bg-gray-400 flex items-center justify-center">Slide 3</div>,
-  ]}
-/>
-<Card>
-<CardHeader>
-  <div className="flex w-full justify-between">
-    <span>Custom header</span>
-    <Button size="sm">Action</Button>
-  </div>
-</CardHeader>
-  <CardBody>
-    <p>Card Body</p>
-  </CardBody>
-  <CardBottom>
-    <p>Card Bottom</p>
-  </CardBottom>
-</Card>
+    <div className="flex flex-col">
+      {/* Hero Carousel */}
+      <HeroCarousel />
 
-{/* <Button
-  // as="button"
-  variant="solid"
-  color="danger"
-  // icon={Icon}
-  iconPosition="left"
-  className=""
-  disabled={false}
-  loading={false}
-  size="lg"
-  radius="sm"
-  // href=""
->Test Button</Button> */}
-<div>
-  <Drawer
-    isOpen={true}
-    // onClose={() => {}}
-    position="right"
-    size="md"
-    variant="temporary"
-    closeOnEsc={true}
-    closeOnBackdrop={true}
-    lockBodyScroll={true}
-  >
-    <DrawerHeader>
-      <div className="flex w-full justify-between">
-        <span>Custom header</span>
-        <Button size="sm">Action</Button>
+      {/* Component Examples Showcase */}
+      <div className="container mx-auto px-4 py-8 space-y-16">
+
+        {/* Section: Buttons */}
+        <section className="space-y-6">
+          <div className="border-b pb-4">
+            <h2 className="text-3xl font-bold text-gray-900">Button Component</h2>
+            <p className="text-gray-600 mt-2">All button variants, sizes, and colors</p>
+          </div>
+          <AllButtonExamples />
+        </section>
+
+        {/* Section: Cards */}
+        <section className="space-y-6">
+          <div className="border-b pb-4">
+            <h2 className="text-3xl font-bold text-gray-900">Card Component</h2>
+            <p className="text-gray-600 mt-2">Product cards with real contract data</p>
+          </div>
+          <ProductCardExample />
+          <MultipleProductCardsExample />
+          <HoverableCardsExample />
+        </section>
+
+        {/* Section: Dropdowns */}
+        <section className="space-y-6">
+          <div className="border-b pb-4">
+            <h2 className="text-3xl font-bold text-gray-900">Dropdown Component</h2>
+            <p className="text-gray-600 mt-2">Dropdown menus with different positions and features</p>
+          </div>
+          <ScrollableDropdownExample />
+          <PositionExamples />
+        </section>
+
+        {/* Section: Drawers */}
+        <section className="space-y-6">
+          <div className="border-b pb-4">
+            <h2 className="text-3xl font-bold text-gray-900">Drawer Component</h2>
+            <p className="text-gray-600 mt-2">Side panels from different positions and sizes</p>
+          </div>
+          <SimpleDrawerExample />
+          <DrawerSizesExample />
+        </section>
+
+        {/* Section: Modals */}
+        <section className="space-y-6">
+          <div className="border-b pb-4">
+            <h2 className="text-3xl font-bold text-gray-900">Modal Component</h2>
+            <p className="text-gray-600 mt-2">Modals with real product data and account actions</p>
+          </div>
+          {/* <ProductDetailsModalExample />
+          <ProductQuickViewModalExample />
+          <AccountActionsModalExample /> */}
+          <AllModalExamples/>
+        </section>
+
+        {/* Section: Banners */}
+        <section className="space-y-6">
+          <div className="border-b pb-4">
+            <h2 className="text-3xl font-bold text-gray-900">Banner Component</h2>
+            <p className="text-gray-600 mt-2">Banners using Card composition (CardHeader, CardBody, CardFooter)</p>
+          </div>
+          <SimpleBannerExample />
+          <BannerWithHeaderExample />
+          <AllBannerTypesExample />
+          <ProductGridWithBannersExample />
+        </section>
+
+        {/* Section: Input Fields */}
+        <section className="space-y-6">
+          <div className="border-b pb-4">
+            <h2 className="text-3xl font-bold text-gray-900">Input Component</h2>
+            <p className="text-gray-600 mt-2">Form inputs with variants, sizes, states, and icons (DRY principles, default focus: false)</p>
+          </div>
+          <SimpleInputExample />
+          <InputWithHelperTextExample />
+          <InputWithErrorExample />
+          <InputWithIconsExample />
+          <AllVariantsExample />
+          <AllSizesExample />
+          <AllStatesExample />
+          <PasswordInputExample />
+          <SearchInputExample />
+          <FormExample />
+        </section>
+
       </div>
-    </DrawerHeader>
-    <DrawerBody>
-      <p>Drawer Body</p>
-    </DrawerBody>
-    <DrawerFooter>
-      <p>Drawer Footer</p>
-    </DrawerFooter>
-  </Drawer>
-</div>
     </div>
   );
 }

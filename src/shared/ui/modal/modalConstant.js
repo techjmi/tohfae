@@ -1,16 +1,34 @@
-//this is the modal constant file which will be used to handle the modal constant of the modal component
+/**
+ * Modal Constants
+ * Styling constants for modal components
+ */
+
 export const MODAL_SIZE = {
-  SM: "sm",
-  MD: "md",
-  LG: "lg",
+  sm: "max-w-sm",
+  md: "max-w-lg",
+  lg: "max-w-2xl",
+  xl: "max-w-4xl",
+  full: "max-w-full mx-4",
 };
 
 export const MODAL_PLACEMENT = {
-  CENTER: "center",
-  BOTTOM: "bottom",
+  center: {
+    wrapper: "items-center justify-center",
+    panel: "rounded-xl",
+  },
+  top: {
+    wrapper: "items-start justify-center pt-20",
+    panel: "rounded-xl",
+  },
+  bottom: {
+    wrapper: "items-end justify-center",
+    panel: "rounded-t-xl w-full",
+  },
 };
-export const MODAL_FOOTER_ALIGNMENT = {
-  LEFT: "left",
-  CENTER: "center",
-  RIGHT: "right",
+
+export const MODAL_BACKDROP = {
+  default: "bg-black/40",
+  dark: "bg-black/60",
+  light: "bg-black/20",
+  blur: "bg-black/40 backdrop-blur-sm",
 };
