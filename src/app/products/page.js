@@ -3,7 +3,7 @@ import { SEO_CONSTANT, JSON_LD_CONSTANT } from '@/app/features/products/products
 import { buildSeo } from '@/lib/seo/seo';
 import JsonLd from '@/shared/ui/jsonld';
 import ProductsClient from './ProductsClient';
-import { PRODUCTS } from '@/app/features/products/products.constant';
+import { ProductService } from '@/services/product/product.service';
 // SEO for products page
 export const generateMetadata = async () => {
     return buildSeo({
@@ -17,7 +17,8 @@ export const generateMetadata = async () => {
     });
 };
 
-const ProductsPage = () => {
+const ProductsPage = async () => {
+    const PRODUCTS = await ProductService.getAll();
     return (
         <>
             {/* JSON-LD Structured Data for SEO */}

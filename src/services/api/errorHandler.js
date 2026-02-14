@@ -19,7 +19,7 @@
  *   console.error(apiError.message);
  * }
  */
-import { ERROR_TYPES, ERROR_MSG } from '@/app/services/services.constant';
+import { ERROR_TYPES, ERROR_MSG } from '@/services/services.constant';
 
 export const handleApiError = (error) => {
     console.log('1234 error', error);

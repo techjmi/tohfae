@@ -11,6 +11,7 @@ import { PRODUCT_DATA } from '@/contract/product.contract';
 import ProductsDetails from './ProductsDetails';
 import { Navigation_Url, website_name } from '@/shared/constant/global-constant';
 import { notFound } from 'next/navigation';
+import { ProductService } from '@/services/product/product.service';
 
 /**
  * Generate SEO metadata for product details page
@@ -19,7 +20,7 @@ import { notFound } from 'next/navigation';
 export const generateMetadata = async ({ params }) => {
   // API will be added later, for now using static data
   const { slug } = await params;
-  const product = PRODUCT_DATA?.find(p => p?.slug === slug);
+  const product = await ProductService.getBySlug(slug);
 
   // If product not found, return default metadata
   if (!product) {
@@ -79,7 +80,7 @@ const ProductDetailsPage = async ({ params }) => {
   const { slug } = await params;
 
   // Fetch product from contract (later will be API call)
-  const product = PRODUCT_DATA?.find(p => p?.slug === slug);
+  const product = await ProductService.getBySlug(slug);
 
   // If product not found, show 404
   if (!product) {

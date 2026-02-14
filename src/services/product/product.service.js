@@ -21,7 +21,7 @@ import { ENDPOINT } from '../api/endpoint';
 import { handleApiError } from '../api/errorHandler';
 import { mapProductFromAPI, mapProductsFromAPI } from './product.mapper';
 import { API_CONFIG } from '../api/config';
-import { PRODUCTS_DATA } from '@/contract/product.contract';
+import { PRODUCT_DATA } from '@/contract/product.contract';
 
 export const ProductService = {
     /**
@@ -39,7 +39,7 @@ export const ProductService = {
             // Use mock data if enabled
             if (API_CONFIG.USE_MOCK) {
                 console.log('🎭 Using mock product data');
-                return Promise.resolve(PRODUCTS_DATA);
+                return Promise.resolve(PRODUCT_DATA);
             }
 
             const response = await apiClient.get(ENDPOINT.PRODUCT.LIST, { params });
@@ -59,7 +59,7 @@ export const ProductService = {
             // Use mock data if enabled
             if (API_CONFIG.USE_MOCK) {
                 console.log(`🎭 Using mock product data for ID: ${id}`);
-                const product = PRODUCTS_DATA.find(p => p.id === id);
+                const product = PRODUCT_DATA.find(p => p.id === id);
                 return Promise.resolve(product || null);
             }
 
@@ -80,7 +80,7 @@ export const ProductService = {
             // Use mock data if enabled
             if (API_CONFIG.USE_MOCK) {
                 console.log(`🎭 Using mock product data for slug: ${slug}`);
-                const product = PRODUCTS_DATA.find(p => p.slug === slug);
+                const product = PRODUCT_DATA.find(p => p.slug === slug);
                 return Promise.resolve(product || null);
             }
 
@@ -102,7 +102,7 @@ export const ProductService = {
             // Use mock data if enabled
             if (API_CONFIG.USE_MOCK) {
                 console.log(`🎭 Using mock product data for search: ${query}`);
-                const filtered = PRODUCTS_DATA.filter(p => 
+                const filtered = PRODUCT_DATA.filter(p => 
                     p.basic.name.toLowerCase().includes(query.toLowerCase()) ||
                     p.basic.description.toLowerCase().includes(query.toLowerCase())
                 );
@@ -128,7 +128,7 @@ export const ProductService = {
             // Use mock data if enabled
             if (API_CONFIG.USE_MOCK) {
                 console.log(`🎭 Using mock product data for category: ${category}`);
-                const filtered = PRODUCTS_DATA.filter(p => p.category === category);
+                const filtered = PRODUCT_DATA.filter(p => p.category === category);
                 return Promise.resolve(filtered);
             }
 

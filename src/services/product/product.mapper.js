@@ -51,7 +51,11 @@ export const mapProductFromAPI = (apiProduct) => {
             basePrice: apiProduct.base_price || apiProduct.basePrice || apiProduct.price,
             sellingPrice: apiProduct.selling_price || apiProduct.sellingPrice || apiProduct.price,
             mrp: apiProduct.mrp,
-            discount: apiProduct.discount || null,
+            discount: apiProduct.discount ? {
+                percentage: apiProduct.discount.percentage || apiProduct.discount_percentage || 0,
+                label: apiProduct.discount.label || apiProduct.discount_label || null,
+                amount: apiProduct.discount.amount || apiProduct.discount_amount || null,
+            } : null,
         },
 
         variants: apiProduct.variants || [],
