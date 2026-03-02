@@ -15,7 +15,7 @@
  */
 
 "use client";
-import { FOOTER_CONFIG } from "../../shared/constant/footer.constant";
+import { FOOTER_CONFIG } from "./footer.constant";
 
 export default function FooterLinks() {
     return (

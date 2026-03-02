@@ -6,7 +6,7 @@
 "use client";
 
 import { Card, CardBody } from '@/shared/ui/card';
-import { Button } from '@/shared/ui/button';
+import Button from '@/shared/ui/button/Button';
 import { Badge } from '@/shared/ui/badge';
 import { ADDRESS_TEXT } from '../address.constant';
 import { ADDRESS_CARD_STYLES } from '../address.style';

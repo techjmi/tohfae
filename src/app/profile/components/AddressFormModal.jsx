@@ -8,7 +8,7 @@
 import { useState, useEffect } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from '@/shared/ui/modal';
 import { Form } from '@/shared/ui/from';
-import { Button } from '@/shared/ui/button';
+import Button from '@/shared/ui/button/Button';
 import { ADDRESS_TEXT } from '../address.constant';
 import {
   ADDRESS_FORM_FIELDS,

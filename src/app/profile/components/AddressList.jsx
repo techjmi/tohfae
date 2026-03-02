@@ -6,7 +6,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Button } from '@/shared/ui/button';
+import Button from '@/shared/ui/button/Button';
 import AddressCard from './AddressCard';
 import AddressFormModal from './AddressFormModal';
 import { ADDRESS_TEXT } from '../address.constant';

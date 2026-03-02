@@ -1,4 +1,4 @@
-import { apiClient } from '../api/client';
+import apiClient from '../api/client';
 import { ENDPOINT } from '../api/endpoint';
 import { API_CONFIG } from '../api/config';
 import { handleApiError } from '../api/errorHandler';

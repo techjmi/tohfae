@@ -5,7 +5,7 @@
 
 "use client";
 
-import { Button } from '@/shared/ui/button';
+import Button from '@/shared/ui/button/Button';
 import { PROFILE_TEXT } from '../profile.constant';
 
 export default function ProfileError({ error, onRetry }) {
