@@ -18,10 +18,13 @@
  */
 
 import NotFoundComponent from '@/shared/ui/error/NotFoundComponent';
+import { buildSeo } from '@/lib/seo/seo';
+import { website_name } from '@/shared/constant/global-constant';
 
 export const metadata = {
-  title: '404 - Page Not Found | Tohfae',
+  title: `404 - Page Not Found | ${website_name}`,
   description: 'The page you are looking for could not be found.',
+  noindex: true, // CRITICAL: Prevent Google from indexing 404 page
 };
 
 export default function NotFound() {

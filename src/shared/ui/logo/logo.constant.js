@@ -4,9 +4,9 @@ export const LOGO = {
     light: logoUrl,
     // dark: "/logo-dark.png",
     // icon: "/logo-icon.png",
-    text: "Tohfae",
+    text: `${website_name}`,
     tagline: "Personalized Gifts for Every Occasion",
-    altText: "Tohfae - Personalized Gift Store",
+    altText: `${website_name} - Personalized Gift Store`,
 };
 
 export const LOGO_SIZE = {

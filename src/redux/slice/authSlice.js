@@ -22,6 +22,7 @@ const authSlice = createSlice({
         },
 
         signInSuccess: (state, action) => {
+            // Payload can be { user, message, ... } or just user object
             state.user = action.payload.user || action.payload;
             state.isAuthenticated = true;
             state.isLoading = false;

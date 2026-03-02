@@ -1,5 +1,6 @@
 "use client";
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import Button from '@/shared/ui/button/Button';
 import { useClickOutside } from '@/shared/hooks/useClickOutside';
@@ -9,11 +10,12 @@ import {
     DropdownItem,
     DropdownHeader,
 } from '@/shared/ui/dropdown';
-import { USER_MENU_DATA, DUMMY_USER } from './header.data';
+import { selectIsAuthenticated } from '@/redux/slice/authSlice';
+import { USER_MENU_DATA, HEADER_TEXT, HEADER_ROUTES } from './header.constant';
 import UserProfileMenu from './UserProfileMenu';
 
 const Navbar = () => {
-    const { isLoggedIn } = DUMMY_USER;
+    const isLoggedIn = useSelector(selectIsAuthenticated);
     const [isOpen, setIsOpen] = useState(false);
     const ref = useClickOutside(() => setIsOpen(false));
 
@@ -34,9 +36,9 @@ const Navbar = () => {
                         className="text-sm hover:border hover:border-gray-300"
                     >
                         <div className="flex flex-col items-start">
-                            <span className="text-xs text-gray-600">Hello, sign in</span>
+                            <span className="text-xs text-gray-600">{HEADER_TEXT.GREETING}</span>
                             <span className="text-sm font-semibold text-gray-900">
-                                Account & Lists
+                                {HEADER_TEXT.ACCOUNT_LISTS}
                             </span>
                         </div>
                     </Button>
@@ -48,15 +50,15 @@ const Navbar = () => {
                                 {/* Sign In Button */}
                                 <div className="px-8 py-6 text-center border-b border-gray-200">
                                     <Link
-                                        href="/signin"
+                                        href={HEADER_ROUTES.LOGIN}
                                         className="block w-full px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold rounded-lg transition-colors text-base"
                                     >
-                                        Sign in
+                                        {HEADER_TEXT.SIGN_IN}
                                     </Link>
                                     <p className="text-sm text-gray-700 mt-3">
-                                        New customer?{' '}
-                                        <Link href="/signup" className="text-blue-600 hover:text-blue-700 hover:underline">
-                                            Start here.
+                                        {HEADER_TEXT.NEW_CUSTOMER}{' '}
+                                        <Link href={HEADER_ROUTES.REGISTER} className="text-blue-600 hover:text-blue-700 hover:underline">
+                                            {HEADER_TEXT.START_HERE}
                                         </Link>
                                     </p>
                                 </div>
@@ -66,7 +68,7 @@ const Navbar = () => {
                                     {/* Your Lists */}
                                     <div className="px-6 py-5">
                                         <DropdownHeader className="text-base font-bold text-gray-900 mb-3">
-                                            Your Lists
+                                            {HEADER_TEXT.YOUR_LISTS}
                                         </DropdownHeader>
                                         <div className="space-y-2">
                                             {USER_MENU_DATA.yourLists.slice(0, 5).map((item, index) => (
@@ -84,7 +86,7 @@ const Navbar = () => {
                                     {/* Your Account */}
                                     <div className="px-6 py-5">
                                         <DropdownHeader className="text-base font-bold text-gray-900 mb-3">
-                                            Your Account
+                                            {HEADER_TEXT.YOUR_ACCOUNT}
                                         </DropdownHeader>
                                         <div className="space-y-2">
                                             {USER_MENU_DATA.yourAccount.slice(0, 12).map((item, index) => (
@@ -107,12 +109,12 @@ const Navbar = () => {
 
             {/* Returns & Orders - always visible */}
             <Link
-                href="/orders"
+                href={HEADER_ROUTES.ORDERS}
                 className="text-sm text-gray-700 hover:text-primary-600 transition-colors whitespace-nowrap"
             >
                 <div className="flex flex-col items-start">
-                    <span className="text-xs text-gray-600">Returns</span>
-                    <span className="text-sm font-semibold text-gray-900">& Orders</span>
+                    <span className="text-xs text-gray-600">{HEADER_TEXT.RETURNS}</span>
+                    <span className="text-sm font-semibold text-gray-900">{HEADER_TEXT.ORDERS}</span>
                 </div>
             </Link>
         </nav>

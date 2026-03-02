@@ -32,6 +32,6 @@ export const API_CONFIG = {
         'Accept': 'application/json',
     },
     // Feature flags
-    USE_MOCK: process.env.NEXT_PUBLIC_USE_MOCK === 'true',
+    USE_MOCK: process.env.NEXT_PUBLIC_USE_MOCK === 'true' || true, // ← Force true for development
     ENABLE_LOGGING: process.env.NODE_ENV === 'development',
 };

@@ -6,6 +6,7 @@ import {
   FaTwitter,
   FaInstagram,
   FaFacebookMessenger,
+  FaGoogle,
 } from "react-icons/fa";
 
 // UI / General
@@ -48,6 +49,7 @@ import {
 
 export const ICONS = {
   // Social
+  google: FaGoogle,
   facebook: FaFacebook,
   linkedin: FaLinkedin,
   twitter: FaTwitter,

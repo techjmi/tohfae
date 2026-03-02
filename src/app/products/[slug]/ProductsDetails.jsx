@@ -8,15 +8,15 @@
 "use client";
 import React, { useState } from 'react';
 // Import detail components
-import ProductImageGallery from '@/app/features/products/components/details/ProductImageGallery';
-import ProductMainInfo from '@/app/features/products/components/details/ProductMainInfo';
-import ProductPricing from '@/app/features/products/components/details/ProductPricing';
-import ProductVariants from '@/app/features/products/components/details/ProductVariants';
-import ProductCustomization from '@/app/features/products/components/details/ProductCustomization';
-import ProductActions from '@/app/features/products/components/details/ProductActions';
-import ProductDescription from '@/app/features/products/components/details/ProductDescription';
-import ProductReviews from '@/app/features/products/components/details/ProductReviews';
-import RelatedProducts from '@/app/features/products/components/details/RelatedProducts';
+import ProductImageGallery from './components/ProductImageGallery';
+import ProductMainInfo from './components/ProductMainInfo';
+import ProductPricing from './components/ProductPricing';
+import ProductVariants from './components/ProductVariants';
+import ProductCustomization from './components/ProductCustomization';
+import ProductActions from './components/ProductActions';
+import ProductDescription from './components/ProductDescription';
+import ProductReviews from './components/ProductReviews';
+import RelatedProducts from './components/RelatedProducts';
 
 const ProductsDetails = ({ product }) => {
   // State management

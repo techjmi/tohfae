@@ -11,15 +11,19 @@ export const ENDPOINT = {
     SIGN_UP: `${API_BASE}/auth/signup`,
     SIGN_IN: `${API_BASE}/auth/signin`,
     SIGN_OUT: `${API_BASE}/auth/signout`,
-    SOCIAL_LOGIN: `${API_BASE}/auth/social`,
+    VERIFY_EMAIL: `${API_BASE}/auth/verify-email`,
+    RESEND_OTP: `${API_BASE}/auth/resend-otp`,
     FORGOT_PASSWORD: `${API_BASE}/auth/forgot-password`,
     RESET_PASSWORD: `${API_BASE}/auth/reset-password`,
+    GOOGLE: `${API_BASE}/auth/google`,
+    FACEBOOK: `${API_BASE}/auth/facebook`,
   },
 
   USER: {
-    PROFILE: `${API_BASE}/user/profile`,          // GET, PUT
-    ADDRESSES: `${API_BASE}/user/addresses`,      // GET, POST
-    ADDRESS_BY_ID: (id) => `${API_BASE}/user/addresses/${id}`, // PUT, DELETE
+    ME: `${API_BASE}/users/me`,                   // GET, PUT
+    CHANGE_PASSWORD: `${API_BASE}/users/me/password`, // PUT
+    ADDRESSES: `${API_BASE}/users/me/addresses`,  // POST
+    ADDRESS_BY_ID: (id) => `${API_BASE}/users/me/addresses/${id}`, // PUT, DELETE
   },
 
   CART: {

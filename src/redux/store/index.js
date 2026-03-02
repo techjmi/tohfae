@@ -6,9 +6,19 @@
  */
 
 import { configureStore } from "@reduxjs/toolkit";
+import { authReducer } from "@/redux/slice/authSlice";
+
 export const createStore = () => {
     const store = configureStore({
-        reducer: {},
+        reducer: {
+            auth: authReducer,
+        },
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware({
+                serializableCheck: {
+                    ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
+                },
+            }),
         devTools: process.env.NODE_ENV === "development",
     });
     return store;

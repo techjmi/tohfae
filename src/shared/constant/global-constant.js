@@ -30,6 +30,8 @@ export const Navigation_Url = {
   FAQ: '/faq',
   PRODUCTS: '/products',
   CART: '/cart',
+  PROFILE: '/profile',
+  PROFILE_EDIT: '/profile/edit',
 };
 //dynamic navigation url constant
 export const Dynamic_Navigation_Url = {

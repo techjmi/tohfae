@@ -55,6 +55,7 @@ export const buildSeo = ({
   schemaType = "WebSite",
   author = default_seo_constant.author,
   article = {}, // { publishedTime, modifiedTime, authors, tags }
+  noindex = false, // NEW: Allow pages to be noindexed
 }) => {
   const mergedKeywords = Array.from(
     new Set([...(DEFAULT_SEO.keywords || []), ...keywords])
@@ -106,7 +107,10 @@ export const buildSeo = ({
       images: [image || default_seo_constant.image],
     },
     alternates: { canonical: canonicalUrl },
-    robots: { index: true, follow: true },
+    robots: {
+      index: !noindex, // If noindex=true, then index=false
+      follow: true,    // Always allow following links
+    },
   };
 };
 

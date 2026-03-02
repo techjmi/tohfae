@@ -18,10 +18,10 @@ export { ERROR_TYPES, ERROR_MSG } from './services.constant';
 
 // Export services
 export { ProductService } from './product/product.service';
+export * as UserService from './user/user.service';
+export * as AuthService from './auth/auth.service';
 
 // TODO: Add more services as they are created
-// export { UserService } from './user/user.service';
-// export { AuthService } from './auth/auth.service';
 // export { CartService } from './cart/cart.service';
 // export { OrderService } from './order/order.service';
 

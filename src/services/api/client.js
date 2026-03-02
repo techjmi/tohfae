@@ -32,6 +32,7 @@ const apiClient = axios.create({
     baseURL: API_CONFIG.BASE_URL,
     timeout: API_CONFIG.TIMEOUT,
     headers: API_CONFIG.HEADERS,
+    withCredentials: true, // Send cookies with requests (for httpOnly cookies)
 });
 
 // Add request interceptors

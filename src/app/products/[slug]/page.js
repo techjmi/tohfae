@@ -25,7 +25,7 @@ export const generateMetadata = async ({ params }) => {
   // If product not found, return default metadata
   if (!product) {
     return buildSeo({
-      title: 'Product Not Found | Tohfae',
+      title: `Product Not Found | ${website_name}`,
       description: 'The product you are looking for could not be found.',
       noindex: true,
     });
@@ -66,7 +66,7 @@ export const generateMetadata = async ({ params }) => {
       'product:price:amount': product?.pricing?.sellingPrice || 0,
       'product:price:currency': product?.pricing?.currency || 'INR',
       'product:availability': product?.inventory?.inStock ? 'in stock' : 'out of stock',
-      'product:brand': product?.basic?.brand || 'Tohfae',
+      'product:brand': product?.basic?.brand || `${website_name}`,
       'product:category': product?.category || '',
     },
   });

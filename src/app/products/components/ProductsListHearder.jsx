@@ -33,7 +33,7 @@ import { Breadcrumbs } from '@/shared/ui/breadcrumbed';
 import { Chip } from '@/shared/ui/chip';
 import { SortDropdown } from '@/shared/ui/sort';
 import Button from '@/shared/ui/button';
-import { SORT_OPTIONS, FILTER_CHIPS, getFilterLabel } from '@/app/features/products/products.constant';
+import { PRODUCT_SORT_OPTIONS, PRODUCT_FILTER_CHIPS, getFilterLabel } from '../products.helper';
 
 const ProductListHeader = ({
   pathname,
@@ -68,7 +68,7 @@ const ProductListHeader = ({
         <span className="text-sm font-medium text-gray-700">
           Categories:
         </span>
-        {FILTER_CHIPS.map((chip) => {
+        {PRODUCT_FILTER_CHIPS.map((chip) => {
           const isSelected = filters[chip.value] === true;
           return (
             <Chip
@@ -90,7 +90,7 @@ const ProductListHeader = ({
       <div className="flex flex-wrap items-center gap-3">
         <SortDropdown
           label="Price"
-          options={SORT_OPTIONS.PRICE}
+          options={PRODUCT_SORT_OPTIONS.PRICE}
           currentValue={sortBy}
           currentDirection={sortDirection}
           onSelect={onSortChange}
@@ -98,7 +98,7 @@ const ProductListHeader = ({
 
         <SortDropdown
           label="Rating"
-          options={SORT_OPTIONS.RATING}
+          options={PRODUCT_SORT_OPTIONS.RATING}
           currentValue={sortBy}
           currentDirection={sortDirection}
           onSelect={onSortChange}
@@ -106,7 +106,7 @@ const ProductListHeader = ({
 
         <SortDropdown
           label="Arrival"
-          options={SORT_OPTIONS.ARRIVAL}
+          options={PRODUCT_SORT_OPTIONS.ARRIVAL}
           currentValue={sortBy}
           currentDirection={sortDirection}
           onSelect={onSortChange}

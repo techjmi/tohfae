@@ -24,62 +24,92 @@
 export const mapProductFromAPI = (apiProduct) => {
     if (!apiProduct) return null;
 
+    // Handle both nested and flat API response structures
+    const basic = apiProduct.basic || {
+        name: apiProduct.name || apiProduct.product_name,
+        shortDescription: apiProduct.short_description || apiProduct.shortDescription,
+        description: apiProduct.description,
+        brand: apiProduct.brand || 'Tohfae',
+    };
+
+    const media = apiProduct.media || {
+        images: apiProduct.images || [],
+        thumbnail: apiProduct.thumbnail || apiProduct.images?.[0] || '',
+        videos: apiProduct.videos || [],
+    };
+
+    const pricing = apiProduct.pricing || {
+        currency: apiProduct.currency || 'INR',
+        basePrice: apiProduct.base_price || apiProduct.basePrice || apiProduct.price,
+        sellingPrice: apiProduct.selling_price || apiProduct.sellingPrice || apiProduct.price,
+        mrp: apiProduct.mrp,
+        discount: apiProduct.discount ? {
+            type: apiProduct.discount.type || 'percentage',
+            value: apiProduct.discount.value || apiProduct.discount.percentage || apiProduct.discount_percentage || 0,
+            label: apiProduct.discount.label || apiProduct.discount_label || null,
+            amount: apiProduct.discount.amount || apiProduct.discount_amount || null,
+        } : null,
+        paymentOptions: apiProduct.paymentOptions || {},
+        delivery: apiProduct.delivery || {},
+        cod: apiProduct.cod || {},
+        availablePaymentMethods: apiProduct.availablePaymentMethods || [],
+    };
+
+    const inventory = apiProduct.inventory || {
+        inStock: apiProduct.in_stock ?? apiProduct.inStock ?? true,
+        quantity: apiProduct.quantity || 0,
+        reserved: apiProduct.reserved || 0,
+        available: apiProduct.available || 0,
+        lowStockThreshold: apiProduct.lowStockThreshold || 10,
+        allowBackorder: apiProduct.allowBackorder || false,
+    };
+
+    const rating = apiProduct.rating || apiProduct.ratings || {
+        average: apiProduct.rating_average || 0,
+        count: apiProduct.rating_count || apiProduct.ratingCount || 0,
+        distribution: apiProduct.rating_distribution || apiProduct.ratingDistribution || {},
+    };
+
     return {
-        id: apiProduct.id,
+        id: apiProduct._id || apiProduct.id,
         slug: apiProduct.slug,
         sku: apiProduct.sku,
-        
-        basic: {
-            name: apiProduct.name || apiProduct.product_name,
-            shortDescription: apiProduct.short_description || apiProduct.shortDescription,
-            description: apiProduct.description,
-            brand: apiProduct.brand || 'Tohfae',
-        },
 
-        media: {
-            images: apiProduct.images || [],
-            thumbnail: apiProduct.thumbnail || apiProduct.images?.[0] || '',
-            videos: apiProduct.videos || [],
-        },
+        basic,
+        media,
 
         category: apiProduct.category,
         tags: apiProduct.tags || [],
         collections: apiProduct.collections || [],
+        occasions: apiProduct.occasions || [],
+        recipients: apiProduct.recipients || [],
 
-        pricing: {
-            currency: apiProduct.currency || 'INR',
-            basePrice: apiProduct.base_price || apiProduct.basePrice || apiProduct.price,
-            sellingPrice: apiProduct.selling_price || apiProduct.sellingPrice || apiProduct.price,
-            mrp: apiProduct.mrp,
-            discount: apiProduct.discount ? {
-                percentage: apiProduct.discount.percentage || apiProduct.discount_percentage || 0,
-                label: apiProduct.discount.label || apiProduct.discount_label || null,
-                amount: apiProduct.discount.amount || apiProduct.discount_amount || null,
-            } : null,
-        },
-
+        pricing,
+        offers: apiProduct.offers || [],
+        inventory,
         variants: apiProduct.variants || [],
-        
-        rating: {
-            average: apiProduct.rating || apiProduct.rating_average || 0,
-            count: apiProduct.rating_count || apiProduct.ratingCount || 0,
-            distribution: apiProduct.rating_distribution || apiProduct.ratingDistribution || {},
+        specifications: apiProduct.specifications || [],
+
+        rating,
+
+        customization: apiProduct.customization || {
+            enabled: false,
+            type: null,
+            options: [],
         },
 
-        customization: apiProduct.customization || [],
-        
         shipping: apiProduct.shipping || {},
-        
-        seo: apiProduct.seo || {},
-        
-        status: {
-            isActive: apiProduct.is_active ?? apiProduct.isActive ?? true,
-            isFeatured: apiProduct.is_featured ?? apiProduct.isFeatured ?? false,
-            isPublished: apiProduct.is_published ?? apiProduct.isPublished ?? true,
-        },
+        policies: apiProduct.policies || {},
 
-        createdAt: apiProduct.created_at || apiProduct.createdAt,
-        updatedAt: apiProduct.updated_at || apiProduct.updatedAt,
+        seo: apiProduct.seo || {},
+
+        status: apiProduct.status || 'draft',
+        isActive: apiProduct.isActive ?? true,
+        isFeatured: apiProduct.isFeatured ?? false,
+        isPublished: apiProduct.isPublished ?? false,
+
+        createdAt: apiProduct.createdAt || apiProduct.created_at,
+        updatedAt: apiProduct.updatedAt || apiProduct.updated_at,
     };
 };
 

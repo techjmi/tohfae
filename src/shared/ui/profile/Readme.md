@@ -301,10 +301,10 @@ const user = {
 
 ## Summary
 
-✅ **UserAvatar** - Use anywhere you need just an avatar  
-✅ **UserProfile (compact)** - Use in navbar with dropdown  
-✅ **UserProfile (full)** - Use in profile sections with details  
-✅ **ProfileBody** - Use in full profile pages  
+**UserAvatar** - Use anywhere you need just an avatar  
+**UserProfile (compact)** - Use in navbar with dropdown  
+**UserProfile (full)** - Use in profile sections with details  
+**ProfileBody** - Use in full profile pages  
 
-All components work together and use your existing Dropdown component! 🎉
+All components work together and use your existing Dropdown component! 
 

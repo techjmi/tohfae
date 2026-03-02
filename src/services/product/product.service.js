@@ -43,7 +43,11 @@ export const ProductService = {
             }
 
             const response = await apiClient.get(ENDPOINT.PRODUCT.LIST, { params });
-            return mapProductsFromAPI(response.data.products || response.data);
+
+            // Handle different response structures
+            const products = response.data?.products || response.data?.data || response.data || [];
+
+            return mapProductsFromAPI(products);
         } catch (error) {
             throw handleApiError(error);
         }
@@ -64,7 +68,11 @@ export const ProductService = {
             }
 
             const response = await apiClient.get(ENDPOINT.PRODUCT.DETAILS(id));
-            return mapProductFromAPI(response.data.product || response.data);
+
+            // Handle different response structures
+            const product = response.data?.product || response.data?.data || response.data;
+
+            return mapProductFromAPI(product);
         } catch (error) {
             throw handleApiError(error);
         }
@@ -85,7 +93,11 @@ export const ProductService = {
             }
 
             const response = await apiClient.get(ENDPOINT.PRODUCT.BY_SLUG(slug));
-            return mapProductFromAPI(response.data.product || response.data);
+
+            // Handle different response structures
+            const product = response.data?.product || response.data?.data || response.data;
+
+            return mapProductFromAPI(product);
         } catch (error) {
             throw handleApiError(error);
         }
