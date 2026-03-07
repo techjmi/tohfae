@@ -35,12 +35,12 @@ const ProfileBody = ({
 }) => {
     return (
         <div
-            className={`bg-white rounded-lg shadow-md p-6 ${className}`}
+            className={`bg-white rounded-lg shadow-sm border border-gray-100 p-4 md:p-6 ${className}`}
             {...props}
         >
-            {/* Header Section */}
-            <div className="flex items-start justify-between mb-6">
-                <div className="flex items-center gap-4">
+            {/* Header Section - Responsive Layout */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                <div className="flex items-center gap-3 md:gap-4">
                     <UserAvatar
                         user={user}
                         size={AVATAR_SIZE.xl}
@@ -49,14 +49,14 @@ const ProfileBody = ({
                     />
 
                     <div>
-                        <h2 className="text-2xl font-bold text-gray-900">
+                        <h2 className="text-xl md:text-2xl font-semibold text-gray-900">
                             {user?.name || "Guest User"}
                         </h2>
                         {user?.username && (
-                            <p className="text-gray-600">@{user.username}</p>
+                            <p className="text-sm text-gray-600">@{user.username}</p>
                         )}
                         {user?.role && (
-                            <span className="inline-block mt-1 px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
+                            <span className="inline-block mt-1.5 px-2.5 py-0.5 bg-blue-50 text-blue-700 text-xs font-medium rounded-md border border-blue-200">
                                 {user.role}
                             </span>
                         )}
@@ -66,7 +66,7 @@ const ProfileBody = ({
                 {editable && (
                     <button
                         onClick={onEdit}
-                        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                        className="w-full sm:w-auto px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 active:bg-blue-800 transition-colors shadow-sm"
                     >
                         Edit Profile
                     </button>
@@ -75,34 +75,34 @@ const ProfileBody = ({
 
             {/* Bio Section */}
             {showBio && user?.bio && (
-                <div className="mb-6">
-                    <h3 className="text-sm font-semibold text-gray-700 mb-2">About</h3>
-                    <p className="text-gray-600">{user.bio}</p>
+                <div className="mb-5">
+                    <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">About</h3>
+                    <p className="text-sm text-gray-700">{user.bio}</p>
                 </div>
             )}
 
             {/* Contact Information */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
                 {showEmail && user?.email && (
                     <div>
-                        <h3 className="text-sm font-semibold text-gray-700 mb-1">Email</h3>
-                        <p className="text-gray-600">{user.email}</p>
+                        <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Email</h3>
+                        <p className="text-sm text-gray-700">{user.email}</p>
                     </div>
                 )}
 
                 {showPhone && user?.phone && (
                     <div>
-                        <h3 className="text-sm font-semibold text-gray-700 mb-1">Phone</h3>
-                        <p className="text-gray-600">{user.phone}</p>
+                        <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Phone</h3>
+                        <p className="text-sm text-gray-700">{user.phone}</p>
                     </div>
                 )}
             </div>
 
             {/* Address Section */}
             {showAddress && user?.address && (
-                <div className="mb-6">
-                    <h3 className="text-sm font-semibold text-gray-700 mb-2">Address</h3>
-                    <p className="text-gray-600">
+                <div className="mb-5">
+                    <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Address</h3>
+                    <p className="text-sm text-gray-700">
                         {user.address.street && `${user.address.street}, `}
                         {user.address.city && `${user.address.city}, `}
                         {user.address.state && `${user.address.state} `}

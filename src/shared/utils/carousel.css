@@ -1,0 +1,90 @@
+/* Carousel Container */
+.carousel-container {
+  position: relative;
+}
+
+/* Arrows Outside Mode */
+.carousel-container.arrows-outside {
+  padding: 0 60px;
+}
+
+.carousel-container.arrows-outside .custom-swiper-button-prev {
+  left: 0;
+}
+
+.carousel-container.arrows-outside .custom-swiper-button-next {
+  right: 0;
+}
+
+/* Custom Navigation Arrows - ONLY ICON, NO BACKGROUND */
+.custom-swiper-button-next,
+.custom-swiper-button-prev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #f97316;
+  transition: color 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-swiper-button-prev {
+  left: 20px;
+}
+
+.custom-swiper-button-next {
+  right: 20px;
+}
+
+.custom-swiper-button-next:hover,
+.custom-swiper-button-prev:hover {
+  color: #ea580c;
+}
+
+.custom-swiper-button-next.swiper-button-disabled,
+.custom-swiper-button-prev.swiper-button-disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Pagination Dots */
+.swiper-pagination-bullet {
+  background: #f97316 !important;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1 !important;
+}
+
+/* Swiper Wrapper */
+.swiper-wrapper {
+  padding-bottom: 40px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .custom-swiper-button-next,
+  .custom-swiper-button-prev {
+    width: 32px;
+    height: 32px;
+  }
+
+  .custom-swiper-button-prev {
+    left: 10px;
+  }
+
+  .custom-swiper-button-next {
+    right: 10px;
+  }
+}
+
+

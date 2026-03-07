@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { useId } from 'react';
 import { classNames } from '@/shared/utils/classNames';
 import {
     TEXTAREA_VARIANT,
@@ -43,7 +43,8 @@ const Textarea = ({
     className = "",
     ...props
 }) => {
-    const textareaId = id || `textarea-${Math.random().toString(36).substring(2, 9)}`;
+    const reactId = useId();
+    const textareaId = id || `textarea-${name || reactId}`;
     const helperTextId = `${textareaId}-helper`;
     const errorMessageId = `${textareaId}-error`;
 

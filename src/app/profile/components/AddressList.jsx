@@ -7,6 +7,7 @@
 
 import { useState, useEffect } from 'react';
 import Button from '@/shared/ui/button/Button';
+import { Modal } from '@/shared/ui/modal';
 import AddressCard from './AddressCard';
 import AddressFormModal from './AddressFormModal';
 import { ADDRESS_TEXT } from '../address.constant';
@@ -25,6 +26,9 @@ export default function AddressList() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingAddress, setEditingAddress] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [deletingAddressId, setDeletingAddressId] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   // Fetch addresses on mount
   useEffect(() => {
@@ -37,7 +41,8 @@ export default function AddressList() {
       const data = await getMyAddresses();
       setAddresses(data);
     } catch (error) {
-      console.error('Failed to fetch addresses:', error);
+      const errorMessage = error?.response?.data?.message || error?.message || 'Failed to fetch addresses';
+      console.error('Failed to fetch addresses:', errorMessage, error);
     } finally {
       setIsLoading(false);
     }
@@ -70,7 +75,8 @@ export default function AddressList() {
       setIsModalOpen(false);
       setEditingAddress(null);
     } catch (error) {
-      console.error('Failed to save address:', error);
+      const errorMessage = error?.response?.data?.message || error?.message || 'Failed to save address';
+      console.error('Failed to save address:', errorMessage, error);
       // Re-throw error so modal can handle validation errors
       throw error;
     } finally {
@@ -78,18 +84,31 @@ export default function AddressList() {
     }
   };
 
-  const handleDelete = async (addressId) => {
-    if (!confirm(ADDRESS_TEXT.DELETE.MESSAGE)) {
-      return;
-    }
+  const handleDeleteClick = (addressId) => {
+    setDeletingAddressId(addressId);
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (!deletingAddressId) return;
 
     try {
-      const updatedAddresses = await deleteAddress(addressId);
+      setIsDeleting(true);
+      const updatedAddresses = await deleteAddress(deletingAddressId);
       setAddresses(updatedAddresses);
+      setIsDeleteModalOpen(false);
+      setDeletingAddressId(null);
     } catch (error) {
-      console.error('Failed to delete address:', error);
-      alert('Failed to delete address. Please try again.');
+      const errorMessage = error?.response?.data?.message || error?.message || 'Failed to delete address';
+      console.error('Failed to delete address:', errorMessage, error);
+    } finally {
+      setIsDeleting(false);
     }
+  };
+
+  const handleDeleteCancel = () => {
+    setIsDeleteModalOpen(false);
+    setDeletingAddressId(null);
   };
 
   const handleSetDefault = async (addressId) => {
@@ -97,8 +116,8 @@ export default function AddressList() {
       const updatedAddresses = await setDefaultAddress(addressId);
       setAddresses(updatedAddresses);
     } catch (error) {
-      console.error('Failed to set default address:', error);
-      alert('Failed to set default address. Please try again.');
+      const errorMessage = error?.response?.data?.message || error?.message || 'Failed to set default address';
+      console.error('Failed to set default address:', errorMessage, error);
     }
   };
 
@@ -151,7 +170,7 @@ export default function AddressList() {
               key={address.addressId}
               address={address}
               onEdit={handleEdit}
-              onDelete={handleDelete}
+              onDelete={handleDeleteClick}
               onSetDefault={handleSetDefault}
             />
           ))}
@@ -165,6 +184,33 @@ export default function AddressList() {
         onSave={handleSave}
         initialData={editingAddress}
         isSaving={isSaving}
+      />
+
+      {/* Delete Confirmation Modal */}
+      <Modal
+        isOpen={isDeleteModalOpen}
+        onClose={handleDeleteCancel}
+        size="sm"
+        placement="center"
+        backdrop="blur"
+        header={{ title: ADDRESS_TEXT.DELETE.TITLE }}
+        body={{ message: ADDRESS_TEXT.DELETE.MESSAGE }}
+        footer={[
+          {
+            label: ADDRESS_TEXT.DELETE.CANCEL_BUTTON,
+            onClick: handleDeleteCancel,
+            variant: "outline",
+            color: "neutral",
+            disabled: isDeleting
+          },
+          {
+            label: isDeleting ? 'Deleting...' : ADDRESS_TEXT.DELETE.CONFIRM_BUTTON,
+            onClick: handleDeleteConfirm,
+            variant: "solid",
+            color: "danger",
+            disabled: isDeleting
+          }
+        ]}
       />
     </div>
   );

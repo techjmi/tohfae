@@ -5,7 +5,7 @@
 
 "use client";
 import React, { useState } from 'react';
-import { Modal, ModalHeader, ModalBody, ModalFooter } from './Index';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from './index';
 import Button from '@/shared/ui/button/Button';
 import { Icon } from '@/shared/icons';
 import { PRODUCT_DATA } from '@/contract/product.contract';

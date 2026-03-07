@@ -6,6 +6,7 @@
  */
 
 import { configureStore } from "@reduxjs/toolkit";
+import { persistStore } from "redux-persist";
 import { authReducer } from "@/redux/slice/authSlice";
 
 export const createStore = () => {
@@ -21,5 +22,9 @@ export const createStore = () => {
             }),
         devTools: process.env.NODE_ENV === "development",
     });
-    return store;
+
+    // Create persistor for redux-persist
+    const persistor = persistStore(store);
+
+    return { store, persistor };
 }

@@ -35,8 +35,9 @@ export const HEADER_TEXT = {
   YOUR_ACCOUNT: 'Your Account',
 
   // Sign Out Confirmation Modal
-  SIGN_OUT_CONFIRM_TITLE: 'Sign Out',
+  SIGN_OUT_CONFIRM_TITLE: 'Confirm Sign Out',
   SIGN_OUT_CONFIRM_MESSAGE: 'Are you sure you want to sign out?',
+  SIGN_OUT_CONFIRM_SUBTITLE: 'You will be signed out of your session.',
   SIGN_OUT_CONFIRM_BUTTON: 'Yes, Sign Out',
   SIGN_OUT_CANCEL_BUTTON: 'Cancel',
 };
@@ -61,14 +62,6 @@ export const USER_MENU_DATA = {
     { label: 'Keep shopping for', href: '/recommendations' },
     { label: 'Your Recommendations', href: '/recommendations' },
     { label: 'Recalls and Product Safety Alerts', href: '/recalls' },
-    { label: 'Your Prime Membership', href: '/prime' },
-    { label: 'Your Prime Video', href: '/prime-video' },
-    { label: 'Your Subscribe & Save Items', href: '/subscribe-save' },
-    { label: 'Memberships & Subscriptions', href: '/memberships' },
-    { label: 'Your Seller Account', href: '/seller' },
-    { label: 'Content Library', href: '/content-library' },
-    { label: 'Devices', href: '/devices' },
-    { label: 'Register for a free Business Account', href: '/business' },
   ],
 };
 

@@ -44,27 +44,38 @@ const Navbar = () => {
                     </Button>
 
                     {/* Dropdown for non-logged in users */}
-                    {isOpen && (
-                        <Dropdown position="bottomRight" variant="default" size="lg">
-                            <DropdownContent scrollable={true} className="w-[480px]">
+                    <Dropdown
+                        isOpen={isOpen}
+                        onClose={() => setIsOpen(false)}
+                        position="bottomRight"
+                        variant="default"
+                        size="lg"
+                        className="border! border-gray-200! shadow-lg!"
+                    >
+                        <DropdownContent scrollable={true} padding={false} maxHeight="500px" className="w-87.5">
                                 {/* Sign In Button */}
-                                <div className="px-8 py-6 text-center border-b border-gray-200">
+                                <div className="px-5 py-4 text-center border-b border-gray-100">
                                     <Link
                                         href={HEADER_ROUTES.LOGIN}
-                                        className="block w-full px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold rounded-lg transition-colors text-base"
+                                        onClick={() => setIsOpen(false)}
+                                        className="block w-full px-4 py-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-medium rounded text-sm"
                                     >
                                         {HEADER_TEXT.SIGN_IN}
                                     </Link>
                                     <p className="text-sm text-gray-700 mt-3">
                                         {HEADER_TEXT.NEW_CUSTOMER}{' '}
-                                        <Link href={HEADER_ROUTES.REGISTER} className="text-blue-600 hover:text-blue-700 hover:underline">
+                                        <Link
+                                            href={HEADER_ROUTES.REGISTER}
+                                            onClick={() => setIsOpen(false)}
+                                            className="text-blue-600 hover:text-blue-700 hover:underline"
+                                        >
                                             {HEADER_TEXT.START_HERE}
                                         </Link>
                                     </p>
                                 </div>
 
                                 {/* Two Column Layout with Divider */}
-                                <div className="grid grid-cols-2 divide-x divide-gray-200">
+                                <div className="grid grid-cols-2 divide-x divide-gray-100">
                                     {/* Your Lists */}
                                     <div className="px-6 py-5">
                                         <DropdownHeader className="text-base font-bold text-gray-900 mb-3">
@@ -75,6 +86,7 @@ const Navbar = () => {
                                                 <DropdownItem
                                                     key={index}
                                                     href={item.href}
+                                                    onClick={() => setIsOpen(false)}
                                                     className="text-sm text-gray-700 hover:text-orange-600 hover:underline py-0.5 px-0 block"
                                                 >
                                                     {item.label}
@@ -93,7 +105,8 @@ const Navbar = () => {
                                                 <DropdownItem
                                                     key={index}
                                                     href={item.href}
-                                                    className="text-sm text-gray-700 hover:text-orange-600 hover:underline py-0.5 px-0 block"
+                                                    onClick={() => setIsOpen(false)}
+                                                    className="text-xs text-gray-700 hover:text-orange-600 hover:underline py-0.5 px-0 block"
                                                 >
                                                     {item.label}
                                                 </DropdownItem>
@@ -103,7 +116,6 @@ const Navbar = () => {
                                 </div>
                             </DropdownContent>
                         </Dropdown>
-                    )}
                 </div>
             )}
 

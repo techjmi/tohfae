@@ -108,19 +108,19 @@ export function ProductGridWithBannersExample() {
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {items.map((item) => {
+                {items.map((item, index) => {
                     if (item.type === 'banner') {
                         return (
-                            <div key={item.id} className="md:col-span-2 lg:col-span-3">
+                            <div key={`banner-${item.id}-${index}`} className="md:col-span-2 lg:col-span-3">
                                 <Banner banner={item.data} />
                             </div>
                         );
                     }
-                    
+
                     // Product card
                     const product = item.data;
                     return (
-                        <Card key={item.id} hoverable shadow="sm">
+                        <Card key={`product-${item.id}-${index}`} hoverable shadow="sm">
                             <CardBody padding={false}>
                                 <img
                                     src={product.media?.images?.[0] || '/placeholder.jpg'}

@@ -5,7 +5,7 @@ export const website_name = 'Tohfae';
 export const main_url = 'https://tohfae.com';
 export const local_url = 'http://localhost:3000';
 export const local_api_url = 'http://localhost:8000';
-export const logoUrl = images.image_1;
+export const logoUrl = images[0]?.image_1 || '/brand/logo.png';
 export const alt_text = 'Tohfae';
 export const site_type = 'website';
 export const site_image = '/brand/home.png';
@@ -20,9 +20,9 @@ export const Navigation_Url = {
   ABOUT: '/about',
   CONTACT: '/contact',
   BLOG: '/blog',
-  PRIVACY: '/privacy',
-  TERMS: '/terms',
-  COOKIE: '/cookie',
+  PRIVACY: '/privacy-policy',
+  TERMS: '/terms-and-conditions',
+  COOKIE: '/cookie-policy',
   LOGIN: '/login',
   REGISTER: '/register',
   NEWSLETTER: '/newsletter',

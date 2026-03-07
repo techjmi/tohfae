@@ -11,8 +11,8 @@ import { ENDPOINT } from '../api/endpoint';
  */
 export const getMyAddresses = async () => {
   try {
-    const response = await apiClient.get(ENDPOINT.USER.ADDRESSES);
-    return response.data.data || [];
+    const response = await apiClient.get(ENDPOINT.USER.ME);
+    return response.data.data?.addresses || [];
   } catch (error) {
     console.error('Get addresses error:', error);
     throw error;
@@ -68,8 +68,9 @@ export const deleteAddress = async (addressId) => {
  */
 export const setDefaultAddress = async (addressId) => {
   try {
-    const response = await apiClient.patch(
-      `${ENDPOINT.USER.ADDRESSES}/${addressId}/default`
+    const response = await apiClient.put(
+      `${ENDPOINT.USER.ADDRESSES}/${addressId}`,
+      { isDefault: true }
     );
     return response.data.data || [];
   } catch (error) {

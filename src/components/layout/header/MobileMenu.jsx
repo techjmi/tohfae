@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Drawer, DrawerHeader, DrawerBody } from '@/shared/ui/drawer';
-import { Modal, ModalHeader, ModalBody, ModalFooter } from '@/shared/ui/modal';
+import { Drawer } from '@/shared/ui/drawer';
+import { Modal } from '@/shared/ui/modal';
 import { Divider } from '@/shared/ui/divider';
 import Button from '@/shared/ui/button/Button';
 import { Icon } from '@/shared/icons';
@@ -41,21 +41,22 @@ const MobileMenu = ({ isOpen, onClose }) => {
         setIsSignOutModalOpen(false);
     };
 
-    return (
-        <Drawer
-            isOpen={isOpen}
-            onClose={onClose}
-            position="left"
-            size="md"
-        >
-            <DrawerHeader onClose={onClose}>
-                <h2 className="text-xl font-semibold text-gray-900">
-                    {isLoggedIn && user ? `${HEADER_TEXT.HELLO}, ${user.firstName}` : HEADER_TEXT.MENU_TITLE}
-                </h2>
-            </DrawerHeader>
+    // Ensure consistent header title for SSR/CSR
+    const headerTitle = isLoggedIn && user?.firstName
+        ? `${HEADER_TEXT.HELLO}, ${user.firstName}`
+        : HEADER_TEXT.MENU_TITLE;
 
-            <DrawerBody>
-                <nav className="flex flex-col gap-1">
+    return (
+        <>
+            <Drawer
+                isOpen={isOpen}
+                onClose={onClose}
+                position="left"
+                size="md"
+                fullWidth={true}
+                header={{ title: headerTitle }}
+            >
+                <nav className="flex flex-col gap-1 flex-1 overflow-y-auto p-4">
                     {MOBILE_MENU_DATA.map((item, index) => (
                         <Link
                             key={index}
@@ -92,37 +93,33 @@ const MobileMenu = ({ isOpen, onClose }) => {
                         </Button>
                     )}
                 </nav>
-            </DrawerBody>
+            </Drawer>
 
             {/* Sign Out Confirmation Modal */}
             <Modal
                 isOpen={isSignOutModalOpen}
                 onClose={handleSignOutCancel}
-            >
-                <ModalHeader onClose={handleSignOutCancel}>
-                    {HEADER_TEXT.SIGN_OUT_CONFIRM_TITLE}
-                </ModalHeader>
-
-                <ModalBody>
-                    <p className="text-gray-700">{HEADER_TEXT.SIGN_OUT_CONFIRM_MESSAGE}</p>
-                </ModalBody>
-
-                <ModalFooter>
-                    <Button
-                        onClick={handleSignOutCancel}
-                        variant="outline"
-                    >
-                        {HEADER_TEXT.SIGN_OUT_CANCEL_BUTTON}
-                    </Button>
-                    <Button
-                        onClick={handleSignOutConfirm}
-                        variant="danger"
-                    >
-                        {HEADER_TEXT.SIGN_OUT_CONFIRM_BUTTON}
-                    </Button>
-                </ModalFooter>
-            </Modal>
-        </Drawer>
+                size="sm"
+                placement="bottom"
+                backdrop="blur"
+                header={{ title: HEADER_TEXT.SIGN_OUT_CONFIRM_TITLE }}
+                body={{ message: HEADER_TEXT.SIGN_OUT_CONFIRM_MESSAGE }}
+                footer={[
+                    {
+                        label: HEADER_TEXT.SIGN_OUT_CANCEL_BUTTON,
+                        onClick: handleSignOutCancel,
+                        variant: "outline",
+                        color: "neutral"
+                    },
+                    {
+                        label: HEADER_TEXT.SIGN_OUT_CONFIRM_BUTTON,
+                        onClick: handleSignOutConfirm,
+                        variant: "solid",
+                        color: "primary"
+                    }
+                ]}
+            />
+        </>
     );
 };
 

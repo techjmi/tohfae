@@ -37,9 +37,10 @@
  * @param {string} className - Additional CSS classes
  */
 "use client";
-import React from 'react';
+import React, { useId, useState } from 'react';
 import { classNames } from '@/shared/utils/classNames';
 import ShowIcons from '@/shared/components/ShowIcons';
+import { Icon } from '@/shared/icons';
 import {
     SELECT_VARIANT,
     SELECT_SIZE,
@@ -80,17 +81,21 @@ const Select = ({
     suffixIcon,
 
     disabled = false,
+    readOnly = false, // Fix: Changed from readonly to readOnly
     autoFocus = false, // Default: false
     className = "",
     ...props
 }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
     // Determine actual state
     const actualState = disabled
         ? SELECT_STATE.DISABLED
         : state;
 
-    // Generate unique ID if not provided
-    const selectId = id || `select-${name || Math.random().toString(36).substring(2, 11)}`;
+    // Generate unique ID if not provided (using React's useId for SSR compatibility)
+    const reactId = useId();
+    const selectId = id || `select-${name || reactId}`;
     const helperTextId = `${selectId}-helper`;
     const errorMessageId = `${selectId}-error`;
 
@@ -98,7 +103,7 @@ const Select = ({
     const selectClasses = getSelectClasses(variant, actualState);
     const sizeClasses = getSelectSizeClasses(size);
     const radiusClasses = getSelectRadiusClasses(radius);
-    const iconPaddingClasses = getIconPaddingClasses(prefixIcon, suffixIcon, size);
+    const iconPaddingClasses = getIconPaddingClasses(prefixIcon, suffixIcon || true, size); // Always reserve space for dropdown arrow
 
     return (
         <div className="w-full">
@@ -130,10 +135,17 @@ const Select = ({
                     value={value}
                     defaultValue={defaultValue}
                     onChange={onChange}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
+                    onFocus={(e) => {
+                        setIsOpen(true);
+                        onFocus?.(e);
+                    }}
+                    onBlur={(e) => {
+                        setIsOpen(false);
+                        onBlur?.(e);
+                    }}
                     placeholder={placeholder}
                     disabled={disabled}
+                    readOnly={readOnly} // Fix: Use readOnly instead of readonly
                     required={required}
                     autoFocus={autoFocus}
                     aria-label={label || placeholder}
@@ -146,11 +158,13 @@ const Select = ({
                     }
                     aria-invalid={actualState === SELECT_STATE.ERROR}
                     aria-required={required}
+                    aria-expanded={isOpen}
                     className={classNames(
                         selectClasses,
                         sizeClasses,
                         radiusClasses,
                         iconPaddingClasses,
+                        'appearance-none cursor-pointer', // Remove default arrow, add pointer cursor
                         className
                     )}
                     {...props}
@@ -158,13 +172,27 @@ const Select = ({
                     {children}
                 </select>
 
-                {/* Suffix Icon */}
-                <ShowIcons
-                    icon={suffixIcon}
-                    position="suffix"
-                    size={size}
-                    state={actualState}
-                />
+                {/* Custom Dropdown Arrow (replaces browser default) */}
+                <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none flex items-center">
+                    {suffixIcon ? (
+                        <ShowIcons
+                            icon={suffixIcon}
+                            position="suffix"
+                            size={size}
+                            state={actualState}
+                        />
+                    ) : (
+                        <Icon
+                            name={isOpen ? "arrowUp" : "arrowDown"}
+                            size={size === SELECT_SIZE.SM ? 16 : size === SELECT_SIZE.LG ? 22 : size === SELECT_SIZE.XL ? 24 : 20}
+                            className={classNames(
+                                'transition-all duration-200',
+                                disabled ? 'text-gray-400' : 'text-gray-600',
+                                isOpen && 'text-blue-600'
+                            )}
+                        />
+                    )}
+                </div>
             </div>
 
             {/* Helper Text or Error Message */}

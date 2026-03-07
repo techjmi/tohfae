@@ -1,4 +1,4 @@
-import { logoUrl } from '@/shared/constant/global-constant';
+import { logoUrl, website_name } from '@/shared/constant/global-constant';
 
 export const LOGO = {
     light: logoUrl,

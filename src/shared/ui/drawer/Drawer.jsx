@@ -30,6 +30,9 @@ import {
   DRAWER_ANIMATION,
 } from "./drawerConstant";
 import { classNames } from "@/shared/utils/classNames";
+import DrawerHeader from "./DrawerHeader";
+import DrawerBody from "./DrawerBody";
+import DrawerFooter from "./DrawerFooter";
 
 const Drawer = ({
   children,
@@ -41,7 +44,16 @@ const Drawer = ({
   closeOnEsc = true,
   closeOnBackdrop = true,
   lockBodyScroll = true,
+  fullWidth = false,
   className = "",
+  // Data-driven props
+  isShowHeader = true,
+  isShowBody = true,
+  isShowFooter = true,
+  header,
+  body,
+  footer,
+  footerAlign = "between",
   ...drawerProps
 }) => {
   // body scroll lock (only for temporary drawer)
@@ -79,6 +91,12 @@ const Drawer = ({
 
   // Handle size based on position
   const getSizeClass = () => {
+    // If fullWidth is true, make it full width on mobile and use size on larger screens
+    if (fullWidth && (position === "left" || position === "right")) {
+      const desktopSize = DRAWER_SIZE[size] || DRAWER_SIZE.md;
+      return `w-full sm:${desktopSize.replace('w-', 'w-')}`;
+    }
+
     if (position === "top" || position === "bottom") {
       // For horizontal drawers, size is height
       if (typeof size === "string" && size.includes("%")) {
@@ -124,7 +142,10 @@ const Drawer = ({
         aria-modal={variant === "temporary"}
         {...drawerProps}
       >
+        {isShowHeader && header && <DrawerHeader data={header} onClose={onClose} />}
+        {isShowBody && body && <DrawerBody data={body} />}
         {children}
+        {isShowFooter && footer && <DrawerFooter data={footer} align={footerAlign} />}
       </div>
     </>
   );

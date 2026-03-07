@@ -1,0 +1,194 @@
+{
+  "privacy_policy": {
+    "title": "Privacy Policy",
+    "last_updated": "Last Updated",
+    "disclaimer": "In case of any discrepancy or difference, the English version will take precedence over the translation",
+    "sections": {
+      "introduction": {
+        "title": "Introduction",
+        "content": "We respect your privacy and are committed to protecting your personal data. This privacy policy will inform you about how we look after your personal data when you visit our website and tell you about your privacy rights and how the law protects you."
+      },
+      "information_we_collect": {
+        "title": "Information We Collect",
+        "content": "We may collect, use, store and transfer different kinds of personal data about you:",
+        "identity_data": "Identity Data",
+        "identity_desc": "First name, last name, username or similar identifier",
+        "contact_data": "Contact Data",
+        "contact_desc": "Email address, telephone numbers, billing address, delivery address",
+        "financial_data": "Financial Data",
+        "financial_desc": "Payment card details",
+        "transaction_data": "Transaction Data",
+        "transaction_desc": "Details about payments and products you have purchased from us",
+        "technical_data": "Technical Data",
+        "technical_desc": "IP address, browser type, time zone setting, operating system",
+        "usage_data": "Usage Data",
+        "usage_desc": "Information about how you use our website and services"
+      },
+      "how_we_use": {
+        "title": "How We Use Your Information",
+        "content": "We use your personal data for the following purposes:",
+        "process_orders": "To process and deliver your orders",
+        "manage_account": "To manage your account and provide customer support",
+        "marketing": "To send you marketing communications (with your consent)",
+        "improve_services": "To improve our website and services",
+        "legal_obligations": "To comply with legal obligations"
+      },
+      "data_security": {
+        "title": "Data Security",
+        "content": "We have implemented appropriate security measures to prevent your personal data from being accidentally lost, used, or accessed in an unauthorized way. We limit access to your personal data to those employees, agents, contractors, and other third parties who have a business need to know."
+      },
+      "your_rights": {
+        "title": "Your Rights",
+        "content": "Under data protection laws, you have rights including:",
+        "access": "The right to access your personal data",
+        "correct": "The right to correct inaccurate data",
+        "delete": "The right to request deletion of your data",
+        "object": "The right to object to processing of your data",
+        "portability": "The right to data portability",
+        "withdraw": "The right to withdraw consent"
+      },
+      "cookies": {
+        "title": "Cookies",
+        "content": "Our website uses cookies to distinguish you from other users. This helps us provide you with a good experience when you browse our website and allows us to improve our site. For detailed information on the cookies we use, please see our Cookie Policy."
+      },
+      "third_party": {
+        "title": "Third-Party Links",
+        "content": "Our website may include links to third-party websites, plug-ins, and applications. Clicking on those links may allow third parties to collect or share data about you. We do not control these third-party websites and are not responsible for their privacy statements."
+      },
+      "contact": {
+        "title": "Contact Us",
+        "content": "If you have any questions about this privacy policy or our privacy practices, please contact us at:",
+        "email": "Email",
+        "phone": "Phone"
+      }
+    }
+  },
+  "terms_conditions": {
+    "title": "Terms and Conditions",
+    "last_updated": "Last Updated",
+    "disclaimer": "In case of any discrepancy or difference, the English version will take precedence over the translation",
+    "sections": {
+      "agreement": {
+        "title": "Agreement to Terms",
+        "content": "By accessing and using Tohfae, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service."
+      },
+      "use_license": {
+        "title": "Use License",
+        "content": "Permission is granted to temporarily download one copy of the materials on Tohfae's website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:",
+        "list": [
+          "Modify or copy the materials",
+          "Use the materials for any commercial purpose or for any public display",
+          "Attempt to reverse engineer any software contained on Tohfae's website",
+          "Remove any copyright or other proprietary notations from the materials",
+          "Transfer the materials to another person or mirror the materials on any other server"
+        ]
+      },
+      "product_info": {
+        "title": "Product Information",
+        "content": "We strive to provide accurate product descriptions and pricing. However, we do not warrant that product descriptions, pricing, or other content is accurate, complete, reliable, current, or error-free."
+      },
+      "pricing": {
+        "title": "Pricing and Payment",
+        "content": "All prices are subject to change without notice. We reserve the right to modify or discontinue products without notice. Payment must be received by us before your order is processed."
+      },
+      "shipping": {
+        "title": "Shipping and Delivery",
+        "content": "We will make every effort to deliver products within the estimated timeframe. However, we are not responsible for delays caused by circumstances beyond our control."
+      },
+      "returns": {
+        "title": "Returns and Refunds",
+        "content": "Our return policy allows you to return products within 30 days of receipt for a full refund, provided the items are in their original condition."
+      },
+      "user_accounts": {
+        "title": "User Accounts",
+        "content": "When you create an account with us, you must provide accurate and complete information. You are responsible for maintaining the confidentiality of your account and password."
+      },
+      "prohibited": {
+        "title": "Prohibited Uses",
+        "content": "You may not use our website:",
+        "list": [
+          "In any way that violates any applicable law or regulation",
+          "To transmit any advertising or promotional material",
+          "To impersonate or attempt to impersonate the company or another user",
+          "To engage in any conduct that restricts or inhibits anyone's use of the website",
+          "To introduce viruses, trojans, or other malicious material"
+        ]
+      },
+      "limitation": {
+        "title": "Limitation of Liability",
+        "content": "In no event shall Tohfae or its suppliers be liable for any damages arising out of the use or inability to use the materials on Tohfae's website."
+      },
+      "governing_law": {
+        "title": "Governing Law",
+        "content": "These terms and conditions are governed by and construed in accordance with the laws of the jurisdiction in which Tohfae operates."
+      },
+      "changes": {
+        "title": "Changes to Terms",
+        "content": "We reserve the right to modify these terms at any time. We will notify users of any material changes by posting the new terms on this page."
+      },
+      "contact": {
+        "title": "Contact Information",
+        "content": "If you have any questions about these Terms and Conditions, please contact us at:",
+        "email": "Email",
+        "phone": "Phone"
+      }
+    }
+  },
+  "cookie_policy": {
+    "title": "Cookie Policy",
+    "last_updated": "Last Updated",
+    "disclaimer": "In case of any discrepancy or difference, the English version will take precedence over the translation",
+    "sections": {
+      "introduction": {
+        "title": "Introduction",
+        "content": "This Cookie Policy explains how Tohfae uses cookies and similar technologies to recognize you when you visit our website."
+      },
+      "what_are_cookies": {
+        "title": "What Are Cookies",
+        "content": "Cookies are small data files that are placed on your computer or mobile device when you visit a website. Cookies are widely used by website owners to make their websites work more efficiently."
+      },
+      "why_we_use": {
+        "title": "Why We Use Cookies",
+        "content": "We use cookies for several reasons:",
+        "list": [
+          "To enable certain functions of the website",
+          "To provide analytics and track website usage",
+          "To store your preferences and settings",
+          "To enable advertising delivery",
+          "To improve your browsing experience"
+        ]
+      },
+      "types_of_cookies": {
+        "title": "Types of Cookies We Use",
+        "content": "We use the following types of cookies:",
+        "essential": "Essential Cookies",
+        "essential_desc": "These cookies are strictly necessary to provide you with services available through our website",
+        "performance": "Performance Cookies",
+        "performance_desc": "These cookies are used to enhance the performance and functionality of our website",
+        "analytics": "Analytics Cookies",
+        "analytics_desc": "These cookies help us understand how visitors interact with our website",
+        "advertising": "Advertising Cookies",
+        "advertising_desc": "These cookies are used to make advertising messages more relevant to you"
+      },
+      "third_party": {
+        "title": "Third-Party Cookies",
+        "content": "In addition to our own cookies, we may also use various third-party cookies to report usage statistics and deliver advertisements."
+      },
+      "control_cookies": {
+        "title": "How to Control Cookies",
+        "content": "You have the right to decide whether to accept or reject cookies. You can set or amend your web browser controls to accept or refuse cookies."
+      },
+      "updates": {
+        "title": "Updates to This Policy",
+        "content": "We may update this Cookie Policy from time to time. Please revisit this Cookie Policy regularly to stay informed about our use of cookies."
+      },
+      "contact": {
+        "title": "Contact Us",
+        "content": "If you have any questions about our use of cookies, please contact us at:",
+        "email": "Email",
+        "phone": "Phone"
+      }
+    }
+  }
+}
+

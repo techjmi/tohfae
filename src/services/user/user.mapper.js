@@ -39,15 +39,14 @@ export const mapUserResponse = (response) => {
 
 /**
  * Map profile update data to backend format
+ * Backend expects flat fields: firstName, lastName, avatar, phone
  */
 export const mapProfileUpdateData = (formData) => {
   return {
-    profile: {
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      avatar: formData.avatar
-    },
-    phone: formData.phone // Phone is at root level, not in profile
+    firstName: formData.firstName,
+    lastName: formData.lastName,
+    avatar: formData.avatar,
+    phone: formData.phone
   };
 };
 

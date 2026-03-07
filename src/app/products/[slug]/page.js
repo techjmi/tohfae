@@ -15,7 +15,6 @@ import { ProductService } from '@/services/product/product.service';
 
 /**
  * Generate SEO metadata for product details page
- * Uses product contract data with optional chaining to prevent errors
  */
 export const generateMetadata = async ({ params }) => {
   // API will be added later, for now using static data
@@ -38,11 +37,11 @@ export const generateMetadata = async ({ params }) => {
     keywords: product?.seo?.keywords || [],
     canonical: `${Navigation_Url.PRODUCTS}/${product?.slug}`,
     image: product?.seo?.ogImage || product?.media?.thumbnail || product?.media?.images?.[0] || '',
-    ogType: 'product',
+    ogType: 'website',
     author:website_name,
     // Additional product-specific metadata
     openGraph: {
-      type: 'product',
+      type: 'website',
       title: product?.basic?.name || '',
       description: product?.basic?.shortDescription || '',
       images: [

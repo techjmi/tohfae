@@ -8,7 +8,7 @@
  * Base dropdown container styles
  */
 export const dropdownContainerStyles = {
-    base: "absolute z-50 rounded-lg overflow-hidden",
+    base: "absolute z-50 rounded-md overflow-hidden",
     animated: "transition-all duration-200 ease-out",
 };
 
@@ -43,7 +43,7 @@ export const dropdownSearchStyles = {
  * Dropdown scrollable content styles
  */
 export const dropdownScrollStyles = {
-    container: "max-h-64 overflow-y-auto overflow-x-hidden",
+    container: "max-h-[500px] overflow-y-auto overflow-x-hidden",
     scrollbar: "scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100",
 };
 

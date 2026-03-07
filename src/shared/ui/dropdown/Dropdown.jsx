@@ -1,23 +1,9 @@
 /**
- * Dropdown Component
- * A flexible dropdown component with positioning, variants, and customization
- * Features:
- * - Multiple positions (top, bottom, left, right with variations)
- * - Multiple variants (default, dark, light, transparent, bordered)
- * - Multiple sizes (xs, sm, md, lg, xl, full)
- * - Auto-positioning based on viewport
- * - Keyboard navigation support
- * - Customizable styling
- * Usage:
- * <Dropdown position="bottom" variant="default" size="md">
- *   <DropdownContent>
- *     {content}
- *   </DropdownContent>
- * </Dropdown>
+ * Dropdown - Controlled positioned container
  */
 
 'use client';
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { classNames } from '@/shared/utils/classNames';
 import {
     DROPDOWN_POSITION,
@@ -28,8 +14,17 @@ import {
     getSizeClass,
 } from './dropdown.constant';
 import { dropdownContainerStyles } from './dropdown.style';
+import DropdownContent from './DropdownContent';
+import DropdownHeader from './DropdownHeader';
+import DropdownFooter from './DropdownFooter';
 
 const Dropdown = ({
+    isOpen = false,
+    onClose,
+    header,
+    footer,
+    isShowHeader = true,
+    isShowFooter = true,
     children,
     position = DROPDOWN_POSITION.bottomRight,
     variant = DROPDOWN_VARIANT.default,
@@ -39,38 +34,21 @@ const Dropdown = ({
     autoPosition = false,
     offset = 0,
     zIndex = 50,
+    scrollable = false,
+    maxHeight = "16rem",
     Component = "div",
-    onOpen,
-    onClose,
-    ...dropdownProps
+    ...props
 }) => {
     const dropdownRef = useRef(null);
-    
-    // Call onOpen when component mounts
-    useEffect(() => {
-        if (onOpen) {
-            onOpen();
-        }
 
-        return () => {
-            if (onClose) {
-                onClose();
-            }
-        };
-    }, [onOpen, onClose]);
+    if (!isOpen) return null;
 
-    // Get position classes
-    const positionClass = getPositionClass(position);
-    const variantClass = getVariantClass(variant);
-    const sizeClass = getSizeClass(size);
-
-    // Build final className using classNames utility
     const finalClassName = classNames(
         dropdownContainerStyles.base,
         animated && dropdownContainerStyles.animated,
-        positionClass,
-        variantClass,
-        sizeClass,
+        getPositionClass(position),
+        getVariantClass(variant),
+        getSizeClass(size),
         className
     );
 
@@ -79,8 +57,13 @@ const Dropdown = ({
             ref={dropdownRef}
             className={finalClassName}
             style={{ zIndex }}
-            {...dropdownProps}
+            {...props}
         >
+            <DropdownContent scrollable={scrollable} maxHeight={maxHeight}>
+                {isShowHeader && <DropdownHeader data={header} />}
+                {children}
+                {isShowFooter && <DropdownFooter data={footer} onClose={onClose} />}
+            </DropdownContent>
             {children}
         </Component>
     );

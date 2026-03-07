@@ -1,0 +1,27 @@
+{
+  "language": {
+    "english": "English",
+    "hindi": "हिंदी"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "blog": "Blog",
+    "products": "Products",
+    "cart": "Cart",
+    "profile": "Profile"
+  },
+  "footer": {
+    "quick_links": "Quick Links",
+    "resources": "Resources",
+    "legal": "Legal",
+    "follow_us": "Follow Us",
+    "mail_us": "Mail Us:",
+    "registered_office": "Registered Office Address:",
+    "cin": "CIN",
+    "telephone": "Telephone",
+    "all_rights_reserved": "All rights reserved"
+  }
+}
+

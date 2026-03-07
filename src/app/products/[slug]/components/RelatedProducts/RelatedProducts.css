@@ -1,0 +1,43 @@
+/* Related Products Styles */
+
+.related-products-container {
+  width: 100%;
+}
+
+.related-products-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1.5rem;
+}
+
+.related-products-carousel {
+  width: 100%;
+}
+
+.product-card-wrapper {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+/* Ensure carousel items have consistent height */
+.related-products-carousel .carousel-item {
+  height: auto;
+  display: flex;
+  align-items: stretch;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .related-products-title {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .related-products-carousel {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+  }
+}
+

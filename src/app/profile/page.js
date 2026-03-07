@@ -42,7 +42,7 @@ export async function generateMetadata() {
  */
 async function getUserData() {
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const accessToken = cookieStore.get('accessToken');
 
     if (!accessToken) {
@@ -57,7 +57,8 @@ async function getUserData() {
 
     return mapUserResponse(response);
   } catch (error) {
-    console.error('Failed to fetch user data:', error);
+    const errorMessage = error?.response?.data?.message || error?.message || 'Failed to fetch user data';
+    console.error('Failed to fetch user data:', errorMessage, error);
     return null;
   }
 }

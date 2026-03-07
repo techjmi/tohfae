@@ -19,10 +19,14 @@ export const getMyProfile = async () => {
 /**
  * Update user profile
  * PUT /api/users/me
+ * Returns: { success, message, data: mappedUser }
  */
 export const updateProfile = async (profileData) => {
   const response = await apiClient.put(ENDPOINT.USER.ME, profileData);
-  return mapUserResponse(response.data);
+  return {
+    ...response.data,
+    data: mapUserResponse(response.data),
+  };
 };
 
 /**

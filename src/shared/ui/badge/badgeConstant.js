@@ -1,24 +1,24 @@
 //badge constant file for the badge component
 export const BADGE_SIZE = {
-  xs: "px-2 py-1 text-caption",
-  sm: "px-3 py-1.5 text-normal",
-  md: "px-4 py-2 text-normal",
-  lg: "px-5 py-2.5 text-normal",
+  xs: "px-1.5 py-0.5 text-[10px]",
+  sm: "px-2 py-0.5 text-xs",
+  md: "px-2.5 py-0.5 text-xs",
+  lg: "px-3 py-1 text-sm",
 };
 
 export const BADGE_RADIUS = {
-  xs: "rounded-xs",
-  sm: "rounded-sm",
+  xs: "rounded",
+  sm: "rounded",
   md: "rounded-md",
-  lg: "rounded-lg",
+  lg: "rounded-md",
   full: "rounded-full",
 };
 
 export const BADGE_COLOR = {
-  neutral: "bg-gray-900 text-white hover:bg-gray-800",
-  danger: "bg-red-600 text-white hover:bg-red-500",
-  success: "bg-green-600 text-white hover:bg-green-500",
-  warning: "bg-yellow-600 text-white hover:bg-yellow-500",
-  info: "bg-blue-600 text-white hover:bg-blue-500",
-  primary: "bg-blue-600 text-white hover:bg-blue-500",
+  neutral: "bg-gray-100 text-gray-700 border border-gray-200",
+  danger: "bg-red-50 text-red-700 border border-red-200",
+  success: "bg-green-50 text-green-700 border border-green-200",
+  warning: "bg-yellow-50 text-yellow-700 border border-yellow-200",
+  info: "bg-blue-50 text-blue-700 border border-blue-200",
+  primary: "bg-blue-50 text-blue-700 border border-blue-200",
 };

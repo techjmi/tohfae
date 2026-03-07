@@ -32,8 +32,10 @@ import { INPUT_STATE } from './form.constant';
  * Render a single form field based on its type
  */
 const renderField = (field, formData, errors, onChange) => {
+  // Extract key separately - React keys must be passed directly, not spread
+  const fieldKey = field.name;
+
   const commonProps = {
-    key: field.name,
     label: field.label,
     name: field.name,
     value: formData[field.name] || '',
@@ -50,7 +52,7 @@ const renderField = (field, formData, errors, onChange) => {
   switch (field.type) {
     case 'select':
       return (
-        <Select {...commonProps}>
+        <Select key={fieldKey} {...commonProps}>
           {field.placeholder && !field.required && (
             <option value="">{field.placeholder}</option>
           )}
@@ -65,6 +67,7 @@ const renderField = (field, formData, errors, onChange) => {
     case 'textarea':
       return (
         <Textarea
+          key={fieldKey}
           {...commonProps}
           rows={field.rows}
           resize={field.resize}
@@ -74,7 +77,7 @@ const renderField = (field, formData, errors, onChange) => {
     case 'checkbox':
       return (
         <Checkbox
-          key={field.name}
+          key={fieldKey}
           label={field.label}
           name={field.name}
           checked={formData[field.name] || false}
@@ -85,7 +88,7 @@ const renderField = (field, formData, errors, onChange) => {
 
     case 'radio':
       return (
-        <div key={field.name} className="space-y-2">
+        <div key={fieldKey} className="space-y-2">
           {field.label && (
             <label className="block text-sm font-medium text-gray-700">
               {field.label}
@@ -115,6 +118,7 @@ const renderField = (field, formData, errors, onChange) => {
       // Input field (text, email, password, tel, number, etc.)
       return (
         <Input
+          key={fieldKey}
           {...commonProps}
           type={field.type}
           prefixIcon={field.prefixIcon}

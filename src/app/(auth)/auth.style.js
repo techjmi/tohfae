@@ -18,7 +18,7 @@ export const AUTH_STYLES = {
     CONTAINER: "",
     TITLE: "mt-6 text-center text-3xl font-extrabold text-gray-900",
     SUBTITLE: "mt-2 text-center text-sm text-gray-600",
-    LINK: "font-medium text-primary-600 hover:text-primary-500"
+    LINK: "font-medium text-primary-600 hover:text-primary-500 underline decoration-2 underline-offset-2 bg-primary-50 px-1 rounded"
   },
   
   // Form section

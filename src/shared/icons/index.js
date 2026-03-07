@@ -7,6 +7,8 @@ import {
   FaInstagram,
   FaFacebookMessenger,
   FaGoogle,
+  FaGithub,
+  FaWhatsapp,
 } from "react-icons/fa";
 
 // UI / General
@@ -31,7 +33,13 @@ import {
   FiHome,
   FiSettings,
   FiChevronRight,
-  
+  FiChevronLeft,
+  FiChevronDown,
+  FiShield,
+  FiFileText,
+  FiShare2,
+  FiLink,
+  FiCheckCircle,
 } from "react-icons/fi";
 
 // Navigation / Controls
@@ -42,9 +50,12 @@ import {
   MdMenu,
   MdKeyboardArrowLeft,
   MdOutlineKeyboardArrowRight,
+  MdKeyboardArrowUp,
+  MdKeyboardArrowDown,
   MdStarHalf,
   MdOutlineStar,
-  MdStarBorder
+  MdStarBorder,
+  MdArrowBack
 } from "react-icons/md";
 
 export const ICONS = {
@@ -55,6 +66,8 @@ export const ICONS = {
   twitter: FaTwitter,
   instagram: FaInstagram,
   messenger: FaFacebookMessenger,
+  github: FaGithub,
+  whatsapp: FaWhatsapp,
   // User / Commerce
   cart: FiShoppingCart,
   user: FiUser,
@@ -66,10 +79,16 @@ export const ICONS = {
   close: MdClose,
   add: MdAdd,
   remove: MdRemove,
+  share: FiShare2,
+  link: FiLink,
+  checkCircle: FiCheckCircle,
   // Navigation
   menu: MdMenu,
   arrowLeft: MdKeyboardArrowLeft,
   arrowRight: MdOutlineKeyboardArrowRight,
+  arrowUp: MdKeyboardArrowUp,
+  arrowDown: MdKeyboardArrowDown,
+  chevronDown: FiChevronDown,
   // Form / Input Icons
   search: FiSearch,
   eye: FiEye,
@@ -85,10 +104,15 @@ export const ICONS = {
   home: FiHome,
   settings: FiSettings,
   chevronRight: FiChevronRight,
+  chevronLeft: FiChevronLeft,
+  shield: FiShield,
+  document: FiFileText,
+  arrowLeft: MdKeyboardArrowLeft,
   // Rating
   starHalf: MdStarHalf,
   star: MdOutlineStar,
   starBorder: MdStarBorder,
+  back: MdArrowBack
 };
 
 export function Icon({ name, size = 18, color, className, ...props }) {

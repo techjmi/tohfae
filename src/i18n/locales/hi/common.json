@@ -1,0 +1,27 @@
+{
+  "language": {
+    "english": "English",
+    "hindi": "हिंदी"
+  },
+  "navigation": {
+    "home": "होम",
+    "about": "हमारे बारे में",
+    "contact": "संपर्क करें",
+    "blog": "ब्लॉग",
+    "products": "उत्पाद",
+    "cart": "कार्ट",
+    "profile": "प्रोफ़ाइल"
+  },
+  "footer": {
+    "quick_links": "त्वरित लिंक",
+    "resources": "संसाधन",
+    "legal": "कानूनी",
+    "follow_us": "हमें फॉलो करें",
+    "mail_us": "हमें मेल करें:",
+    "registered_office": "पंजीकृत कार्यालय का पता:",
+    "cin": "सीआईएन",
+    "telephone": "टेलीफोन",
+    "all_rights_reserved": "सर्वाधिकार सुरक्षित"
+  }
+}
+

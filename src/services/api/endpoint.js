@@ -49,4 +49,9 @@ export const ENDPOINT = {
     DELETE: (id) => `${API_BASE}/designs/${id}`,  // DELETE
     PREVIEW: (id) => `${API_BASE}/designs/${id}/preview`,
   },
+
+  UPLOAD: {
+    SIGNATURE: `${API_BASE}/upload/signature`,
+    DELETE: `${API_BASE}/upload`,
+  },
 };

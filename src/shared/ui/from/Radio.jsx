@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { useId } from 'react';
 import { classNames } from '@/shared/utils/classNames';
 import {
     RADIO_SIZE,
@@ -33,7 +33,8 @@ const Radio = ({
     labelClassName = "",
     ...props
 }) => {
-    const radioId = id || `radio-${Math.random().toString(36).substring(2, 9)}`;
+    const reactId = useId();
+    const radioId = id || `radio-${name || reactId}`;
     const helperTextId = `${radioId}-helper`;
     const errorMessageId = `${radioId}-error`;
 
