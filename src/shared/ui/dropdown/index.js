@@ -10,6 +10,7 @@ export { default as DropdownContent } from './DropdownContent';
 export { default as DropdownItem } from './DropdownItem';
 export { default as DropdownDivider } from './DropdownDivider';
 export { default as DropdownHeader } from './DropdownHeader';
+export { default as DropdownFooter } from './DropdownFooter';
 
 // Constants
 export * from './dropdown.constant';

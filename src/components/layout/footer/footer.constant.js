@@ -1,5 +1,8 @@
 //this is the footer constant file for this web project
-import { Navigation_Url, site_facebook_handle, site_twitter_handle, site_instagram_handle, site_linkedin_handle, website_name } from "../../shared/constant/global-constant";
+import { Navigation_Url, site_facebook_handle, site_twitter_handle, site_instagram_handle, site_linkedin_handle, website_name } from "@/shared/constant/global-constant";
+
+export const FOOTER_TAGLINE = "Your trusted online shopping destination for quality products";
+
 export const FOOTER_CONFIG = [
     {
         title: "Quick Links",
@@ -20,7 +23,7 @@ export const FOOTER_CONFIG = [
     {
         title: "Legal",
         links: [
-            { label: "Terms of Service", href: Navigation_Url.TERMS },
+            { label: "Terms & Conditions", href: Navigation_Url.TERMS },
             { label: "Privacy Policy", href: Navigation_Url.PRIVACY },
             { label: "Cookie Policy", href: Navigation_Url.COOKIE },
         ],
@@ -44,11 +47,29 @@ export const NEWSLETTER_CONFIG = {
     button_label: "Subscribe",
     href: Navigation_Url.NEWSLETTER,
 };
-export const Info = {
-    company_name: website_name,
-    address: "123 Main St, City, Country",
-    phone: "123-456-7890",
-    email: "info@tohfae.com",
+export const COMPANY_INFO = {
+    mail_us: {
+        title: "Mail Us:",
+        company_name: website_name,
+        address_line1: "123 Business ABC, XYZ- 123456",
+        address_line2: "ABC, XYZ- 123456",
+        city: "ABC",
+        state: "ABC",
+        zip: "123456",
+        country: "ABC"
+    },
+    registered_office: {
+        title: "Registered Office Address:",
+        company_name: website_name,
+        address_line1: "123 Business ABC, XYZ- 123456",
+        address_line2: "ABC, XYZ- 123456",
+        city: "ABC",
+        state: "ABC",
+        zip: "123456",
+        country: "ABC",
+        cin: "XYZ123456789",
+        telephone: "123-456-7890"
+    }
 };
 export const help_section = [
     {

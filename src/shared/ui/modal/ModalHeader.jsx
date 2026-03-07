@@ -13,6 +13,7 @@ import Button from '@/shared/ui/button/Button';
 import { Icon } from '@/shared/icons';
 
 const ModalHeader = ({
+  data,
   title,
   subtitle,
   onClose,
@@ -23,7 +24,6 @@ const ModalHeader = ({
   className = "",
   ...props
 }) => {
-  // If children are provided → full custom header
   if (children) {
     return (
       <div
@@ -40,6 +40,14 @@ const ModalHeader = ({
     );
   }
 
+  if (!data && !title) return null;
+
+  if (React.isValidElement(data)) {
+    return data;
+  }
+
+  const headerData = data || { title, subtitle };
+
   return (
     <div
       className={classNames(
@@ -50,33 +58,30 @@ const ModalHeader = ({
       )}
       {...props}
     >
-      {/* Left: Title + Subtitle */}
       <div className="min-w-0 flex-1">
-        {title && (
-          <h2 className="text-lg font-semibold text-gray-900">
-            {title}
+        {headerData.title && (
+          <h2 className="text-base font-semibold text-gray-900">
+            {headerData.title}
           </h2>
         )}
-
-        {subtitle && (
+        {headerData.subtitle && (
           <p className="mt-1 text-sm text-gray-600">
-            {subtitle}
+            {headerData.subtitle}
           </p>
         )}
       </div>
 
-      {/* Right: Close Button */}
       {onClose && (
         <Button
           onClick={onClose}
           variant="ghost"
           size="sm"
-          className="!p-2 min-w-0 shrink-0"
           aria-label="Close modal"
         >
           <Icon name={icon} size={20} />
         </Button>
       )}
+      {children}
     </div>
   );
 };

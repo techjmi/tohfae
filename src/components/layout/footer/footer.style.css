@@ -1,8 +1,8 @@
 /**
  * Footer Styles
- * 
+ *
  * Custom CSS for footer components
- * 
+ *
  * Styles to define:
  * - Footer layout (grid/flexbox)
  * - Responsive breakpoints
@@ -11,5 +11,211 @@
  * - Newsletter form styles
  */
 
-/* Write your footer styles here */
+/* Main Footer Container */
+.footer {
+    background-color: #1f2937; 
+    color: #f9fafb; 
+    padding: 3rem 1rem 1.5rem;
+    border-top: 1px solid #374151;
+}
+
+/* Footer Links Section */
+.footer-links {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Individual Footer Section */
+.footer-links-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Section Title */
+.footer-links-section-title {
+    font-size: 1.125rem; 
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.025em;
+}
+
+/* Links List */
+.footer-links-section-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.footer-links-section-list-item {
+    margin: 0;
+}
+
+/* Link Styling */
+.footer-links-section-list-item-link {
+    color: #d1d5db; 
+    text-decoration: none;
+    font-size: 0.875rem; 
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.footer-links-section-list-item-link:hover {
+    color: #f97316; 
+    transform: translateX(4px);
+}
+
+/* Social Links Section */
+.footer-social-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 0;
+}
+
+.footer-social-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 1rem 0;
+}
+
+.footer-social-icons {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.footer-social-icon {
+    color: #d1d5db;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-social-icon:hover {
+    color: #f97316;
+    transform: translateY(-3px);
+}
+
+/* Newsletter Section (if implemented) */
+.footer-newsletter {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+    border-top: 1px solid #374151;
+    border-bottom: 1px solid #374151;
+}
+
+/* Company Info Section */
+.footer-company-info {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+    border-top: 1px solid #374151;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.footer-company-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footer-company-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 0.5rem 0;
+}
+
+.footer-company-address {
+    font-style: normal;
+    color: #d1d5db;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.footer-company-address p {
+    margin: 0;
+}
+
+.footer-company-name {
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.footer-company-cin {
+    margin-top: 0.5rem !important;
+    color: #9ca3af;
+}
+
+.footer-company-phone {
+    margin-top: 0.25rem !important;
+}
+
+.footer-company-phone a {
+    color: #f97316;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-company-phone a:hover {
+    color: #fb923c;
+    text-decoration: underline;
+}
+
+/* Copyright Section */
+.footer-copyright {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 1.5rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #9ca3af;
+    border-top: 1px solid #374151;
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 640px) {
+    .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop: 3 columns + vertical links */
+@media (min-width: 768px) {
+    .footer {
+        padding: 3rem 2rem 1.5rem;
+    }
+
+    .footer-links {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+    }
+
+    .footer-links-section-list {
+        flex-direction: column;
+    }
+
+    .footer-links-section-title {
+        font-size: 1.125rem;
+    }
+
+    .footer-company-info {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+    }
+}
 

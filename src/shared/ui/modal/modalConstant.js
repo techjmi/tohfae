@@ -4,11 +4,11 @@
  */
 
 export const MODAL_SIZE = {
-  sm: "max-w-sm",
-  md: "max-w-lg",
-  lg: "max-w-2xl",
-  xl: "max-w-4xl",
-  full: "max-w-full mx-4",
+  sm: "w-full max-w-sm mx-4",
+  md: "w-full max-w-lg mx-4",
+  lg: "w-full max-w-2xl mx-4",
+  xl: "w-full max-w-4xl mx-4",
+  full: "w-full max-w-full mx-4",
 };
 
 export const MODAL_PLACEMENT = {

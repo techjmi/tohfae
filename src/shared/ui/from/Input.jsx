@@ -39,7 +39,7 @@
  */
 
 "use client";
-import React from 'react';
+import React, { useId } from 'react';
 import { classNames } from '@/shared/utils/classNames';
 import ShowIcons from '@/shared/components/ShowIcons';
 import {
@@ -102,8 +102,9 @@ const Input = ({
         ? INPUT_STATE.READONLY
         : state;
 
-    // Generate unique ID if not provided
-    const inputId = id || `input-${name || Math.random().toString(36).substring(2, 11)}`;
+    // Generate unique ID if not provided (using React's useId for SSR compatibility)
+    const reactId = useId();
+    const inputId = id || `input-${name || reactId}`;
     const helperTextId = `${inputId}-helper`;
     const errorMessageId = `${inputId}-error`;
 

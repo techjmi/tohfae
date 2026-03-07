@@ -1,0 +1,73 @@
+/* Product Variants Styles */
+
+.variants-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.variant-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.variant-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+}
+
+.variant-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.variant-button {
+  padding: 0.5rem 1rem;
+  border: 2px solid;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.variant-button-selected {
+  border-color: #f97316;
+  background-color: #fff7ed;
+  color: #c2410c;
+}
+
+.variant-button-unselected {
+  border-color: #d1d5db;
+  background-color: #ffffff;
+  color: #374151;
+}
+
+.variant-button-unselected:hover {
+  border-color: #9ca3af;
+}
+
+.variant-button-unavailable {
+  opacity: 0.5;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.stock-status {
+  font-size: 0.875rem;
+}
+
+.stock-in-stock {
+  color: #059669;
+  font-weight: 500;
+}
+
+.stock-out-of-stock {
+  color: #dc2626;
+  font-weight: 500;
+}
+

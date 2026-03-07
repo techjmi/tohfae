@@ -51,17 +51,23 @@ const Logo = ({
     const sizeClasses = getSizeClasses(size);
 
     const logoImage = (
-        <Image
-            src={LOGO.light}
-            alt={LOGO.altText}
-            width={sizeClasses.dimension}
-            height={sizeClasses.dimension}
-            className={classNames(
-                "object-contain",
-                imageClassName
-            )}
-            priority
-        />
+        <div className="shrink-0">
+            <Image
+                src={LOGO.light}
+                alt={LOGO.altText}
+                width={sizeClasses.dimension}
+                height={sizeClasses.dimension}
+                className={classNames(
+                    "rounded-full object-cover",
+                    imageClassName
+                )}
+                style={{
+                    borderRadius: '50%',
+                    aspectRatio: '1/1'
+                }}
+                priority
+            />
+        </div>
     );
 
     const logoText = (
@@ -89,7 +95,7 @@ const Logo = ({
     );
 
     const containerClasses = classNames(
-        "inline-flex items-center",
+        "inline-flex items-center hover:opacity-90 transition-opacity",
         sizeClasses.container,
         className
     );

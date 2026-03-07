@@ -1,0 +1,76 @@
+/* Product Pricing Styles */
+
+.pricing-container {
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.price-section {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.selling-price {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.mrp-price {
+  font-size: 1.25rem;
+  color: #6b7280;
+  text-decoration: line-through;
+}
+
+.offers-section {
+  margin-bottom: 1rem;
+}
+
+.offers-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.offers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.offer-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4b5563;
+}
+
+.extra-charges {
+  color: #6b7280;
+}
+
+.delivery-info {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+

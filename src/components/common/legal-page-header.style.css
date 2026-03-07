@@ -1,0 +1,111 @@
+/**
+ * Legal Page Header Styles
+ * Blue header similar to Flipkart design
+ */
+
+.legal-page-header {
+    background: linear-gradient(90deg, #2874f0 0%, #1e5bc6 100%);
+    color: #ffffff;
+    padding: .8rem 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.legal-page-header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.legal-page-header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    flex: 1;
+}
+
+.legal-page-header-back {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    margin-right: 0.25rem;
+}
+
+.legal-page-header-back:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateX(-2px);
+}
+
+.legal-page-header-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #ffffff;
+}
+
+.legal-page-header-title {
+    font-size: 1.375rem;
+    font-weight: 600;
+    margin: 0;
+    color: #ffffff;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+}
+
+.legal-page-header-right {
+    display: flex;
+    align-items: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .legal-page-header {
+        padding: 1rem 1rem;
+    }
+
+    .legal-page-header-left {
+        gap: 0.625rem;
+    }
+
+    .legal-page-header-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .legal-page-header-title {
+        font-size: 1.125rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .legal-page-header {
+        padding: 0.875rem 0.75rem;
+    }
+
+    .legal-page-header-title {
+        font-size: 1rem;
+    }
+
+    .legal-page-header-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .legal-page-header-left {
+        gap: 0.5rem;
+    }
+}
+

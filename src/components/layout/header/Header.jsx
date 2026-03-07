@@ -1,5 +1,7 @@
 "use client";
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
 import { Logo } from "@/shared/ui/logo";
 import MobileUserMenu from "./MobileUserMenu";
 import CartIcon from "./CartIcon";
@@ -8,25 +10,33 @@ import Navbar from "./Navbar";
 import MobileMenu from "./MobileMenu";
 import Button from '@/shared/ui/button/Button';
 import { Icon } from '@/shared/icons';
+import { selectIsAuthenticated, selectUser } from '@/redux/slice/authSlice';
+import { HEADER_ROUTES } from './header.constant';
+import "./header.style.css";
 
 export default function Header() {
+    const router = useRouter();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isMobileUserMenuOpen, setIsMobileUserMenuOpen] = useState(false);
+    const isLoggedIn = useSelector(selectIsAuthenticated);
+    const user = useSelector(selectUser);
 
     return (
         <>
-            <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
-                <div className="container mx-auto px-4">
+            <header className="header-navbar">
+                <div className="header-container">
                     {/* Desktop Layout */}
-                    <div className="hidden md:flex items-center gap-4 h-16">
-                        <Logo size="md" />
-                        <SearchBar className="flex-1 max-w-2xl" />
-                        <Navbar />
-                        <CartIcon itemCount={5} />
+                    <div className="header-desktop">
+                        <Logo size="md" className="header-logo-wrapper" />
+                        <SearchBar className="header-search" />
+                        <div className="header-actions">
+                            <Navbar />
+                            <CartIcon itemCount={5} />
+                        </div>
                     </div>
 
                     {/* Mobile Layout */}
-                    <div className="flex md:hidden items-center gap-3 h-16">
+                    <div className="header-mobile">
                         {/* Hamburger Menu */}
                         <Button
                             onClick={() => setIsMobileMenuOpen(true)}
@@ -41,14 +51,27 @@ export default function Header() {
                         {/* Search Bar */}
                         <SearchBar className="flex-1" />
 
-                        {/* Cart and Avatar */}
+                        {/* User Menu or Sign In */}
                         <div className="flex items-center gap-2">
-                            {/* <CartIcon itemCount={5} size={22} /> */}
-                            <MobileUserMenu
-                                isOpen={isMobileUserMenuOpen}
-                                onOpen={() => setIsMobileUserMenuOpen(true)}
-                                onClose={() => setIsMobileUserMenuOpen(false)}
-                            />
+                            {isLoggedIn && user ? (
+                                <MobileUserMenu
+                                    user={user}
+                                    isOpen={isMobileUserMenuOpen}
+                                    onOpen={() => setIsMobileUserMenuOpen(true)}
+                                    onClose={() => setIsMobileUserMenuOpen(false)}
+                                />
+                            ) : (
+                                <Button
+                                    onClick={() => router.push(HEADER_ROUTES.LOGIN)}
+                                    variant="outline"
+                                    color="primary"
+                                    size="md"
+                                    radius="full"
+                                    className="text-sm"
+                                >
+                                    Sign In
+                                </Button>
+                            )}
                         </div>
                     </div>
                 </div>

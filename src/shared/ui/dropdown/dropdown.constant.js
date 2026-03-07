@@ -69,9 +69,9 @@ export const POSITION_CLASSES = {
 export const VARIANT_CLASSES = {
     default: "bg-white border border-gray-200 shadow-lg",
     transparent: "bg-white/95 backdrop-blur-sm border border-gray-200/50 shadow-lg",
-    dark: "bg-gray-900 border border-gray-700 shadow-xl text-white",
+    dark: "bg-gray-900 border border-gray-700 shadow-lg text-white",
     light: "bg-gray-50 border border-gray-300 shadow-md",
-    bordered: "bg-white border-2 border-gray-300 shadow-md",
+    bordered: "bg-white border border-gray-300 shadow-md",
 };
 
 /**

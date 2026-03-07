@@ -1,33 +1,33 @@
 /**
  * Modal Component
- * A flexible modal/dialog component with backdrop, animations, and accessibility
- *
- * Features:
- * - Multiple sizes (sm, md, lg, xl, full)
- * - Multiple placements (center, top, bottom)
- * - Backdrop variants (default, dark, light, blur)
- * - ESC key to close
- * - Click outside to close
- * - Body scroll lock
- * - Accessible with ARIA attributes
  */
 
 "use client";
 import React, { useEffect } from "react";
 import { classNames } from "@/shared/utils/classNames";
 import { MODAL_SIZE, MODAL_PLACEMENT, MODAL_BACKDROP } from "./modalConstant";
+import ModalHeader from "./ModalHeader";
+import ModalBody from "./ModalBody";
+import ModalFooter from "./ModalFooter";
 
 const Modal = ({
   children,
   isOpen,
   onClose,
   size = "md",
-  placement = "center", // "center" | "top" | "bottom"
-  backdrop = "default", // "default" | "dark" | "light" | "blur"
+  placement = "center",
+  backdrop = "default",
   closeOnEsc = true,
   closeOnBackdrop = true,
   lockBodyScroll = true,
   className = "",
+  isShowHeader = true,
+  isShowBody = true,
+  isShowFooter = true,
+  header,
+  body,
+  footer,
+  footerAlign = "between",
   ...props
 }) => {
   // body scroll lock
@@ -47,9 +47,7 @@ const Modal = ({
     if (!isOpen || !closeOnEsc) return;
 
     const handleEscape = (e) => {
-      if (e.key === "Escape") {
-        onClose?.();
-      }
+      if (e.key === "Escape") onClose?.();
     };
 
     window.addEventListener("keydown", handleEscape);
@@ -75,7 +73,7 @@ const Modal = ({
     >
       <div
         className={classNames(
-          "bg-white shadow-xl",
+          "bg-white shadow-lg rounded-lg",
           sizeClass,
           currentPlacement.panel,
           className
@@ -83,8 +81,12 @@ const Modal = ({
         onClick={(e) => e.stopPropagation()}
         {...props}
       >
+        {isShowHeader && header && <ModalHeader data={header} onClose={onClose} />}
+        {isShowBody && body && <ModalBody data={body} />}
         {children}
+        {isShowFooter && footer && <ModalFooter data={footer} align={footerAlign} />}
       </div>
+      {children}
     </div>
   );
 };

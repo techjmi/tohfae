@@ -1,0 +1,81 @@
+/**
+ * ProductImageGallery Styles
+ *
+ * Custom styling for product image gallery carousel
+ * - Navigation arrows styling
+ * - Pagination dots styling
+ * - Zoom effects
+ */
+
+/* Gallery Container - Limit Width */
+.image-gallery {
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+/* Custom Pagination Dots Styling */
+.image-gallery .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #d1d5db;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.image-gallery .swiper-pagination-bullet-active {
+  background: #f97316;
+  width: 24px;
+  border-radius: 5px;
+}
+
+/* Image Container */
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background-color: #f3f4f6;
+  cursor: zoom-in;
+}
+
+/* Image with Zoom Effect */
+.gallery-image {
+  object-fit: cover;
+  transition: transform 500ms ease-out;
+}
+
+.gallery-image-zoomed {
+  transform: scale(1.5);
+}
+
+/* Empty State */
+.empty-state {
+  background-color: #f3f4f6;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-text {
+  color: #9ca3af;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .image-gallery {
+    max-width: 100%;
+  }
+
+  .image-container {
+    height: 400px;
+  }
+}
+
+@media (max-width: 640px) {
+  .image-container {
+    height: 300px;
+  }
+}
+

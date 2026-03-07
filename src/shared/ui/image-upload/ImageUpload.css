@@ -1,0 +1,145 @@
+/**
+ * ImageUpload Component Styles
+ */
+
+/* Container */
+.image-upload-container {
+  width: 100%;
+}
+
+/* Drop zone */
+.image-upload-drop-zone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #d1d5db;
+  border-radius: 0.5rem;
+  background-color: #f9fafb;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 2rem;
+  min-height: 200px;
+}
+
+.image-upload-drop-zone:hover {
+  background-color: #f3f4f6;
+}
+
+.image-upload-drop-zone-active {
+  border-color: #f97316;
+  background-color: #fff7ed;
+}
+
+.image-upload-drop-zone-error {
+  border-color: #ef4444;
+  background-color: #fef2f2;
+}
+
+/* Icon container */
+.image-upload-icon-container {
+  margin-bottom: 1rem;
+}
+
+/* Preview container */
+.image-upload-preview-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+}
+
+/* Preview image */
+.image-upload-preview-image {
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+
+/* Preview overlay */
+.image-upload-preview-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 0.5rem;
+}
+
+/* File info */
+.image-upload-file-info {
+  text-align: center;
+}
+
+/* Progress container */
+.image-upload-progress-container {
+  width: 100%;
+  max-width: 20rem;
+  position: relative;
+}
+
+.image-upload-progress-bar {
+  height: 0.5rem;
+  background-color: #f97316;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+}
+
+.image-upload-progress-text {
+  font-size: 0.75rem;
+  color: #4b5563;
+  text-align: center;
+  margin-top: 0.25rem;
+}
+
+/* Button group */
+.image-upload-button-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Error message */
+.image-upload-error-message {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #dc2626;
+}
+
+/* Helper text */
+.image-upload-helper-text {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* Responsive styles */
+@media (max-width: 640px) {
+  .image-upload-drop-zone {
+    padding: 1.5rem;
+    min-height: 180px;
+  }
+
+  .image-upload-preview-container {
+    padding: 1rem;
+  }
+
+  .image-upload-button-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .image-upload-button-group button {
+    width: 100%;
+  }
+}
+

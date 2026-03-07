@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { useId } from 'react';
 import { classNames } from '@/shared/utils/classNames';
 import {
     CHECKBOX_SIZE,
@@ -34,7 +34,8 @@ const Checkbox = ({
     labelClassName = "",
     ...props
 }) => {
-    const checkboxId = id || `checkbox-${Math.random().toString(36).substring(2, 9)}`;
+    const reactId = useId();
+    const checkboxId = id || `checkbox-${name || reactId}`;
     const helperTextId = `${checkboxId}-helper`;
     const errorMessageId = `${checkboxId}-error`;
 

@@ -3,15 +3,24 @@
  *
  * Client-side wrapper for products page
  * Manages all state (filters, sort, pagination) and passes to child components
+ *
+ * Features:
+ * - Filter management (category, price, rating)
+ * - Sort management (price, rating, date)
+ * - Pagination
+ * - Empty state handling
+ * - Loading state handling
  */
 "use client";
 import { usePathname } from 'next/navigation';
 import { useFilters } from '@/shared/hooks/state/useFilters';
 import { useSort } from '@/shared/hooks/state/useSort';
-import ProductListHeader from '../features/products/components/ProductsListHearder';
-import ProductCard from '../features/products/components/ProductCard';
+import ProductListHeader from './components/ProductsListHearder';
+import ProductCard from './components/ProductCard';
 import EmptyState from '@/shared/ui/empty-state';
 import Button from '@/shared/ui/button';
+import { PRODUCTS_TEXT } from './products.helper';
+import { PRODUCTS_PAGE_STYLES, PRODUCTS_GRID_STYLES } from './products.style';
 
 const ProductsClient = ({ products: initialProducts }) => {
   const pathname = usePathname();
@@ -66,8 +75,8 @@ const ProductsClient = ({ products: initialProducts }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-6">
+    <div className={PRODUCTS_PAGE_STYLES.CONTAINER}>
+      <div className={PRODUCTS_PAGE_STYLES.INNER_CONTAINER}>
         {/* Header with Breadcrumb, Sort, Filter Chips */}
         <ProductListHeader
           pathname={pathname}
@@ -82,26 +91,26 @@ const ProductsClient = ({ products: initialProducts }) => {
         />
 
         {/* Product Grid */}
-        <div className="mt-8">
+        <div className={PRODUCTS_GRID_STYLES.CONTAINER}>
           {/* Results Count */}
-          <div className="mb-4">
-            <p className="text-sm text-gray-600">
-              Showing <span className="font-semibold">{filteredProducts.length}</span> products
+          <div className={PRODUCTS_GRID_STYLES.RESULTS_COUNT}>
+            <p className={PRODUCTS_GRID_STYLES.RESULTS_TEXT}>
+              {PRODUCTS_TEXT.SHOWING_RESULTS} <span className={PRODUCTS_GRID_STYLES.RESULTS_NUMBER}>{filteredProducts.length}</span> {PRODUCTS_TEXT.PRODUCTS_TEXT}
             </p>
           </div>
 
           {/* Product Cards Grid */}
           {filteredProducts?.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className={PRODUCTS_GRID_STYLES.GRID}>
               {filteredProducts.map((product) => (
-                <ProductCard key={product?.id || Math.random()} product={product} />
+                <ProductCard key={product?.id || product?._id || Math.random()} product={product} />
               ))}
             </div>
           ) : (
             /* Empty State */
             <EmptyState
-              title="No products found"
-              description="Try adjusting your filters or search criteria"
+              title={PRODUCTS_TEXT.NO_PRODUCTS_TITLE}
+              description={PRODUCTS_TEXT.NO_PRODUCTS_DESCRIPTION}
               action={
                 <Button
                   color="primary"
@@ -111,7 +120,7 @@ const ProductsClient = ({ products: initialProducts }) => {
                     handleClearSort();
                   }}
                 >
-                  Clear all filters
+                  {PRODUCTS_TEXT.CLEAR_FILTERS_BUTTON}
                 </Button>
               }
             />

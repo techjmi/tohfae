@@ -1,0 +1,110 @@
+/**
+ * Language Selector Styles
+ */
+
+.language-selector {
+    position: relative;
+    display: inline-block;
+}
+
+.language-selector-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    transition: all 0.2s ease;
+}
+
+.language-selector-button:hover {
+    border-color: #9ca3af;
+    background-color: #f9fafb;
+}
+
+.language-selector-text {
+    min-width: 60px;
+    text-align: left;
+}
+
+.language-selector-icon {
+    transition: transform 0.2s ease;
+    color: #6b7280;
+}
+
+.language-selector-icon.open {
+    transform: rotate(180deg);
+}
+
+.language-selector-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+}
+
+.language-selector-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    min-width: 150px;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    z-index: 50;
+    overflow: hidden;
+}
+
+.language-selector-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: #374151;
+    transition: background-color 0.2s ease;
+    text-align: left;
+}
+
+.language-selector-option:hover {
+    background-color: #f3f4f6;
+}
+
+.language-selector-option.active {
+    background-color: #eff6ff;
+    color: #2563eb;
+    font-weight: 500;
+}
+
+.language-selector-option-name {
+    flex: 1;
+}
+
+.language-selector-check {
+    color: #2563eb;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .language-selector-button {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8125rem;
+    }
+
+    .language-selector-text {
+        min-width: 50px;
+    }
+}
+

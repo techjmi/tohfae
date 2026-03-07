@@ -1,0 +1,115 @@
+/* Product Customization Styles */
+
+.customization-container {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  background-color: #f9fafb;
+}
+
+.customization-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.option-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.option-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.required-indicator {
+  color: #ef4444;
+  margin-left: 0.25rem;
+}
+
+.price-modifier {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
+.price-modifier-positive {
+  color: #059669;
+}
+
+.price-modifier-negative {
+  color: #dc2626;
+}
+
+/* File Input Styles */
+.file-input {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.file-input:hover {
+  border-color: #9ca3af;
+}
+
+.file-input:focus {
+  outline: none;
+  border-color: #f97316;
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2);
+}
+
+.file-info {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+.file-info p {
+  margin: 0;
+}
+
+/* Login Prompt Styles */
+.login-prompt-container {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  background-color: #f9fafb;
+  text-align: center;
+}
+
+.login-prompt-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.login-prompt-message {
+  font-size: 1rem;
+  color: #374151;
+  margin-bottom: 1.5rem;
+}
+
+.login-prompt-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
