@@ -99,17 +99,17 @@ const UserProfileMenu = () => {
 
                     <DropdownDivider />
 
-                    <div className="px-8 py-4 border-t border-gray-200 space-y-2">
+                    <div className="px-8 py-4 space-y-2">
                         <DropdownItem
                             href={HEADER_ROUTES.SWITCH_ACCOUNTS}
-                            className="text-sm text-gray-700 hover:text-orange-600 hover:underline py-0.5 px-0 block"
+                            className="text-sm text-gray-700 hover:text-orange-600 py-0.5 px-0 block"
                         >
                             {HEADER_TEXT.SWITCH_ACCOUNTS}
                         </DropdownItem>
                         <DropdownItem
                             onClick={handleSignOutClick}
                             danger
-                            className="text-sm text-red-600 hover:text-red-700 hover:underline py-0.5 px-0 block"
+                            className="text-sm text-red-600 hover:text-red-700 py-0.5 px-0 block"
                         >
                             {HEADER_TEXT.SIGN_OUT}
                         </DropdownItem>

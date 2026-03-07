@@ -64,7 +64,6 @@ const Dropdown = ({
                 {children}
                 {isShowFooter && <DropdownFooter data={footer} onClose={onClose} />}
             </DropdownContent>
-            {children}
         </Component>
     );
 };

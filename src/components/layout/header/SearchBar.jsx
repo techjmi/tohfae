@@ -22,11 +22,17 @@ export const SearchBar = ({ className = "" }) => {
         }
     };
 
+    // Handle clear button click
+    const handleClear = () => {
+        setSearchTerm('');
+    };
+
     return (
         <Search
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyDown={handleKeyDown}
+            onClear={handleClear}
             // Remove onSearch to prevent auto-navigation on debounce
             // onSearch={handleSearch}  // ❌ This was causing auto-redirect
             placeholder="Search products, categories..."

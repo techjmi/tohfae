@@ -11,4 +11,3 @@ export { default as ModalFooter } from './ModalFooter';
 
 // Constants
 export * from './modalConstant';
-

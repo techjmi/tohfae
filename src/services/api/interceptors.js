@@ -32,38 +32,16 @@ export const requestInterceptor = (config) => {
         ...config.headers,
     };
 
-    // Log request in development
-    if (API_CONFIG.ENABLE_LOGGING) {
-        console.log('📤 API Request:', {
-            method: config.method?.toUpperCase(),
-            url: config.url,
-            params: config.params,
-            data: config.data,
-        });
-    }
-
     return config;
 };
 
 // Request error interceptor
 export const requestErrorInterceptor = (error) => {
-    if (API_CONFIG.ENABLE_LOGGING) {
-        console.error('❌ Request Error:', error.message);
-    }
     return Promise.reject(error);
 };
 
 // Response interceptor
 export const responseInterceptor = (response) => {
-    // Log response in development
-    if (API_CONFIG.ENABLE_LOGGING) {
-        console.log('📥 API Response:', {
-            status: response.status,
-            url: response.config.url,
-            data: response.data,
-        });
-    }
-
     return response;
 };
 
@@ -100,16 +78,6 @@ export const responseErrorInterceptor = async (error) => {
                 return Promise.reject(refreshError);
             }
         }
-    }
-
-    // Log error in development
-    if (API_CONFIG.ENABLE_LOGGING) {
-        console.error('❌ API Error:', {
-            status: error.response?.status,
-            message: error.message,
-            url: error.config?.url,
-            data: error.response?.data,
-        });
     }
 
     return Promise.reject(error);
