@@ -15,6 +15,7 @@ import { buildSeo } from '@/lib/seo/seo';
 import JsonLd from '@/shared/ui/jsonld';
 import ProductsClient from './ProductsClient';
 import { ProductService } from '@/services/product/product.service';
+import { BannerService } from '@/services/banner';
 import { PRODUCTS_SEO, PRODUCTS_TEXT } from './products.helper';
 
 /**
@@ -47,10 +48,29 @@ async function getProductsData() {
 }
 
 /**
+ * Fetch banners data on server side
+ */
+async function getBannersData() {
+  try {
+    const banners = await BannerService.getActiveBanners({
+      page: 'products',
+      position: 'inline'
+    });
+    return banners || [];
+  } catch (error) {
+    console.error('Failed to fetch banners:', error);
+    return [];
+  }
+}
+
+/**
  * Products Page Component
  */
 const ProductsPage = async () => {
-  const products = await getProductsData();
+  const [products, banners] = await Promise.all([
+    getProductsData(),
+    getBannersData()
+  ]);
 
   return (
     <>
@@ -65,7 +85,7 @@ const ProductsPage = async () => {
         </h1>
 
         {/* Client-side wrapper with state management */}
-        <ProductsClient products={products} />
+        <ProductsClient products={products} banners={banners} />
       </main>
     </>
   );

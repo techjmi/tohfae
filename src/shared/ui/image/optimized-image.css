@@ -1,0 +1,28 @@
+/* OptimizedImage Component Styles */
+
+.optimized-image {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.optimized-image__img {
+  transition: transform 0.3s ease;
+}
+
+.optimized-image__img--clickable {
+  cursor: pointer;
+}
+
+.optimized-image__img--clickable:hover {
+  transform: scale(1.05);
+}
+
+.optimized-image__overlay {
+  position: absolute;
+  inset: 0;
+  background-color: #000;
+  pointer-events: none;
+  z-index: 1;
+}
+

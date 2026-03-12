@@ -1,11 +1,6 @@
 /**
- * ModalBody Component
- * Main content area of the modal
- *
- * Usage:
- * <ModalBody>
- *   <p>Modal content here...</p>
- * </ModalBody>
+ * @component ModalBody
+ * @description Main content area of the modal
  */
 
 "use client";
@@ -20,20 +15,16 @@ const ModalBody = ({
   className = "",
   ...props
 }) => {
-  // Determine what content to render
   let content = null;
 
   if (children) {
     content = children;
   } else if (data) {
     if (typeof data === 'string') {
-      // Render string as paragraph
       content = <p className="text-sm text-gray-600">{data}</p>;
     } else if (React.isValidElement(data)) {
-      // Render JSX element directly
       content = data;
     } else if (typeof data === 'object') {
-      // Render object - flexible for any fields
       content = (
         <div className="space-y-2">
           {data.message && <p className="text-sm text-gray-600">{data.message}</p>}

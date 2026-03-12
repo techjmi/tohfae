@@ -11,7 +11,6 @@ import "../components/home/hero-carousel.css";
 import { AllButtonExamples } from "../shared/ui/button/EXAMPLES";
 
 // Card Examples
-import { ProductCardExample, MultipleProductCardsExample, HoverableCardsExample } from "../shared/ui/card/EXAMPLES";
 
 // Dropdown Examples
 import { ScrollableDropdownExample, PositionExamples } from "../shared/ui/dropdown/EXAMPLES";
@@ -63,15 +62,7 @@ export default function Test() {
         </section>
 
         {/* Section: Cards */}
-        <section className="space-y-6">
-          <div className="border-b pb-4">
-            <h2 className="text-3xl font-bold text-gray-900">Card Component</h2>
-            <p className="text-gray-600 mt-2">Product cards with real contract data</p>
-          </div>
-          <ProductCardExample />
-          <MultipleProductCardsExample />
-          <HoverableCardsExample />
-        </section>
+     
 
         {/* Section: Dropdowns */}
         <section className="space-y-6">

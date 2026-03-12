@@ -1,8 +1,3 @@
-/**
- * Modal Constants
- * Styling constants for modal components
- */
-
 export const MODAL_SIZE = {
   sm: "w-full max-w-sm mx-4",
   md: "w-full max-w-lg mx-4",

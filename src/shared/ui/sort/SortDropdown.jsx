@@ -25,7 +25,6 @@
 import React, { useState } from 'react';
 import {
   Dropdown,
-  DropdownContent,
   DropdownItem
 } from '@/shared/ui/dropdown';
 import Button from '@/shared/ui/button';
@@ -83,21 +82,17 @@ const SortDropdown = ({
         />
       </Button>
 
-      {isOpen && (
-        <Dropdown position="bottomLeft" size="md">
-          <DropdownContent>
-            {options.map((option) => (
-              <DropdownItem
-                key={`${option.value}-${option.direction}`}
-                onClick={(e) => handleSelect(e, option.value, option.direction)}
-                selected={currentValue === option.value && currentDirection === option.direction}
-              >
-                {option.label}
-              </DropdownItem>
-            ))}
-          </DropdownContent>
-        </Dropdown>
-      )}
+      <Dropdown isOpen={isOpen} position="bottomLeft" size="md">
+        {options.map((option) => (
+          <DropdownItem
+            key={`${option.value}-${option.direction}`}
+            onClick={(e) => handleSelect(e, option.value, option.direction)}
+            selected={currentValue === option.value && currentDirection === option.direction}
+          >
+            {option.label}
+          </DropdownItem>
+        ))}
+      </Dropdown>
     </div>
   );
 };

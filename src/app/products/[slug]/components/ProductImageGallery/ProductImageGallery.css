@@ -1,31 +1,17 @@
 /**
  * ProductImageGallery Styles
  *
- * Custom styling for product image gallery carousel
- * - Navigation arrows styling
- * - Pagination dots styling
+ * Specific styling for product image gallery
+ * - Image container sizing
  * - Zoom effects
+ * - Empty state
  */
 
-/* Gallery Container - Limit Width */
+/* Gallery Container */
 .image-gallery {
+  width: 100%;
   max-width: 450px;
-  margin: 0 auto;
-}
-
-/* Custom Pagination Dots Styling */
-.image-gallery .swiper-pagination-bullet {
-  width: 10px;
-  height: 10px;
-  background: #d1d5db;
-  opacity: 1;
-  transition: all 0.3s ease;
-}
-
-.image-gallery .swiper-pagination-bullet-active {
-  background: #f97316;
-  width: 24px;
-  border-radius: 5px;
+  margin: 0 auto 1.5rem auto;
 }
 
 /* Image Container */

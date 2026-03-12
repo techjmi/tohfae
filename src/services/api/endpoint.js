@@ -1,4 +1,7 @@
+import { API_CONFIG } from './config';
+
 const API_BASE = '/api';
+const BACKEND_URL = API_CONFIG.BASE_URL;
 
 export const ENDPOINT = {
   PRODUCT: {
@@ -15,8 +18,9 @@ export const ENDPOINT = {
     RESEND_OTP: `${API_BASE}/auth/resend-otp`,
     FORGOT_PASSWORD: `${API_BASE}/auth/forgot-password`,
     RESET_PASSWORD: `${API_BASE}/auth/reset-password`,
-    GOOGLE: `${API_BASE}/auth/google`,
-    FACEBOOK: `${API_BASE}/auth/facebook`,
+    // OAuth routes need full backend URL for browser redirect
+    GOOGLE: `${BACKEND_URL}/api/auth/google`,
+    FACEBOOK: `${BACKEND_URL}/api/auth/facebook`,
   },
 
   USER: {
@@ -29,7 +33,7 @@ export const ENDPOINT = {
   CART: {
     CART: `${API_BASE}/cart`,                     // GET, DELETE
     ITEMS: `${API_BASE}/cart/items`,              // POST
-    ITEM_BY_ID: (id) => `${API_BASE}/cart/items/${id}`, // PUT, DELETE
+    ITEM_BY_ID: (id) => `${API_BASE}/cart/${id}`, // PUT, DELETE
     COUPON: `${API_BASE}/cart/coupon`,             // POST, DELETE
   },
 
@@ -53,5 +57,9 @@ export const ENDPOINT = {
   UPLOAD: {
     SIGNATURE: `${API_BASE}/upload/signature`,
     DELETE: `${API_BASE}/upload`,
+  },
+
+  BANNER: {
+    ACTIVE: `${API_BASE}/banners/active`,         // GET - Get active banners with query params
   },
 };

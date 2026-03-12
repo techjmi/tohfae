@@ -4,19 +4,11 @@
 
 export { default as Banner } from './Banner';
 export { default } from './Banner';
+export { default as BannerCta } from './components/BannerCta';
 
 export {
     insertBannersIntoList,
     getBannersForPage,
     isBannerActive,
 } from './banner.helper';
-
-export {
-    SimpleBannerExample,
-    BannerWithHeaderExample,
-    BannerWithoutImageExample,
-    CloseableBannerExample,
-    ProductGridWithBannersExample,
-    AllBannerTypesExample,
-} from './EXAMPLES';
 
