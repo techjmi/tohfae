@@ -13,6 +13,7 @@ export const PRODUCTS_PAGE_STYLES = {
   INNER_CONTAINER: 'container mx-auto px-4 py-6',
   HEADER_SECTION: 'mb-8',
   CONTENT_SECTION: 'mt-8',
+
 };
 
 /**
@@ -23,7 +24,7 @@ export const PRODUCTS_GRID_STYLES = {
   RESULTS_COUNT: 'mb-4',
   RESULTS_TEXT: 'text-sm text-gray-600',
   RESULTS_NUMBER: 'font-semibold',
-  GRID: 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6',
+  GRID: 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-fr',
   GRID_ITEM: 'transition-all duration-300',
 };
 

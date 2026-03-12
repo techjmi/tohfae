@@ -1,79 +1,89 @@
-/**
- * ProductCard Component (Organism)
- *
- * Composed product card using atomic design principles:
- * - ProductImage molecule (image with badges and wishlist)
- * - ProductInfo molecule (category, name, rating)
- * - ProductPrice molecule (pricing display)
- *
- * This component acts as a composition layer, orchestrating smaller molecules.
- *
- * Props:
- * @param {object} product - Product data object
- * @param {string} className - Additional CSS classes
- *
- * Usage:
- * <ProductCard product={product} />
- */
 "use client";
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Card, CardBody } from '@/shared/ui/card';
-import ProductImage from './ProductImage';
-import ProductInfo from './ProductInfo';
-import ProductPrice from './ProductPrice';
+import { Card, CardImage, CardHeader, CardMeta, CardPrice } from '@/shared/ui/card';
 
 const ProductCard = ({ product, className = "" }) => {
   const [isWishlisted, setIsWishlisted] = useState(false);
 
-  // Handle wishlist toggle
   const handleWishlistClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setIsWishlisted(!isWishlisted);
-    // TODO: Add API call to update wishlist
   };
+
+  const badges = [];
+  const discountPercentage = product?.pricing?.discount?.percentage || 0;
+
+  if (discountPercentage > 0) {
+    badges.push({
+      label: `-${discountPercentage}%`,
+      color: 'danger',
+      size: 'sm'
+    });
+  }
+
+  const primaryTag = product?.tags?.[0];
+  if (primaryTag && !discountPercentage) {
+    badges.push({
+      label: primaryTag.replace('-', ' ').toUpperCase(),
+      color: 'primary',
+      size: 'xs'
+    });
+  }
+
+  const inStock = product?.inventory?.inStock ?? true;
+  if (!inStock) {
+    badges.push({
+      label: 'Out of Stock',
+      color: 'danger',
+      size: 'xs'
+    });
+  }
 
   return (
     <Link href={`/products/${product?.slug || '#'}`} className="block">
       <Card
         hoverable
         shadow="sm"
+        padding="none"
         className={`group overflow-hidden transition-all duration-300 ${className}`}
       >
-        <CardBody padding="none">
-          {/* Product Image with Badges */}
-          <ProductImage
-            src={product?.media?.thumbnail}
-            alt={product?.basic?.name || 'Product'}
-            discountPercentage={product?.pricing?.discount?.percentage || 0}
-            primaryTag={product?.tags?.[0]}
-            inStock={product?.inventory?.inStock ?? true}
-            isWishlisted={isWishlisted}
-            onWishlistClick={handleWishlistClick}
+        <CardImage
+          src={product?.media?.thumbnail}
+          alt={product?.basic?.name || 'Product'}
+          badges={badges}
+          aspectRatio="1/1"
+          wishlist={true}
+          isWishlisted={isWishlisted}
+          onWishlistClick={handleWishlistClick}
+        />
+
+        <div className="p-4 space-y-2">
+          <CardHeader
+            title={product?.basic?.name || 'Product Name'}
+            subtitle={product?.category}
+            titleClassName="font-semibold text-sm text-gray-900 line-clamp-2 group-hover:text-primary-600 transition-colors"
+            subtitleClassName="text-xs text-gray-500 uppercase tracking-wide"
           />
 
-          {/* Product Information Section */}
-          <div className="p-4 space-y-3">
-            {/* Product Info (Category, Name, Rating) */}
-            <ProductInfo
-              category={product?.category}
-              name={product?.basic?.name || 'Product Name'}
-              rating={product?.rating?.average}
-              ratingCount={product?.rating?.count}
-              shortDescription={product?.basic?.shortDescription}
+          {product?.rating?.average > 0 && (
+            <CardMeta
+              rating={product.rating.average.toFixed(1)}
+              reviews={product.rating.count}
             />
+          )}
 
-            {/* Product Price */}
-            <ProductPrice
-              sellingPrice={product?.pricing?.sellingPrice || 0}
-              mrp={product?.pricing?.mrp}
-              discountPercentage={product?.pricing?.discount?.percentage || 0}
-              discountLabel={product?.pricing?.discount?.label}
-            />
-          </div>
-        </CardBody>
+          <CardPrice
+            price={product?.pricing?.sellingPrice || 0}
+            originalPrice={product?.pricing?.mrp}
+            discount={discountPercentage}
+            discountLabel={product?.pricing?.discount?.label}
+            currency="₹"
+            priceSize="xl"
+          />
+        </div>
       </Card>
     </Link>
   );

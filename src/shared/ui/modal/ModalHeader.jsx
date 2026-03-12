@@ -1,9 +1,6 @@
 /**
- * ModalHeader Component
- * Header section of the modal with title, subtitle, and close button
- *
- * Usage:
- * <ModalHeader title="Modal Title" onClose={handleClose} />
+ * @component ModalHeader
+ * @description Header section with title, subtitle, and close button
  */
 
 "use client";

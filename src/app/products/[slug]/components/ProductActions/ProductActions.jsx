@@ -33,6 +33,8 @@ import { Icon } from '@/shared/icons';
 import Share from '@/shared/ui/share/Share';
 import { QUANTITY_LIMITS, BUTTON_VARIANTS, MESSAGES } from './ProductActions.constants';
 import './ProductActions.css';
+import { AddToCartButton, RemoveFromCartButton } from '@/shared/ui/cart';
+import { toast } from 'react-toastify';
 
 const ProductActions = ({
   product,
@@ -44,7 +46,7 @@ const ProductActions = ({
 }) => {
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [showShare, setShowShare] = useState(false);
-
+//check if items added to cart from redux then show go to cart button instead of add to cart
   const handleQuantityChange = (delta) => {
     const newQuantity = Math.max(QUANTITY_LIMITS.MIN, Math.min(QUANTITY_LIMITS.MAX, quantity + delta));
 
@@ -54,10 +56,13 @@ const ProductActions = ({
 
     onQuantityChange(newQuantity);
   };
+  const handleAddToCartSuccess = () => {
+    toast.success(MESSAGES.ADDED_TO_CART);
+  };
 
-  const handleAddToCart = () => {
-    console.log(MESSAGES.ADDED_TO_CART, { product, selectedVariantId, customizationData, quantity });
-    // TODO: Implement cart logic
+  const handleAddToCartError = (error) => {
+    console.error('Add to cart error:', error);
+    toast.error(error || 'Failed to add to cart');
   };
 
   const handleBuyNow = () => {
@@ -101,18 +106,28 @@ const ProductActions = ({
 
       {/* Action Buttons */}
       <div className="action-buttons-row">
-        {/* Add to Cart */}
-        <Button
-          onClick={handleAddToCart}
-          {...BUTTON_VARIANTS.ADD_TO_CART}
-          className="flex-1"
-          aria-label="Add to cart"
+        <AddToCartButton
+          productId={product.id}
+          variantId={selectedVariantId}
+          quantity={quantity}
+          customization={customizationData}
+          onSuccess={handleAddToCartSuccess}
+          onError={handleAddToCartError}
+          showGoToCart={true}
         >
-          <Icon name="cart" size={20} />
-          <span className="ml-2">Add to Cart</span>
-        </Button>
-
+          Add to Cart
+        </AddToCartButton>
+{/* 
+        <RemoveFromCartButton
+          productId={product.id}
+          variantId={selectedVariantId}
+          onSuccess={() => toast.success('Removed from cart!')}
+          onError={(error) => toast.error(error || 'Failed to remove from cart')}
+        >
+          Remove from Cart
+        </RemoveFromCartButton> */}
         {/* Wishlist */}
+
         <Button
           onClick={handleWishlist}
           {...BUTTON_VARIANTS.WISHLIST}

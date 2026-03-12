@@ -155,7 +155,7 @@ Responsive styles:
 
 ## Shared Components Used
 
-- **Carousel** from `@/shared/utils/carousel` - Carousel functionality
+- **Carousel** from `@/shared/ui/carousel` - Carousel functionality
 - **Image** from `next/image` - Optimized image loading
 
 ## API Integration Ready

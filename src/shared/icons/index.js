@@ -40,6 +40,7 @@ import {
   FiShare2,
   FiLink,
   FiCheckCircle,
+  FiTrash2,
 } from "react-icons/fi";
 
 // Navigation / Controls
@@ -78,10 +79,14 @@ export const ICONS = {
   location: FiMapPin,
   close: MdClose,
   add: MdAdd,
+  plus: MdAdd,
   remove: MdRemove,
+  minus: MdRemove,
   share: FiShare2,
   link: FiLink,
   checkCircle: FiCheckCircle,
+  trash: FiTrash2,
+  delete: FiTrash2,
   // Navigation
   menu: MdMenu,
   arrowLeft: MdKeyboardArrowLeft,

@@ -1,0 +1,176 @@
+/**
+ * Carousel Styles - Embla Carousel
+ *
+ * Clean, reusable carousel styling
+ * - Navigation arrows
+ * - Pagination dots
+ * - Responsive
+ * - Easy to customize
+ */
+
+/* Carousel Container */
+.carousel {
+  position: relative;
+  width: 100%;
+}
+
+.carousel__viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel__container {
+  display: flex;
+}
+
+.carousel__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
+/* Multiple slides support */
+.carousel--slides-2 .carousel__slide {
+  flex: 0 0 50%;
+}
+
+.carousel--slides-3 .carousel__slide {
+  flex: 0 0 33.333%;
+}
+
+.carousel--slides-4 .carousel__slide {
+  flex: 0 0 25%;
+}
+
+.carousel--slides-5 .carousel__slide {
+  flex: 0 0 20%;
+}
+
+/* Navigation Arrows */
+.carousel__button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.carousel__button:hover:not(.carousel__button--disabled) {
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.carousel__button--disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.carousel__button--prev {
+  left: 16px;
+}
+
+.carousel__button--next {
+  right: 16px;
+}
+
+.carousel__button svg {
+  color: #374151;
+}
+
+/* Pagination Dots */
+.carousel__dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.carousel__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d1d5db;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.carousel__dot:hover {
+  background: #9ca3af;
+}
+
+.carousel__dot--active {
+  background: #f97316;
+  width: 24px;
+  border-radius: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .carousel--slides-4 .carousel__slide {
+    flex: 0 0 33.333%;
+  }
+
+  .carousel--slides-5 .carousel__slide {
+    flex: 0 0 33.333%;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel__button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .carousel__button--prev {
+    left: 12px;
+  }
+
+  .carousel__button--next {
+    right: 12px;
+  }
+
+  .carousel--slides-3 .carousel__slide,
+  .carousel--slides-4 .carousel__slide,
+  .carousel--slides-5 .carousel__slide {
+    flex: 0 0 50%;
+  }
+}
+
+@media (max-width: 640px) {
+  .carousel__button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .carousel__button--prev {
+    left: 8px;
+  }
+
+  .carousel__button--next {
+    right: 8px;
+  }
+
+  .carousel__dots {
+    margin-top: 12px;
+  }
+
+  .carousel--slides-2 .carousel__slide,
+  .carousel--slides-3 .carousel__slide,
+  .carousel--slides-4 .carousel__slide,
+  .carousel--slides-5 .carousel__slide {
+    flex: 0 0 100%;
+  }
+}
+

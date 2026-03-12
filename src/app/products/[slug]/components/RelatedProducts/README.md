@@ -155,7 +155,7 @@ Responsive styles:
 ## Shared Components Used
 
 - **ProductCard** from `@/app/products/components` - Individual product display
-- **Carousel** from `@/shared/utils/carousel` - Carousel functionality
+- **Carousel** from `@/shared/ui/carousel` - Carousel functionality
 
 ## API Integration Ready
 

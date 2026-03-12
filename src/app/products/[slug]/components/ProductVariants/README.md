@@ -2,29 +2,41 @@
 
 ## Overview
 
-The ProductVariants component provides an interactive interface for selecting product variants such as size, color, and other attributes. It displays available options, handles variant selection, shows stock availability, and provides visual feedback for the selected variant.
+Interactive interface for selecting product variants (size, color, etc.) with dynamic filtering and stock availability display.
 
 ## Features
 
-- Dynamic variant grouping by attribute type (size, color, etc.)
-- Interactive variant selection buttons
-- Visual indication of selected variant (orange theme)
-- Stock availability display per variant
+- Dynamic variant grouping by attribute type
+- Bidirectional filtering (size filters colors, color filters sizes)
+- Stock availability display
 - Disabled state for out-of-stock variants
-- Strikethrough styling for unavailable options
-- Real-time stock count display
-- Responsive layout for all screen sizes
+- Responsive layout
+- Modular architecture
 
 ## File Structure
 
 ```
 ProductVariants/
+├── components/
+│   ├── VariantGroup.jsx          # Renders attribute groups
+│   ├── ColorSwatch.jsx           # Color button component
+│   ├── AttributeButton.jsx       # Generic attribute button
+│   └── StockStatus.jsx           # Stock display
 ├── ProductVariants.jsx           # Main component
-├── ProductVariants.constants.js  # Configuration and constants
-├── ProductVariants.css           # Component styles
-├── index.js                      # Module exports
+├── ProductVariants.helpers.js    # Business logic functions
+├── ProductVariants.constants.js  # Configuration
+├── ProductVariants.css           # Styles
+├── index.js                      # Exports
 └── README.md                     # Documentation
 ```
+
+## How It Works
+
+When a user selects a size, the component filters variants to show only colors available for that size. Similarly, selecting a color filters available sizes. This bidirectional filtering ensures users only see valid combinations.
+
+### Core Logic
+
+The buildVariantGroups function filters variants based on selected attributes and extracts available options for each attribute type.
 
 ## Usage
 
@@ -141,13 +153,22 @@ The component uses a dedicated CSS file (`ProductVariants.css`) with the followi
 - Keyboard navigation supported
 - Screen reader friendly labels
 
-## Future Enhancements
+## Helper Functions
 
-- Color swatches for color variants
-- Image previews for variants
-- Variant-specific pricing display
-- Tooltip for variant details
-- Animation for selection changes
-- Low stock warnings
-- Notify me when back in stock feature
+Located in `ProductVariants.helpers.js`:
+
+- **buildVariantGroups** - Filters variants based on selected attributes
+- **findMatchingVariant** - Finds variant matching attribute selection
+- **isVariantAvailable** - Checks if variant is in stock
+- **filterVariantsByAttributes** - Filters variants by criteria
+- **getUniqueAttributeValues** - Extracts unique values for attribute
+
+## Components
+
+Located in `components/` folder:
+
+- **VariantGroup** - Renders a group of variant options (size, color, etc.)
+- **ColorSwatch** - Circular color button component
+- **AttributeButton** - Generic attribute button (size, material, etc.)
+- **StockStatus** - Stock availability display
 

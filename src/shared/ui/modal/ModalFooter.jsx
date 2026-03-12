@@ -1,12 +1,6 @@
 /**
- * ModalFooter Component
- * Footer section of the modal, typically for action buttons
- *
- * Usage:
- * <ModalFooter>
- *   <Button>Cancel</Button>
- *   <Button>Save</Button>
- * </ModalFooter>
+ * @component ModalFooter
+ * @description Footer section with action buttons
  */
 
 "use client";
@@ -30,14 +24,12 @@ const ModalFooter = ({
     between: "justify-between",
   }[align] || "justify-end";
 
-  // Determine what content to render
   let content = null;
 
   if (children) {
     content = children;
   } else if (data) {
     if (Array.isArray(data)) {
-      // Render button configs as Button components
       content = data.map((button, index) => (
         <Button
           key={index}
@@ -52,10 +44,8 @@ const ModalFooter = ({
         </Button>
       ));
     } else if (React.isValidElement(data)) {
-      // Render JSX element directly
       content = data;
     } else {
-      // Render object or string
       content = data.content || data;
     }
   }

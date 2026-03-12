@@ -31,14 +31,38 @@ export function insertBannersIntoList(products, banners) {
         }));
     }
 
-    // Filter active banners with INLINE or INTERVAL display rules
-    const activeBanners = banners.filter(banner => {
-        const rule = banner.display?.rule;
-        return (
-            rule === BANNER_DISPLAY_RULE.INTERVAL ||
-            rule === BANNER_DISPLAY_RULE.ONE_ROUND
-        );
-    });
+    const totalProducts = products.length;
+
+    // Filter and sort active banners
+    // 1. Filter out banners where startPosition > total products
+    // 2. Sort by priority (higher priority first)
+    const activeBanners = banners
+        .filter(banner => {
+            const { display } = banner;
+            const startPos = display?.startPosition || 1;
+
+            // Skip banners that start beyond available products
+            if (startPos > totalProducts) {
+                return false;
+            }
+
+            // Include banners with inline position or valid display rules
+            const rule = display?.rule;
+            const position = display?.position;
+
+            return (
+                position === 'inline' ||
+                rule === BANNER_DISPLAY_RULE.INTERVAL ||
+                rule === BANNER_DISPLAY_RULE.ONE_ROUND ||
+                (display?.startPosition && display?.interval !== undefined)
+            );
+        })
+        .sort((a, b) => {
+            // Sort by priority (higher first)
+            const priorityA = a.display?.priority || 0;
+            const priorityB = b.display?.priority || 0;
+            return priorityB - priorityA;
+        });
 
     if (activeBanners.length === 0) {
         return products.map(product => ({
@@ -49,7 +73,7 @@ export function insertBannersIntoList(products, banners) {
     }
 
     const result = [];
-    const usedBanners = new Set(); // Track banners shown (for ONE_ROUND rule)
+    const usedBanners = new Set(); // Track banners shown (for non-repeating banners)
 
     products.forEach((product, index) => {
         const position = index + 1; // 1-based position
@@ -61,8 +85,10 @@ export function insertBannersIntoList(products, banners) {
             id: product.id,
         });
 
-        // Check if any banner should be inserted after this position
-        activeBanners.forEach((banner, bannerIndex) => {
+        // Collect all banners that should show at this position
+        const bannersAtThisPosition = [];
+
+        activeBanners.forEach((banner) => {
             const { display } = banner;
             const {
                 rule,
@@ -70,44 +96,69 @@ export function insertBannersIntoList(products, banners) {
                 startPosition,
                 endPosition,
                 repeat,
-            } = display;
+            } = display || {};
 
-            // Skip if banner already shown and rule is ONE_ROUND
-            if (rule === BANNER_DISPLAY_RULE.ONE_ROUND && usedBanners.has(banner.id)) {
+            // Skip if banner already used and not repeating
+            if (usedBanners.has(banner.id)) {
                 return;
             }
 
-            // Check if banner should be shown at this position
+            // Determine if banner should show at this position
             let shouldShow = false;
 
-            if (rule === BANNER_DISPLAY_RULE.INTERVAL && interval) {
-                // Show at intervals (e.g., every 6 products)
+            // Modern approach: using startPosition, interval, and repeat
+            if (startPosition !== undefined && interval !== undefined) {
+                if (repeat) {
+                    // Repeating banner: show at startPosition + (interval * n)
+                    if (position >= startPosition) {
+                        const positionsSinceStart = position - startPosition;
+                        if (positionsSinceStart % interval === 0) {
+                            if (!endPosition || position <= endPosition) {
+                                shouldShow = true;
+                            }
+                        }
+                    }
+                } else {
+                    // Non-repeating banner: show only once at startPosition
+                    if (position === startPosition) {
+                        shouldShow = true;
+                    }
+                }
+            }
+            // Legacy support for rule-based display
+            else if (rule === BANNER_DISPLAY_RULE.INTERVAL && interval) {
                 if (position >= (startPosition || interval)) {
                     if (position % interval === 0) {
-                        // Check if within endPosition range
                         if (!endPosition || position <= endPosition) {
                             shouldShow = true;
                         }
                     }
                 }
             } else if (rule === BANNER_DISPLAY_RULE.ONE_ROUND) {
-                // Show once at specific position
                 if (position === (startPosition || interval)) {
                     shouldShow = true;
                 }
             }
 
             if (shouldShow) {
-                result.push({
-                    type: 'banner',
-                    data: banner,
-                    id: `banner-${banner.id}-${position}`,
-                });
+                bannersAtThisPosition.push(banner);
+            }
+        });
 
-                // Mark banner as used if ONE_ROUND
-                if (rule === BANNER_DISPLAY_RULE.ONE_ROUND) {
-                    usedBanners.add(banner.id);
-                }
+        // Add banners at this position (sorted by priority, already sorted above)
+        bannersAtThisPosition.forEach((banner) => {
+            result.push({
+                type: 'banner',
+                data: banner,
+                id: `banner-${banner.id}-${position}`,
+            });
+
+            // Mark banner as used if not repeating
+            const { display } = banner;
+            const { repeat, rule } = display || {};
+
+            if (!repeat || rule === BANNER_DISPLAY_RULE.ONE_ROUND) {
+                usedBanners.add(banner.id);
             }
         });
     });

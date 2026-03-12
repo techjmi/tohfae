@@ -1,5 +1,6 @@
 /**
- * Modal Component
+ * @component Modal
+ * @description Main modal container with backdrop, positioning, and accessibility features
  */
 
 "use client";
@@ -30,7 +31,6 @@ const Modal = ({
   footerAlign = "between",
   ...props
 }) => {
-  // body scroll lock
   useEffect(() => {
     if (!isOpen || !lockBodyScroll) return;
 
@@ -42,7 +42,6 @@ const Modal = ({
     };
   }, [isOpen, lockBodyScroll]);
 
-  // esc key close
   useEffect(() => {
     if (!isOpen || !closeOnEsc) return;
 
