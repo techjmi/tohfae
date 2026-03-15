@@ -1,7 +1,7 @@
 "use client";
 
-import Button from "../../shared/ui/button";
-import OptimizedImage from "../../shared/ui/image";
+import Button from "../../../shared/ui/button";
+import OptimizedImage from "../../../shared/ui/image";
 
 /**
  * HeroSlide Component

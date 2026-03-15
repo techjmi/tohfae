@@ -1,0 +1,11 @@
+import ForgotPasswordForm from './ForgotPasswordForm';
+
+export const metadata = {
+  title: 'Forgot Password | Tohfae',
+  description: 'Reset your password',
+};
+
+export default function ForgotPasswordPage() {
+  return <ForgotPasswordForm />;
+}
+

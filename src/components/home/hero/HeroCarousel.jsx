@@ -1,6 +1,6 @@
 "use client";
 
-import Carousel from "../../shared/ui/carousel";
+import Carousel from "../../../shared/ui/carousel";
 import HeroSlide from "./HeroSlide";
 import "./hero-carousel.css";
 

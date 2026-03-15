@@ -35,7 +35,9 @@ export const AddToCartButton = ({
     const isInCart = useSelector(selectIsInCart(productId, variantId));
     const currentQuantity = useSelector(selectItemQuantity(productId, variantId));
 
-    const handleAddToCart = async () => {
+    const handleAddToCart = async (e) => {
+        e.stopPropagation();
+        e.preventDefault();
         const result = await addToCart({ productId, variantId, quantity, customization });
         if (result.success) {
             if (onSuccess) onSuccess();

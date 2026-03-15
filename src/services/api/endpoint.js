@@ -62,4 +62,10 @@ export const ENDPOINT = {
   BANNER: {
     ACTIVE: `${API_BASE}/banners/active`,         // GET - Get active banners with query params
   },
+
+  WISHLIST: {
+    LIST: `${API_BASE}/wishlist`,                 // GET
+    ADD: `${API_BASE}/wishlist`,                  // POST
+    REMOVE: (id) => `${API_BASE}/wishlist/${id}`, // DELETE
+  },
 };

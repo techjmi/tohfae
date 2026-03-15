@@ -53,11 +53,23 @@ export const AUTH_TEXT = {
   SIGNUP_LOADING: 'Creating account...',
   
   FORGOT_PASSWORD: 'Forgot your password?',
-  
+  FORGOT_PASSWORD_TITLE: 'Forgot your password?',
+  FORGOT_PASSWORD_SUBTITLE: 'Enter your email address and we\'ll send you an OTP to reset your password.',
+  FORGOT_PASSWORD_BUTTON: 'Send OTP',
+  FORGOT_PASSWORD_LOADING: 'Sending...',
+
+  RESET_PASSWORD_TITLE: 'Reset your password',
+  RESET_PASSWORD_SUBTITLE: 'Enter the OTP sent to your email and create a new password.',
+  RESET_PASSWORD_BUTTON: 'Reset Password',
+  RESET_PASSWORD_LOADING: 'Resetting...',
+
+  BACK_TO_LOGIN: 'Back to login',
+  RESEND_OTP: 'Resend OTP',
+
   SOCIAL_DIVIDER: 'Or continue with',
   GOOGLE_BUTTON: 'Google',
   FACEBOOK_BUTTON: 'Facebook',
-  
+
   OTP_TITLE: 'Verify your email',
   OTP_SUBTITLE: "We've sent a 6-digit code to",
   OTP_VERIFY_BUTTON: 'Verify',

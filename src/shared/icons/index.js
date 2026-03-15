@@ -9,6 +9,7 @@ import {
   FaGoogle,
   FaGithub,
   FaWhatsapp,
+  FaHeart,
 } from "react-icons/fa";
 
 // UI / General
@@ -73,6 +74,7 @@ export const ICONS = {
   cart: FiShoppingCart,
   user: FiUser,
   heart: FiHeart,
+  "heart-filled": FaHeart,
   // UI
   mail: FiMail,
   download: FiDownload,

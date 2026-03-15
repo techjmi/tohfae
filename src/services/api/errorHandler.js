@@ -22,7 +22,6 @@
 import { ERROR_TYPES, ERROR_MSG } from '@/services/services.constant';
 
 export const handleApiError = (error) => {
-    console.log('1234 error', error);
     // Network error (no response from server)
     if (!error?.response) {
         // Check if it's a timeout error
@@ -44,7 +43,6 @@ export const handleApiError = (error) => {
 
     // HTTP status code errors
     const { status, data } = error.response;
-    console.log('1234 status', status, data);
 
     switch (status) {
         case 401:
@@ -68,6 +66,15 @@ export const handleApiError = (error) => {
                 originalError: error,
             };
 
+        case 400:
+        case 422:
+            return {
+                type: ERROR_TYPES.VALIDATION_ERROR,
+                message: data?.message || ERROR_MSG[ERROR_TYPES.VALIDATION_ERROR],
+                errors: data?.errors || {},
+                originalError: error,
+            };
+
         case 409:
             return {
                 type: ERROR_TYPES.CONFLICT_ERROR,
@@ -75,11 +82,11 @@ export const handleApiError = (error) => {
                 originalError: error,
             };
 
-        case 422:
+        case 429:
             return {
-                type: ERROR_TYPES.VALIDATION_ERROR,
-                message: data?.message || ERROR_MSG[ERROR_TYPES.VALIDATION_ERROR],
-                errors: data?.errors || {},
+                type: ERROR_TYPES.TOO_MANY_REQUESTS,
+                message: data?.message || 'Too many requests. Please try again later.',
+                data: data?.data, // Include additional data (e.g., remainingSeconds)
                 originalError: error,
             };
 

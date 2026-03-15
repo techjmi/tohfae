@@ -4,7 +4,7 @@
  * Testing all UI components with examples
  */
 
-import HeroCarousel from "../components/home/HeroCarousel";
+import HeroCarousel from "../components/home/hero/HeroCarousel";
 import "../components/home/hero-carousel.css";
 
 // Button Examples

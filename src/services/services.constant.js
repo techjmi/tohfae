@@ -9,6 +9,7 @@ export const ERROR_TYPES = {
     NOT_FOUND_ERROR: 'NOT_FOUND_ERROR',
     CONFLICT_ERROR: 'CONFLICT_ERROR',
     SERVER_ERROR: 'SERVER_ERROR',
+    TOO_MANY_REQUESTS: 'TOO_MANY_REQUESTS',
 }
 
 //error msg
@@ -22,5 +23,6 @@ export const ERROR_MSG = {
     [ERROR_TYPES.NOT_FOUND_ERROR]: 'The requested resource was not found.',
     [ERROR_TYPES.CONFLICT_ERROR]: 'The requested resource already exists.',
     [ERROR_TYPES.SERVER_ERROR]: 'Something went wrong on our end. Please try again later.',
+    [ERROR_TYPES.TOO_MANY_REQUESTS]: 'Too many requests. Please try again later.',
 }
  

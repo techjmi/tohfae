@@ -30,6 +30,7 @@ export const Navigation_Url = {
   FAQ: '/faq',
   PRODUCTS: '/products',
   CART: '/cart',
+  WISHLIST: '/wishlist',
   PROFILE: '/profile',
   PROFILE_EDIT: '/profile/edit',
 };

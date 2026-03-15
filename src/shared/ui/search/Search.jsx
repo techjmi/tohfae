@@ -52,7 +52,10 @@ export const Search = ({
         }
     };
 
-    const handleClear = () => {
+    const handleClear = (e) => {
+        e?.preventDefault();
+        e?.stopPropagation();
+
         const emptyValue = '';
         if (!isControlled) {
             setInternalValue(emptyValue);
@@ -89,11 +92,12 @@ export const Search = ({
         if (showClearButton && currentValue) {
             return (
                 <Button
+                    type="button"
                     onClick={handleClear}
                     variant="ghost"
                     size="sm"
                     aria-label="Clear search"
-                    className="p-0 h-auto min-h-0"
+                    className="p-0 h-auto min-h-0 cursor-pointer"
                 >
                     <Icon name="close" size={18} />
                 </Button>

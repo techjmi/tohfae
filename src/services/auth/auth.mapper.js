@@ -29,6 +29,7 @@ export const mapSignupRequest = (formData) => {
   return {
     email: formData.email,
     password: formData.password,
+    confirmPassword: formData.confirmPassword,
     firstName: formData.firstName,
     lastName: formData.lastName || '',
     phone: formData.phone || '',
@@ -61,11 +62,12 @@ export const mapForgotPasswordRequest = (email) => {
   };
 };
 
-export const mapResetPasswordRequest = (email, otp, newPassword) => {
+export const mapResetPasswordRequest = (email, otp, newPassword, confirmPassword) => {
   return {
     email,
     otp,
     newPassword,
+    confirmPassword,
   };
 };
 
