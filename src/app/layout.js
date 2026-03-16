@@ -80,6 +80,7 @@ export default async function RootLayout({ children }) {
               draggable
               pauseOnHover
               theme="light"
+              style={{ zIndex: 10000 }}
               // transition={Bounce}
             />
             <Header />

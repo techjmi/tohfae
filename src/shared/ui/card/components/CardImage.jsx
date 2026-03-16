@@ -11,6 +11,7 @@ import { Badge } from '@/shared/ui/badge';
 import Button from '@/shared/ui/button';
 import { Icon } from '@/shared/icons';
 import OptimizedImage from '@/shared/ui/image';
+import { WishlistButton } from '@/shared/ui/wishlist';
 
 const CardImage = ({
   src,
@@ -28,6 +29,9 @@ const CardImage = ({
   wishlist = false,
   isWishlisted = false,
   onWishlistClick,
+  productId,
+  product,
+  wishlistIconName = null, // Custom icon name for wishlist button (e.g., "trash")
   ...props
 }) => {
   return (
@@ -52,6 +56,7 @@ const CardImage = ({
             {badges.map((badge, index) => {
               // Support both string and object format
               const badgeLabel = typeof badge === 'string' ? badge : badge.label;
+              const badgeValue = typeof badge === 'object' ? badge.value : null;
               const badgeColor = typeof badge === 'object' ? badge.color : 'neutral';
               const badgeSize = typeof badge === 'object' ? badge.size : 'sm';
 
@@ -62,7 +67,8 @@ const CardImage = ({
                   size={badgeSize}
                   radius="md"
                 >
-                  {badgeLabel}
+                <span>{badgeLabel}</span>
+                <span>{badgeValue}</span>
                 </Badge>
               );
             })}
@@ -70,24 +76,8 @@ const CardImage = ({
         )}
 
         {/* Wishlist Button */}
-        {wishlist && onWishlistClick && (
-          <Button
-            as="button"
-            size="sm"
-            variant="ghost"
-            onClick={onWishlistClick}
-            className="ml-auto p-2! rounded-full! bg-white/90 backdrop-blur-sm shadow-md hover:bg-white min-w-0! h-auto!"
-            aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
-          >
-            <Icon
-              name="heart"
-              size={18}
-              className={classNames(
-                'transition-colors',
-                isWishlisted ? 'fill-red-500 text-red-500' : 'text-gray-600'
-              )}
-            />
-          </Button>
+        {wishlist && product && (
+         <WishlistButton product={product} iconName={wishlistIconName} />
         )}
       </div>
     </div>

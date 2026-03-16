@@ -62,7 +62,7 @@ const Modal = ({
   return (
     <div
       className={classNames(
-        "fixed inset-0 z-50 flex",
+        "fixed inset-0 z-[9999] flex",
         backdropClass,
         currentPlacement.wrapper
       )}
@@ -72,7 +72,7 @@ const Modal = ({
     >
       <div
         className={classNames(
-          "bg-white shadow-lg rounded-lg",
+          "bg-white shadow-lg rounded-lg relative",
           sizeClass,
           currentPlacement.panel,
           className
@@ -85,7 +85,6 @@ const Modal = ({
         {children}
         {isShowFooter && footer && <ModalFooter data={footer} align={footerAlign} />}
       </div>
-      {children}
     </div>
   );
 };

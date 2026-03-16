@@ -13,6 +13,7 @@ import { Icon } from '@/shared/icons';
 import { selectIsAuthenticated, selectUser } from '@/redux/slice/authSlice';
 import { HEADER_ROUTES } from './header.constant';
 import "./header.style.css";
+import { HeaderIcons } from '@/shared/ui/badge/header';
 
 export default function Header() {
     const router = useRouter();
@@ -31,7 +32,8 @@ export default function Header() {
                         <SearchBar className="header-search" />
                         <div className="header-actions">
                             <Navbar />
-                            <CartIcon itemCount={5} />
+                            <HeaderIcons name="cart" count={5} onClick={() => router.push(HEADER_ROUTES.CART)} label="Cart" />
+                            <HeaderIcons name="heart" count={3} onClick={() => router.push(HEADER_ROUTES.WISHLIST)} label="Wishlist" />
                         </div>
                     </div>
 

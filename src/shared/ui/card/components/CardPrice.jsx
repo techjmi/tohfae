@@ -18,6 +18,7 @@ const CardPrice = ({
   ...props
 }) => {
   const hasDiscount = originalPrice && originalPrice > price;
+
   const discountPercentage = discount || (hasDiscount ? calculateDiscount(originalPrice, price) : 0);
 
   const priceSizeClasses = {

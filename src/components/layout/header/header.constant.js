@@ -89,4 +89,5 @@ export const HEADER_ROUTES = {
   CART: Navigation_Url.CART,
   PROFILE: Navigation_Url.PROFILE,
   SWITCH_ACCOUNTS: '/switch-accounts',
+  WISHLIST: '/wishlist',
 };

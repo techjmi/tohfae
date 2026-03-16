@@ -170,7 +170,8 @@ export function getHelperTextClasses(state) {
  * Generic function for icon positioning
  */
 export function getIconWrapperClasses(position, size) {
-    const baseClasses = "absolute top-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none";
+    // Removed pointer-events-none to allow interactive suffix icons (like clear buttons)
+    const baseClasses = "absolute top-1/2 -translate-y-1/2 flex items-center justify-center";
 
     const positionClasses = {
         prefix: "left-0",

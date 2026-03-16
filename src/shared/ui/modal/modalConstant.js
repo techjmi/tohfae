@@ -1,9 +1,9 @@
 export const MODAL_SIZE = {
-  sm: "w-full max-w-sm mx-4",
-  md: "w-full max-w-lg mx-4",
-  lg: "w-full max-w-2xl mx-4",
-  xl: "w-full max-w-4xl mx-4",
-  full: "w-full max-w-full mx-4",
+  sm: "w-[calc(100%-2rem)] sm:w-full max-w-sm",
+  md: "w-[calc(100%-2rem)] sm:w-full max-w-lg",
+  lg: "w-[calc(100%-2rem)] sm:w-full max-w-2xl",
+  xl: "w-[calc(100%-2rem)] sm:w-full max-w-4xl",
+  full: "w-[calc(100%-2rem)] sm:w-full max-w-full",
 };
 
 export const MODAL_PLACEMENT = {

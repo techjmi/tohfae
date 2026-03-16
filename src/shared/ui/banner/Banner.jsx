@@ -130,7 +130,7 @@ const Banner = ({
               className="absolute top-2 right-2 p-1.5 rounded-full hover:bg-gray-100 transition-colors z-10"
               aria-label="Close banner"
             >
-              <Icon name="x" size={18} className="text-gray-600" />
+              <Icon name="close" size={18} className="text-gray-600" />
             </button>
           )}
 

@@ -25,7 +25,6 @@ export default function OAuthCallbackPage() {
         const error = searchParams.get('error');
 
         if (error) {
-          console.error('OAuth error:', error);
           setStatus('error');
           // Redirect to login with error message after 2 seconds
           setTimeout(() => {
@@ -56,7 +55,6 @@ export default function OAuthCallbackPage() {
           }, 2000);
         }
       } catch (error) {
-        console.error('Failed to complete OAuth login:', error);
         setStatus('error');
         // Redirect to login after 2 seconds
         setTimeout(() => {

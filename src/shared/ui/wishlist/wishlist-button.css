@@ -1,0 +1,12 @@
+/* Wishlist Button Styles */
+.wishlist-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.wishlist-button:hover {
+    background-color: #f3f4f6;
+    border-color: #9ca3af;
+}

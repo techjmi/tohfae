@@ -1,0 +1,34 @@
+/*
+ * New Arrivals Section Styles
+ *
+ * Custom styles for the New Arrivals section
+ * Keep this file for future enhancements like animations, tracking, etc.
+ */
+
+/* Section container */
+.new-arrivals-section {
+  /* Add custom styles here if needed */
+}
+
+/* Products grid */
+.new-arrivals-grid {
+  /* Add custom grid styles here if needed */
+}
+
+/* Animation for product cards (future enhancement) */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover effects (future enhancement) */
+.new-arrivals-section .product-card {
+  /* Add custom hover effects here if needed */
+}
+
