@@ -31,9 +31,10 @@ import React, { useState } from 'react';
 import Button from '@/shared/ui/button/Button';
 import { Icon } from '@/shared/icons';
 import Share from '@/shared/ui/share/Share';
+import WishlistButton from '@/shared/ui/wishlist/WishlistButton';
 import { QUANTITY_LIMITS, BUTTON_VARIANTS, MESSAGES } from './ProductActions.constants';
 import './ProductActions.css';
-import { AddToCartButton, RemoveFromCartButton } from '@/shared/ui/cart';
+import { AddToCartButton } from '@/shared/ui/cart';
 import { toast } from 'react-toastify';
 
 const ProductActions = ({
@@ -44,7 +45,6 @@ const ProductActions = ({
   onQuantityChange,
   className = ''
 }) => {
-  const [isWishlisted, setIsWishlisted] = useState(false);
   const [showShare, setShowShare] = useState(false);
 //check if items added to cart from redux then show go to cart button instead of add to cart
   const handleQuantityChange = (delta) => {
@@ -68,12 +68,6 @@ const ProductActions = ({
   const handleBuyNow = () => {
     console.log('Buy now:', { product, selectedVariantId, customizationData, quantity });
     // TODO: Implement buy now logic
-  };
-
-  const handleWishlist = () => {
-    setIsWishlisted(!isWishlisted);
-    console.log(isWishlisted ? MESSAGES.REMOVED_FROM_WISHLIST : MESSAGES.ADDED_TO_WISHLIST);
-    // TODO: Implement wishlist logic
   };
 
   return (
@@ -114,31 +108,28 @@ const ProductActions = ({
           onSuccess={handleAddToCartSuccess}
           onError={handleAddToCartError}
           showGoToCart={true}
+          className="flex-1"
+          size="lg"
         >
           Add to Cart
         </AddToCartButton>
-{/* 
-        <RemoveFromCartButton
-          productId={product.id}
-          variantId={selectedVariantId}
-          onSuccess={() => toast.success('Removed from cart!')}
-          onError={(error) => toast.error(error || 'Failed to remove from cart')}
-        >
-          Remove from Cart
-        </RemoveFromCartButton> */}
-        {/* Wishlist */}
 
-        <Button
-          onClick={handleWishlist}
-          {...BUTTON_VARIANTS.WISHLIST}
-          aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
-        >
-          <Icon
-            name="heart"
-            size={24}
-            className={`heart-icon ${isWishlisted ? 'active' : ''}`}
-          />
-        </Button>
+        {/* Wishlist */}
+        <WishlistButton
+          product={{
+            id: product.id,
+            slug: product.slug,
+            name: product.basic?.name,
+            image: product.media?.thumbnail || product.media?.images?.[0],
+            price: product.pricing?.sellingPrice,
+            mrp: product.pricing?.mrp,
+            discountLabel: product.pricing?.discount?.label,
+          }}
+          size={24}
+          variant="outline"
+          color="neutral"
+          className="p-3! rounded-lg! bg-transparent! hover:bg-gray-50! shadow-none! border-2 border-gray-300"
+        />
 
         {/* Share */}
         <Button

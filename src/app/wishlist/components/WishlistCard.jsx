@@ -1,26 +1,15 @@
+/**
+ * Wishlist card component
+ */
 "use client";
 
 import React from 'react';
 import Link from 'next/link';
-import { toast } from 'react-toastify';
 import { Card, CardImage, CardHeader, CardPrice } from '@/shared/ui/card';
 import AddToCartButton from '@/shared/ui/cart/AddToCartButton';
-import { GuestWishlistService } from '@/services/wishlist';
 
 const WishlistCard = ({ item, className = "" }) => {
   const badges = [];
-  const handleAddToCartSuccess = () => {
-    // Remove from wishlist after adding to cart
-    GuestWishlistService.removeFromWishlist(item.id);
-    // Dispatch event to refresh wishlist
-    window.dispatchEvent(new Event('wishlistUpdated'));
-    // Show success message
-    toast.success('Added to cart and removed from wishlist');
-  };
-
-  const handleAddToCartError = (error) => {
-    toast.error(error || 'Failed to add to cart');
-  };
 
   if (item.discountLabel) {
     badges.push({
@@ -30,6 +19,7 @@ const WishlistCard = ({ item, className = "" }) => {
       size: 'sm'
     });
   }
+
   return (
     <Link href={`/products/${item.slug || '#'}`} className="block h-full">
       <Card
@@ -71,8 +61,6 @@ const WishlistCard = ({ item, className = "" }) => {
             color="primary"
             size="sm"
             className="flex justify-between gap-5 stretch"
-            onSuccess={handleAddToCartSuccess}
-            onError={handleAddToCartError}
           >
             Add to Cart
           </AddToCartButton>

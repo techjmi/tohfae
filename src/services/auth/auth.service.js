@@ -11,6 +11,9 @@ import {
   mapResetPasswordRequest,
 } from './auth.mapper';
 import { AUTH_MESSAGES } from './auth.constant';
+import { GuestWishlistService } from '../wishlist/guest-wishlist-service';
+import { WishlistService } from '../wishlist/wishlist.service';
+import { toast } from 'react-toastify';
 
 export const AuthService = {
   signup: async (formData) => {
@@ -106,6 +109,34 @@ export const AuthService = {
       };
     } catch (error) {
       throw handleApiError(error);
+    }
+  },
+
+  mergeGuestWishlist: async () => {
+    try {
+      const guestWishlist = GuestWishlistService.getWishlist();
+
+      if (!guestWishlist || guestWishlist.length === 0) {
+        return { success: true, mergedCount: 0 };
+      }
+
+      const productSlugs = guestWishlist.map(item => item.slug).filter(Boolean);
+
+      if (productSlugs.length === 0) {
+        return { success: true, mergedCount: 0 };
+      }
+
+      const result = await WishlistService.mergeWishlist(productSlugs);
+
+      if (result.success && result.mergedCount > 0) {
+        GuestWishlistService.clearWishlist();
+        toast.success(`${result.mergedCount} item${result.mergedCount > 1 ? 's' : ''} added to your wishlist`);
+      }
+
+      return result;
+    } catch (error) {
+      console.error('Failed to merge guest wishlist:', error);
+      return { success: false, mergedCount: 0 };
     }
   },
 };

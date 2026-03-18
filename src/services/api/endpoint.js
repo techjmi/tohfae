@@ -64,8 +64,14 @@ export const ENDPOINT = {
   },
 
   WISHLIST: {
-    LIST: `${API_BASE}/wishlist`,                 // GET
-    ADD: `${API_BASE}/wishlist`,                  // POST
-    REMOVE: (id) => `${API_BASE}/wishlist/${id}`, // DELETE
+    LIST: `${API_BASE}/wishlist`,                 // GET - Get user's wishlist
+    ADD: `${API_BASE}/wishlist`,                  // POST - Toggle product in wishlist
+    REMOVE: (productSlug) => `${API_BASE}/wishlist/${productSlug}`, // DELETE - Remove specific item by slug
+    CLEAR: `${API_BASE}/wishlist/clear`,          // DELETE - Clear all items
+    MERGE: `${API_BASE}/wishlist/merge`,          // POST - Merge guest wishlist on login
+  },
+  ACTIVITY: {
+    RECENTLY_VIEWED: `${API_BASE}/activity/recently-viewed`,
+    TRACK: `${API_BASE}/activity/track`,
   },
 };

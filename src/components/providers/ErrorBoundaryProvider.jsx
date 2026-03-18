@@ -1,15 +1,5 @@
 /**
- * ErrorBoundaryProvider
- * 
- * Client-side wrapper component that provides Error Boundary
- * for the entire application
- * 
- * Usage in layout.js:
- * import ErrorBoundaryProvider from '@/components/providers/ErrorBoundaryProvider';
- * 
- * <ErrorBoundaryProvider>
- *   {children}
- * </ErrorBoundaryProvider>
+ * ErrorBoundaryProvider - Wraps app with error boundary
  */
 
 "use client";

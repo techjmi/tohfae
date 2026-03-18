@@ -8,11 +8,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { persistStore } from "redux-persist";
 import { authReducer } from "@/redux/slice/authSlice";
+import { wishlistReducer } from "@/redux/slice/whishlistSlice";
+import { cartReducer } from "@/redux/slice/cartSlice";
 
 export const createStore = () => {
     const store = configureStore({
         reducer: {
             auth: authReducer,
+            wishlist: wishlistReducer,
+            cart: cartReducer,
         },
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware({

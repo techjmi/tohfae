@@ -1,5 +1,7 @@
-//this is error component which will be used to handle the error at component level
-//this is a fallback component which will be shown when the error is caught by the error boundry
+/**
+ * Error fallback component shown when ErrorBoundary catches an error
+ */
+
 import { ERROR_MSG, ERROR_CTA } from './error.constant';
 import Button from '@/shared/ui/button/Button';
 

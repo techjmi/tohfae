@@ -1,17 +1,11 @@
 /**
- * Guest Wishlist Service
- *
- * Handles guest wishlist operations using local storage
+ * Guest wishlist service (localStorage)
  */
 import { isBrowser } from '@/shared/utils/window';
 import { GUEST_WISHLIST_KEY, GUEST_WISHLIST_LIMIT, GUEST_WISHLIST_MSG } from './wishlist.constant';
 import { toast } from 'react-toastify';
 
 export const GuestWishlistService = {
-    /**
-     * Get wishlist from localStorage
-     * @returns {Array<Object>} Array of wishlist items with product details
-     */
     getWishlist: () => {
         if (!isBrowser) return [];
         try {
@@ -23,35 +17,20 @@ export const GuestWishlistService = {
         }
     },
 
-    /**
-     * Add product to wishlist
-     * @param {Object} productData - Product data to add
-     * @param {string} productData.id - Product ID
-     * @param {string} productData.slug - Product slug
-     * @param {string} productData.name - Product name
-     * @param {string} productData.image - Product image URL
-     * @param {number} productData.price - Product selling price
-     * @param {number} productData.mrp - Product MRP
-     * @param {number} productData.discount - Discount percentage
-     * @returns {Array<Object>} Updated wishlist
-     */
     addToWishlist: (productData) => {
         if (!isBrowser) return [];
         try {
             const wishlist = GuestWishlistService.getWishlist();
 
-            // Check if already in wishlist
             if (wishlist.some(item => item.id === productData.id)) {
                 return wishlist;
             }
 
-            // Check limit
             if (wishlist.length >= GUEST_WISHLIST_LIMIT) {
                 toast.error(GUEST_WISHLIST_MSG.LIMIT_REACHED);
                 return wishlist;
             }
 
-            // Add to wishlist with timestamp
             const wishlistItem = {
                 id: productData.id,
                 slug: productData.slug,
@@ -73,11 +52,6 @@ export const GuestWishlistService = {
         }
     },
 
-    /**
-     * Remove product from wishlist
-     * @param {string} productId - Product ID to remove
-     * @returns {Array<Object>} Updated wishlist
-     */
     removeFromWishlist: (productId) => {
         if (!isBrowser) return [];
         try {
@@ -93,10 +67,6 @@ export const GuestWishlistService = {
         }
     },
 
-    /**
-     * Clear all items from wishlist
-     * @returns {Array<Object>} Empty array
-     */
     clearWishlist: () => {
         if (!isBrowser) return [];
         try {

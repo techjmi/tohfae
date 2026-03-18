@@ -1,16 +1,19 @@
+/**
+ * Error and 404 page constants
+ */
+
 import { Navigation_Url, Dynamic_Navigation_Url } from '@/shared/constant/global-constant';
 
-//this is the error constant file for this web project
 export const ERROR_MSG = {
     DEFAULT_ERROR_MSG: 'Something went wrong!',
     DEFAULT_ERROR_DESCRIPTION: 'Please try again later.',
 };
+
 export const ERROR_CTA = {
     DEFAULT_ERROR_CTA: 'Back to Home',
     DEFAULT_ERROR_CTA_HREF: Navigation_Url.HOME,
 };
 
-// 404 Not Found Constants
 export const NOT_FOUND_MSG = {
     TITLE: '404',
     HEADING: 'Page Not Found',

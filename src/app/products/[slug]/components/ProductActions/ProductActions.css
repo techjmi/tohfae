@@ -27,7 +27,11 @@
 .action-buttons-row {
   display: flex;
   gap: 0.75rem;
-  align-items: center;
+  align-items: stretch;
+}
+
+.action-buttons-row > *:first-child {
+  flex: 1;
 }
 
 /* Share Container */
