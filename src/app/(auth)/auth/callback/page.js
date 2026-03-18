@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { signInSuccess } from '@/redux/slice/authSlice';
 import { getMyProfile } from '@/services/user/user.service';
+import { AuthService } from '@/services/auth/auth.service';
 import { REDIRECT_ROUTES, AUTH_ROUTES } from '@/services/auth/auth.constant';
 
 /**
@@ -40,6 +41,9 @@ export default function OAuthCallbackPage() {
 
           // Update Redux state with user data
           dispatch(signInSuccess({ user: userData }));
+
+          // Merge guest wishlist after successful OAuth login
+          await AuthService.mergeGuestWishlist();
 
           setStatus('success');
 

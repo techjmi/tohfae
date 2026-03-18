@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductImageGallery from './components/ProductImageGallery';
 import ProductMainInfo from './components/ProductMainInfo';
 import ProductPricing from './components/ProductPricing';
@@ -9,11 +9,27 @@ import ProductActions from './components/ProductActions';
 import ProductDescription from './components/ProductDescription';
 import ProductReviews from './components/ProductReviews';
 import RelatedProducts from './components/RelatedProducts';
+import { ActivityService } from '@/services/activity/activity.service';
 
 const ProductsDetails = ({ product }) => {
   const [selectedVariantId, setSelectedVariantId] = useState(product?.variants?.[0]?.id || null);
   const [customizationData, setCustomizationData] = useState({});
   const [quantity, setQuantity] = useState(1);
+ //track activity api call
+ const trackActivity = async () => {
+    try {
+      const response = await ActivityService.trackActivity({
+        productSlug: product.slug,
+      });
+      console.log('Activity tracked:', response);
+    } catch (error) {
+      console.error('Failed to track activity:', error);
+    }
+  };
+
+  useEffect(() => {
+    trackActivity();
+  }, []);
 
   const handleVariantChange = (variantId) => {
     setSelectedVariantId(variantId);

@@ -18,8 +18,8 @@ const production_url = main_url;
 const development_url = local_api_url;
 export const API_CONFIG = {
     // Base URL (from environment or default)
-    BASE_URL: process.env.NEXT_PUBLIC_API_URL ||
-              (process.env.NODE_ENV === 'production' ? production_url : development_url),
+    BASE_URL: process.env.NEXT_PUBLIC_API_URL,
+            //   (process.env.NODE_ENV === 'production' ? production_url : development_url),
 
     // Timeout for axios (30 seconds)
     TIMEOUT: 30000,

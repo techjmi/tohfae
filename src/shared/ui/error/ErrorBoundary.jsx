@@ -1,20 +1,6 @@
 /**
- * ErrorBoundary Component
- * 
- * Catches JavaScript errors anywhere in the child component tree,
- * logs those errors, and displays a fallback UI instead of crashing.
- * 
- * Features:
- * - Catches errors in child components
- * - Displays custom error UI
- * - Logs errors to console (can be extended to log to external service)
- * - Provides reset functionality
- * - Works with Next.js App Router
- * 
- * Usage:
- * <ErrorBoundary>
- *   <YourApp />
- * </ErrorBoundary>
+ * ErrorBoundary - Catches and handles React component errors
+ * Shows fallback UI and logs errors in development
  */
 
 "use client";
@@ -25,8 +11,6 @@ import ErrorComponent from './ErrorComponent';
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
-    
-    // State to track if an error has occurred
     this.state = {
       hasError: false,
       error: null,
@@ -34,31 +18,20 @@ class ErrorBoundary extends React.Component {
     };
   }
 
-  // This lifecycle method is called when an error is thrown
-  static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI
-    return {
-      hasError: true,
-    };
+  static getDerivedStateFromError() {
+    return { hasError: true };
   }
 
-  // This lifecycle method is called after an error has been thrown
   componentDidCatch(error, errorInfo) {
-    // Log error details to console
     console.error('ErrorBoundary caught an error:', error);
     console.error('Error Info:', errorInfo);
 
-    // Update state with error details
     this.setState({
       error: error,
       errorInfo: errorInfo,
     });
-
-    // You can also log the error to an error reporting service here
-    // Example: logErrorToService(error, errorInfo);
   }
 
-  // Reset error boundary state
   resetErrorBoundary = () => {
     this.setState({
       hasError: false,
@@ -69,13 +42,11 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      // Render custom fallback UI
       return (
         <div>
-          {/* Custom Error Component */}
           <ErrorComponent />
 
-          {/* Development Mode: Show error details */}
+          {/* Dev mode: Show error details */}
           {process.env.NODE_ENV === 'development' && this.state.error && (
             <div className="fixed bottom-4 right-4 max-w-md bg-red-50 border border-red-200 rounded-lg p-4 shadow-lg">
               <div className="flex items-start gap-2">
@@ -112,7 +83,6 @@ class ErrorBoundary extends React.Component {
       );
     }
 
-    // No error, render children normally
     return this.props.children;
   }
 }

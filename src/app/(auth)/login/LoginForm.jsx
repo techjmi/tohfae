@@ -41,7 +41,10 @@ export default function LoginForm() {
 
       if (response.success) {
         dispatch(signInSuccess(response));
-        // toast.success(response.message || 'Login successful!');
+
+        // Merge guest wishlist after successful login
+        await AuthService.mergeGuestWishlist();
+
         router.push(REDIRECT_ROUTES.AFTER_LOGIN);
       } else {
         throw new Error(response.message || 'Login failed');

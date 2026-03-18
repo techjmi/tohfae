@@ -1,17 +1,11 @@
 /**
- * Wishlist Page
- *
- * Displays guest user's wishlist with product details
- * Provides remove and clear all functionality
+ * Wishlist page - accessible to guest (localStorage) and authenticated users (API)
  */
 import { buildSeo } from '@/lib/seo/seo';
 import JsonLd from '@/shared/ui/jsonld';
 import WishlistClient from './WishlistClient';
 import { WISHLIST_SEO } from './wishlist.helper';
 
-/**
- * Generate metadata for SEO
- */
 export const generateMetadata = async () => {
   return buildSeo({
     title: WISHLIST_SEO.title,
@@ -25,9 +19,6 @@ export const generateMetadata = async () => {
   });
 };
 
-/**
- * Wishlist Page Component
- */
 const WishlistPage = () => {
   return (
     <>

@@ -1,0 +1,124 @@
+/* ProductsSection Styles */
+
+.products-section {
+  width: 100%;
+}
+
+.products-section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Section Header */
+.section-header-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .section-header-wrapper {
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.section-header-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.section-header-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.section-header-subtitle {
+  font-size: 1rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .section-header-title {
+    font-size: 1.5rem;
+  }
+
+  .section-header-subtitle {
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .section-header-title {
+    font-size: 2rem;
+  }
+}
+
+/* View All Link */
+.section-view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ea580c;
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding: 0.5rem 0.75rem;
+}
+
+.section-view-all:hover {
+  color: #c2410c;
+  gap: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .section-view-all {
+    font-size: 1rem;
+    padding: 0.625rem 1rem;
+  }
+}
+
+/* Products Grid */
+.products-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 640px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Scroll Container */
+.products-scroll-container {
+  position: relative;
+  overflow: hidden;
+}
+

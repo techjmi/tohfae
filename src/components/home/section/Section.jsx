@@ -1,27 +1,45 @@
-/*
- * Section Component
- *
- * Parent component for all home page sections (wrapper)
- * Receives data from page.js and distributes to child sections
- */
 import React from 'react';
-import { NewArrivals } from './index';
+import { ProductsSection, SECTION_CONFIG, SECTION_TYPES } from './components';
 
 const Section = ({
   newArrivalProducts = [],
   trendingProducts = [],
   featuredProducts = [],
   bestSellerProducts = [],
-  dealsProducts = []
+  dealsProducts = [],
+  personalizedProducts = [],
 }) => {
   return (
     <div className="space-y-0">
-      <NewArrivals products={newArrivalProducts} />
+      <ProductsSection
+        products={newArrivalProducts}
+        sectionConfig={SECTION_CONFIG[SECTION_TYPES.NEW_ARRIVAL]}
+      />
 
-      {/* <Trending products={trendingProducts} /> */}
-      {/* <Featured products={featuredProducts} /> */}
-      {/* <BestSeller products={bestSellerProducts} /> */}
-      {/* <Deals products={dealsProducts} /> */}
+      <ProductsSection
+        products={trendingProducts}
+        sectionConfig={SECTION_CONFIG[SECTION_TYPES.TRENDING]}
+      />
+
+      <ProductsSection
+        products={featuredProducts}
+        sectionConfig={SECTION_CONFIG[SECTION_TYPES.FEATURED]}
+      />
+
+      <ProductsSection
+        products={bestSellerProducts}
+        sectionConfig={SECTION_CONFIG[SECTION_TYPES.BEST_SELLER]}
+      />
+
+      <ProductsSection
+        products={dealsProducts}
+        sectionConfig={SECTION_CONFIG[SECTION_TYPES.DEALS]}
+      />
+
+      <ProductsSection
+        products={personalizedProducts}
+        sectionConfig={SECTION_CONFIG[SECTION_TYPES.PERSONALIZED]}
+      />
     </div>
   );
 };
