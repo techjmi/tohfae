@@ -1,5 +1,4 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import { cookies } from "next/headers";
 import "./globals.css";
 import ErrorBoundaryProvider from "@/components/providers/ErrorBoundaryProvider";
 import StoreProvider from "@/components/providers/StoreProvider";
@@ -9,9 +8,6 @@ import { default_seo_constant } from "@/lib/seo/seo.constant";
 import Footer from "@/components/layout/footer/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import apiClient from "@/services/api/client";
-import { ENDPOINT } from "@/services/api/endpoint";
-import { mapUserResponse } from "@/services/user/user.mapper";
 // import { Bounce } from "react-toastify/dist/animations";
 
 const geistSans = Geist({
@@ -36,30 +32,7 @@ export const generateMetadata = () => {
   });
 };
 
-/**
- * Fetch user data on server side
- */
-async function getUserData() {
-  try {
-    const cookieStore = await cookies();
-    const accessToken = cookieStore.get('accessToken');
-
-    if (!accessToken) {
-      return null;
-    }
-    const response = await apiClient.get(ENDPOINT.USER.ME, {
-      headers: {
-        Cookie: `accessToken=${accessToken.value}`
-      }
-    });
-    return mapUserResponse(response);
-  } catch (error) {
-    console.error('Failed to fetch user data:', error);
-    return null;
-  }
-}
-export default async function RootLayout({ children }) {
-  const userData = await getUserData();
+export default function RootLayout({ children }) {
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -67,7 +40,7 @@ export default async function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning={true}
       >
-        <StoreProvider initialUser={userData}>
+        <StoreProvider>
           <ErrorBoundaryProvider>
             <ToastContainer
               position="top-center"

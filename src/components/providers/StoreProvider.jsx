@@ -2,19 +2,18 @@
  * StoreProvider
  *
  * Client-side wrapper component that provides the Redux store
- * for the entire application with SSR support
+ * for the entire application
  *
  * Features:
- * - Accepts initialUser from SSR (layout.js)
- * - Syncs SSR user data with Redux store
+ * - Fetches user data on client side mount
+ * - Syncs user data with Redux store
  * - Persists user data to localStorage
  * - Prevents hydration mismatches
  *
  * Usage in layout.js:
  * import StoreProvider from '@/components/providers/StoreProvider';
  *
- * const userData = await getUserData(); // SSR fetch
- * <StoreProvider initialUser={userData}>
+ * <StoreProvider>
  *   {children}
  * </StoreProvider>
  */
@@ -25,9 +24,12 @@ import { useRef, useEffect } from "react";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { createStore } from "@/redux/store";
-import { setUser } from "@/redux/slice/authSlice";
+import { setUser, clearUser } from "@/redux/slice/authSlice";
+import apiClient from "@/services/api/client";
+import { ENDPOINT } from "@/services/api/endpoint";
+import { mapUserResponse } from "@/services/user/user.mapper";
 
-export default function StoreProvider({ children, initialUser }) {
+export default function StoreProvider({ children }) {
     const storeRef = useRef();
     const initializedRef = useRef(false);
 
@@ -35,32 +37,44 @@ export default function StoreProvider({ children, initialUser }) {
         storeRef.current = createStore();
     }
     const { store, persistor } = storeRef.current;
+
     useEffect(() => {
-        // Only set initial user once to avoid overwriting persisted data unnecessarily
-        if (initialUser && !initializedRef.current) {
-            // Wait for rehydration to complete before setting SSR data
+        // Fetch user data from API on client side after rehydration
+        const fetchUserData = async () => {
+            if (initializedRef.current) return;
+
+            // Wait for rehydration to complete
             const unsubscribe = persistor.subscribe(() => {
                 const state = persistor.getState();
-                if (state.bootstrapped) {
-                    // Check if we already have user data from persistence
-                    const currentUser = store.getState().auth?.user;
-
-                    // Only set SSR user if we don't have persisted user data
-                    // This prevents overwriting fresh login data with stale SSR data
-                    if (!currentUser) {
-                        store.dispatch(setUser(initialUser));
-                    }
-
+                if (state.bootstrapped && !initializedRef.current) {
                     initializedRef.current = true;
                     unsubscribe();
+
+                    // Fetch user data from API to verify cookies
+                    (async () => {
+                        try {
+                            const response = await apiClient.get(ENDPOINT.USER.ME);
+                            const userData = mapUserResponse(response);
+
+                            if (userData) {
+                                store.dispatch(setUser(userData));
+                            }
+                        } catch (error) {
+                            // If API call fails (401, network error, etc.), clear user data
+                            console.log('Not authenticated or session expired');
+                            store.dispatch(clearUser());
+                        }
+                    })();
                 }
             });
 
             return () => unsubscribe();
-        }
-        // store and persistor are stable values from refs and don't need to be in dependencies
+        };
+
+        fetchUserData();
+        // store and persistor are stable values from refs
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [initialUser]);
+    }, []);
 
     return (
         <Provider store={store}>
