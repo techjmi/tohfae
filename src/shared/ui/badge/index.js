@@ -4,7 +4,7 @@
  */
 
 // Components
-export { default as Badge } from './Badge';
+export { default as Badge } from './Badge.jsx';
 
 // Constants
-export * from './badgeConstant';
+export * from './badgeConstant.js';

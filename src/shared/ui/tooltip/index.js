@@ -1,2 +1,2 @@
-export { Tooltip, default } from './Tooltip';
+export { Tooltip, default } from './Tooltip.jsx';
 

@@ -3,4 +3,4 @@
  * Central export file for all header badge-related components
  */
 
-export { HeaderIcons } from './HeaderIcons';
+export { HeaderIcons } from './HeaderIcons.jsx';

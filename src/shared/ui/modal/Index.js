@@ -1,5 +1,5 @@
-export { default as Modal } from './Modal';
-export { default as ModalHeader } from './ModalHeader';
-export { default as ModalBody } from './ModalBody';
-export { default as ModalFooter } from './ModalFooter';
-export * from './modalConstant';
+export { default as Modal } from './Modal.jsx';
+export { default as ModalHeader } from './ModalHeader.jsx';
+export { default as ModalBody } from './ModalBody.jsx';
+export { default as ModalFooter } from './ModalFooter.jsx';
+export * from './modalConstant.js';

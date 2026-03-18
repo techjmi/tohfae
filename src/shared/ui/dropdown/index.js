@@ -5,18 +5,18 @@
  */
 
 // Components
-export { default as Dropdown } from './Dropdown';
-export { default as DropdownContent } from './DropdownContent';
-export { default as DropdownItem } from './DropdownItem';
-export { default as DropdownDivider } from './DropdownDivider';
-export { default as DropdownHeader } from './DropdownHeader';
-export { default as DropdownFooter } from './DropdownFooter';
+export { default as Dropdown } from './Dropdown.jsx';
+export { default as DropdownContent } from './DropdownContent.jsx';
+export { default as DropdownItem } from './DropdownItem.jsx';
+export { default as DropdownDivider } from './DropdownDivider.jsx';
+export { default as DropdownHeader } from './DropdownHeader.jsx';
+export { default as DropdownFooter } from './DropdownFooter.jsx';
 
 // Constants
-export * from './dropdown.constant';
+export * from './dropdown.constant.js';
 
 // Helpers
-export * from './dropdown.helper';
+export * from './dropdown.helper.js';
 
 // Styles
-export * from './dropdown.style';
+export * from './dropdown.style.js';

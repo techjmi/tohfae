@@ -1,3 +1,3 @@
-export { default as Share } from './Share';
-export { default } from './Share';
+export { default as Share } from './Share.jsx';
+export { default } from './Share.jsx';
 

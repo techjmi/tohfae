@@ -4,7 +4,7 @@
  */
 
 // Component
-export { default } from './Button';
+export { default } from './Button.jsx';
 
 // Constants
-export * from './buttonConstant';
+export * from './buttonConstant.js';
