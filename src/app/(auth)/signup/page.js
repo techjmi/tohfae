@@ -3,6 +3,9 @@ import { SIGNUP_SEO } from './signup.helper';
 import { buildSeo } from '@/lib/seo/seo';
 import JsonLd from '@/shared/ui/jsonld/JsonLd';
 
+// Force dynamic rendering because root layout uses cookies()
+export const dynamic = 'force-dynamic';
+
 export const generateMetadata = async () => {
   return buildSeo({
     title: SIGNUP_SEO.title,

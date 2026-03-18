@@ -3,6 +3,9 @@ import { LOGIN_SEO } from './login.helper';
 import { buildSeo } from '@/lib/seo/seo';
 import JsonLd from '@/shared/ui/jsonld/JsonLd';
 
+// Force dynamic rendering because root layout uses cookies()
+export const dynamic = 'force-dynamic';
+
 export const generateMetadata = async () => {
   return buildSeo({
     title: LOGIN_SEO.title,
