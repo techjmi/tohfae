@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Drawer } from '@/shared/ui/drawer';
 import { Modal } from '@/shared/ui/modal';
 import { Divider } from '@/shared/ui/divider';
-import Button from '@/shared/ui/button/Button';
+import Button from '@/shared/ui/button';
 import { Icon } from '@/shared/icons';
 import { selectIsAuthenticated, selectUser, logout } from '@/redux/slice/authSlice';
 import { AuthService } from '@/services/auth/auth.service';

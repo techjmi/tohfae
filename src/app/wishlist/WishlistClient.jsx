@@ -10,7 +10,7 @@ import EmptyState from '@/shared/ui/empty-state';
 import Button from '@/shared/ui/button';
 import { Modal } from '@/shared/ui/modal';
 import { WISHLIST_PAGE_STYLES, WISHLIST_GRID_STYLES } from './wishlist.style';
-import { WISHLIST_TEXT } from './wishlist.helper';
+import { WISHLIST_TEXT } from './wishlist.helper.js';
 // import { OrbitProgress } from 'react-loading-indicators';
 
 const WishlistClient = () => {

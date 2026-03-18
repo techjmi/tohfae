@@ -7,7 +7,7 @@ import { AVATAR_SIZE } from '@/shared/ui/profile/profile.constant';
 import { Drawer } from '@/shared/ui/drawer';
 import { Modal } from '@/shared/ui/modal';
 import { Divider } from '@/shared/ui/divider';
-import Button from '@/shared/ui/button/Button';
+import Button from '@/shared/ui/button';
 import Link from 'next/link';
 import { Icon } from '@/shared/icons';
 import { logout } from '@/redux/slice/authSlice';
