@@ -15,6 +15,9 @@ import { redirect } from 'next/navigation';
 import { Navigation_Url, site_author } from '@/shared/constant/global-constant';
 import { SEO_CONFIG, PAGE_CONFIG } from './EditProfile.constants';
 
+// Force dynamic rendering because this page uses cookies()
+export const dynamic = 'force-dynamic';
+
 /**
  * Generate metadata for SEO
  */
@@ -63,7 +66,7 @@ export default async function EditProfilePage() {
 
   // Redirect to login if not authenticated
   if (!userData) {
-    redirect(`${Navigation_Url.AUTH.SIGNIN}?redirect=/profile/edit`);
+    redirect(`${Navigation_Url.LOGIN}?redirect=/profile/edit`);
   }
 
   const jsonLd = {

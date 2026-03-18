@@ -16,6 +16,9 @@ import { SearchClient } from './SearchClient';
 import { ProductService } from '@/services/product/product.service';
 import { getSearchQuery, buildSearchFilters } from './search.helper';
 
+// Force dynamic rendering because root layout uses cookies()
+export const dynamic = 'force-dynamic';
+
 export const generateMetadata = async () => {
     return buildSeo({
         title: SEARCH_PAGE_SEO.title,

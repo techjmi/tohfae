@@ -6,6 +6,9 @@ import JsonLd from '@/shared/ui/jsonld';
 import WishlistClient from './WishlistClient';
 import { WISHLIST_SEO } from './wishlist.helper';
 
+// Force dynamic rendering because root layout uses cookies()
+export const dynamic = 'force-dynamic';
+
 export const generateMetadata = async () => {
   return buildSeo({
     title: WISHLIST_SEO.title,
