@@ -5,8 +5,8 @@ import { classNames } from "@/shared/utils/classNames";
 import { SIZE, RADIUS, COLOR } from "./buttonConstant";
 
 const getClasses = ({ variant, color }) => {
-  const colorMap = COLOR[color];
-  return colorMap[variant];
+  const colorMap = COLOR[color] || COLOR.neutral;
+  return colorMap[variant] || colorMap.outline || "";
 };
 
 const Button = ({

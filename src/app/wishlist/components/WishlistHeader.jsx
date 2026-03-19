@@ -10,10 +10,10 @@ const WishlistHeader = ({ itemCount, onClearClick }) => {
   return (
     <div className={WISHLIST_PAGE_STYLES.HEADER}>
       <div>
-        <h1 className={WISHLIST_PAGE_STYLES.TITLE}>
+        <h1 className="text-h1">
           {WISHLIST_TEXT.PAGE_TITLE}
         </h1>
-        <p className={WISHLIST_PAGE_STYLES.SUBTITLE}>
+        <p className="text-sm text-gray-600 mt-1">
           {itemCount} {itemCount === 1 ? 'item' : 'items'}
         </p>
       </div>

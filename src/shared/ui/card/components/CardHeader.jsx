@@ -21,17 +21,17 @@ const CardHeader = ({
     <div className={classNames('card-header', className)} {...props}>
       {/* Subtitle */}
       {subtitle && (
-        <p className={classNames('text-sm text-gray-500 mb-1', subtitleClassName)}>
+        <p className={classNames('text-caption mb-1', subtitleClassName)}>
           {subtitle}
         </p>
       )}
 
       {/* Title with optional badge */}
       <div className="flex items-start justify-between gap-2">
-        <h3 className={classNames('text-lg font-semibold text-gray-900 flex-1', titleClassName)}>
+        <h3 className={classNames('text-card-title-md text-gray-900 flex-1 line-clamp-2', titleClassName)}>
           {title}
         </h3>
-        
+
         {/* Badge */}
         {badge && (
           <Badge

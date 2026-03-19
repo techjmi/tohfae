@@ -5,33 +5,19 @@ import { useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { ProfileBody } from '@/shared/ui/profile';
 import { getMyProfile } from '@/services/user/user.service';
-import { selectUser, selectIsAuthenticated } from '@/redux/slice/authSlice';
+import { selectUser } from '@/redux/slice/authSlice';
 import { Navigation_Url } from '@/shared/constant/global-constant';
 import { ProfileSkeleton, ProfileError, AddressList } from './components';
 
-export default function ProfileClient({ initialUserData }) {
+export default function ProfileClient() {
   const router = useRouter();
   const reduxUser = useSelector(selectUser);
-  const isAuthenticated = useSelector(selectIsAuthenticated);
 
-  const [user, setUser] = useState(initialUserData || null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Redirect if not authenticated and no initial data
-    if (!isAuthenticated && !initialUserData) {
-      router.push(Navigation_Url.LOGIN);
-      return;
-    }
-
-    // If we have initial SSR data, use it and skip loading
-    if (initialUserData) {
-      setUser(initialUserData);
-      return;
-    }
-
-    // Only fetch if we don't have initial data
     const fetchUserProfile = async () => {
       try {
         setIsLoading(true);
@@ -49,7 +35,7 @@ export default function ProfileClient({ initialUserData }) {
     };
 
     fetchUserProfile();
-  }, [isAuthenticated, router, reduxUser, initialUserData]);
+  }, [reduxUser]);
 
   const handleEdit = () => {
     router.push(Navigation_Url.PROFILE_EDIT);

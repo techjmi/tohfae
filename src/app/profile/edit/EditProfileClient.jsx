@@ -10,12 +10,12 @@
 
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { updateUser } from '@/redux/slice/authSlice';
-import { updateProfile } from '@/services/user/user.service';
+import { updateProfile, getMyProfile } from '@/services/user/user.service';
 import { mapProfileUpdateData } from '@/services/user/user.mapper';
 import { Navigation_Url } from '@/shared/constant/global-constant';
 import ImageUpload from '@/shared/ui/image-upload';
@@ -37,22 +37,52 @@ import {
 } from './EditProfile.constants';
 import './EditProfile.css';
 
-export default function EditProfileClient({ initialUserData }) {
+export default function EditProfileClient() {
   const router = useRouter();
   const dispatch = useDispatch();
 
+  // Data state
+  const [userData, setUserData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
   // Form state
   const [formData, setFormData] = useState({
-    firstName: initialUserData?.firstName || '',
-    lastName: initialUserData?.lastName || '',
-    phone: initialUserData?.phone || '',
-    avatar: initialUserData?.avatar || null,
+    firstName: '',
+    lastName: '',
+    phone: '',
+    avatar: null,
   });
 
   // UI state
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isImageUploading, setIsImageUploading] = useState(false);
   const [showImageUpload, setShowImageUpload] = useState(false);
+  const [error, setError] = useState(null);
+
+  // Fetch user data on mount
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        setIsLoading(true);
+        const data = await getMyProfile();
+        setUserData(data);
+        setFormData({
+          firstName: data?.firstName || '',
+          lastName: data?.lastName || '',
+          phone: data?.phone || '',
+          avatar: data?.avatar || null,
+        });
+      } catch (err) {
+        const errorMessage = err.response?.data?.message || err.message || 'Failed to load profile';
+        toast.error(errorMessage);
+        setError(errorMessage);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   // Handle input change
   const handleInputChange = (e) => {
@@ -108,6 +138,29 @@ export default function EditProfileClient({ initialUserData }) {
     router.push(Navigation_Url.PROFILE);
   };
 
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error && !userData) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-red-600 mb-4">{error}</p>
+          <Button onClick={() => router.push(Navigation_Url.PROFILE)}>
+            Go Back
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={CSS_CLASSES.CONTAINER}>
       <div className={CSS_CLASSES.WRAPPER}>
@@ -139,7 +192,7 @@ export default function EditProfileClient({ initialUserData }) {
               <div className="profile-picture-display">
                 <div className="profile-picture-wrapper">
                   <UserAvatar
-                    user={{ ...initialUserData, avatar: formData.avatar }}
+                    user={{ ...userData, avatar: formData.avatar }}
                     size="xl"
                     className="profile-avatar"
                   />
@@ -176,7 +229,7 @@ export default function EditProfileClient({ initialUserData }) {
                   }}
                   label={IMAGE_UPLOAD_CONFIG.LABEL}
                   helperText={IMAGE_UPLOAD_CONFIG.HELPER_TEXT}
-                  folder={getImageUploadFolder(initialUserData?.id)}
+                  folder={getImageUploadFolder(userData?.id)}
                   autoUpload={IMAGE_UPLOAD_CONFIG.AUTO_UPLOAD}
                   transformation={IMAGE_UPLOAD_CONFIG.TRANSFORMATION}
                   onUploadStart={() => {
@@ -237,7 +290,7 @@ export default function EditProfileClient({ initialUserData }) {
               {/* Single column fields */}
               {SINGLE_FIELDS.map((field) => {
                 const Component = field.type === 'textarea' ? Textarea : Input;
-                const value = field.name === 'email' ? initialUserData?.email : formData[field.name];
+                const value = field.name === 'email' ? userData?.email : formData[field.name];
                 return (
                   <Component
                     key={field.name}

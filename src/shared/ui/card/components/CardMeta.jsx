@@ -18,13 +18,13 @@ const CardMeta = ({
   ...props
 }) => {
   return (
-    <div className={classNames('card-meta flex items-center gap-3 text-sm text-gray-600', className)} {...props}>
+    <div className={classNames('card-meta flex items-center gap-3 text-meta flex-wrap', className)} {...props}>
       {/* Rating */}
       {rating !== undefined && (
         <div className="flex items-center gap-1">
           <Icon name="star" size={14} className="text-yellow-500 fill-yellow-500" />
-          <span className="font-medium">{rating}</span>
-          {reviews && <span className="text-gray-400">({reviews})</span>}
+          <span className="font-medium text-gray-900">{rating}</span>
+          {reviews && <span className="text-helper">({reviews})</span>}
         </div>
       )}
 

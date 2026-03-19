@@ -16,7 +16,7 @@ const CardBody = ({
   return (
     <div className={classNames('card-body', className)} {...props}>
       {description && (
-        <p className="text-sm text-gray-600 line-clamp-3">
+        <p className="text-sm text-gray-600 line-clamp-3 leading-relaxed">
           {description}
         </p>
       )}

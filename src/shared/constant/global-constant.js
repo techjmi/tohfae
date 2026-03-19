@@ -1,8 +1,8 @@
 import { images } from "@/contract/testing.image";
 
-//this is the global constant file for this web project
+// Global constants
 export const website_name = 'Tohfae';
-export const main_url = 'https://tohfae.com';
+export const main_url = 'https://tohfae-backend.onrender.com'
 export const local_url = 'http://localhost:3000';
 export const local_api_url = 'http://localhost:8000';
 export const logoUrl = images[0]?.image_1 || '/brand/logo.png';
@@ -34,7 +34,7 @@ export const Navigation_Url = {
   PROFILE: '/profile',
   PROFILE_EDIT: '/profile/edit',
 };
-//dynamic navigation url constant
+// Dynamic Navigation URLs
 export const Dynamic_Navigation_Url = {
   PRODUCT_DETAILS: '/product/:slug',
   PRODUCT_LIST: '/products',
@@ -48,7 +48,7 @@ export const Dynamic_Navigation_Url = {
   USER_WISHLIST: '/user/wishlist'
 };
 
-//social media handles
+// Social Media
 export const site_facebook_handle = 'https://www.facebook.com';
 export const site_twitter_handle = 'https://www.twitter.com';
 export const site_instagram_handle = 'https://www.instagram.com';
